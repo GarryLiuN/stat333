@@ -24,3 +24,8 @@
       * Exponential distribution
     * Joint distribution
     * Expectation
+* [Lecture 4](./md/04_Jan_17.md)([pdf](./pdf/04_Jan_17.pdf)) - January 17
+  * __Random variables and distributions__ (cont'd)
+    * Expectation (cont'd)
+      * Properties of expectation
+    * Indicator
