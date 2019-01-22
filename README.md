@@ -12,7 +12,7 @@
     * Bayes' rule
   * __Random variables and distributions__
     * Discrete random variables and distribution
-      * Bemoulli distribution
+      * Bernoulli distribution
       * Binomial distribution
       * Geometric distribution
 * [Lecture 3](./md/03_Jan_15.md)([pdf](./pdf/03_Jan_15.pdf)) - January 10
@@ -29,3 +29,8 @@
     * Expectation (cont'd)
       * Properties of expectation
     * Indicator
+* [Lecture 5](./md/05_Jan_22.md)([pdf]()) - January 22
+  * __Random variables and distributions__ (cont'd)
+    * Indicator (cont'd)
+    * Moment generating function (mgf)
+      * Joint mgf
