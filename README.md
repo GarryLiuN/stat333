@@ -29,7 +29,7 @@
     * Expectation (cont'd)
       * Properties of expectation
     * Indicator
-* [Lecture 5](./md/05_Jan_22.md)([pdf]()) - January 22
+* [Lecture 5](./md/05_Jan_22.md)([pdf](./pdf/05_Jan_22.pdf)) - January 22
   * __Random variables and distributions__ (cont'd)
     * Indicator (cont'd)
     * Moment generating function (mgf)
