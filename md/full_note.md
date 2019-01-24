@@ -1,4 +1,51 @@
+
 # STAT 333 Course Note
+
+## Table of Contents
+
+- [STAT 333 Course Note](#stat-333-course-note)
+  - [Table of Contents](#table-of-contents)
+  - [1. Fundamental of Probability](#1-fundamental-of-probability)
+    - [1.1 What's Probability](#11-whats-probability)
+      - [1.1.1 Examples](#111-examples)
+        - [Example 1](#example-1)
+    - [1.2 Probability Models](#12-probability-models)
+      - [1.2.1 Examples](#121-examples)
+        - [1.2.1.1 Example 2](#1211-example-2)
+      - [1.2.2 Remark: why do we need the notion of event?](#122-remark-why-do-we-need-the-notion-of-event)
+    - [1.3 Conditional Probability](#13-conditional-probability)
+    - [1.4 Independence](#14-independence)
+    - [1.5 Bayes' rule and law of total probability](#15-bayes-rule-and-law-of-total-probability)
+      - [1.5.1 Bayes' rule](#151-bayes-rule)
+  - [2 Random variables and distributions](#2-random-variables-and-distributions)
+    - [2.1 Random variables](#21-random-variables)
+    - [2.2 Discrete random variables and distributions](#22-discrete-random-variables-and-distributions)
+      - [2.2.1 Examples of discrete distributions](#221-examples-of-discrete-distributions)
+        - [1. Bemoulli distribution](#1-bemoulli-distribution)
+        - [2.Binomial distribution](#2binomial-distribution)
+        - [3.Geometric distribution](#3geometric-distribution)
+        - [4. Poisson distribution](#4-poisson-distribution)
+    - [2.3 Continuous random variables and distributions](#23-continuous-random-variables-and-distributions)
+      - [2.3.1 Example of continuous distribution](#231-example-of-continuous-distribution)
+    - [2.4 Joint distribution of r.v's](#24-joint-distribution-of-rvs)
+    - [2.5 Expectation](#25-expectation)
+      - [2.5.1 Properties of expectation](#251-properties-of-expectation)
+      - [2.5.2 Definitions](#252-definitions)
+    - [2.6 Indicator](#26-indicator)
+      - [2.6.1 Example](#261-example)
+      - [2.6.1 Example 3](#261-example-3)
+    - [2.7 Moment generating function](#27-moment-generating-function)
+      - [2.7.1 Properties of mgf](#271-properties-of-mgf)
+      - [2.7.2 Joint mgf](#272-joint-mgf)
+        - [2.7.2.1 Properties of the joint mgf](#2721-properties-of-the-joint-mgf)
+  - [3. Conditional distribution and conditional expectation](#3-conditional-distribution-and-conditional-expectation)
+    - [3.1 Conditional distribution](#31-conditional-distribution)
+      - [3.1.1 Discrete case](#311-discrete-case)
+        - [3.1.1.1 Example](#3111-example)
+      - [3.1.2 Continuous case](#312-continuous-case)
+        - [3.1.2.1 Example](#3121-example)
+        - [3.1.2.1. Example 2](#3121-example-2)
+    - [3.2 Conditional expectation](#32-conditional-expectation)
 
 ## 1. Fundamental of Probability
 
@@ -766,3 +813,183 @@ More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_
    * __Remark__: Don't confuse this with the result $X\perp \!\!\! \perp  Y\Rightarrow M_{X+Y}(t)=M_X(t)M_Y(t)$.
      * $M_{X+Y}(t)\rightarrow$ mgf of $X+Y$; single argument function $t$
      * $M(t_1,t_2)\rightarrow$ joint mgf of $(X,Y)$; two arguments $t_1, t_2$
+
+## 3. Conditional distribution and conditional expectation
+
+### 3.1 Conditional distribution
+
+#### 3.1.1 Discrete case
+
+__Definition__ Let $X$ and $Y$ be discrete r.v's. The conditional distribution of $X$ given $Y$ is given by:
+
+$$
+P(X=x | Y=y) = \frac{(P(X=x, Y=u))}{P(Y=y)}
+$$
+
+$$
+P(X=x|Y=y): f_{X|Y} = y(x), f_{X|Y}(x|y) \leftarrow \text{conditional probability mass function)}$$
+
+Conditional pmf is a legitimate pmf: given any $y$, $f_{X|Y=y}(x) \geq 0, \forall x$
+
+$$
+\sum_x f_{X|Y=y}(x) = 1
+$$
+
+Note that given $Y=y$, as $x$ changes, the value of the function $f_{X|Y=y}(x)$ is proportional to the joint probability.
+
+$$
+f_{X|Y=y}(x) \propto P(X=x, Y=y)
+$$
+
+This is useful for solving problems where the denominator $P(Y=y)$ is hard to find.
+
+##### 3.1.1.1 Example
+
+$X_1\sim Poi(\lambda_1), X_2\sim Poi(\lambda_2)$. $X_1\perp\!\!\!\perp X_2$, $Y=X_1 + X_2$
+
+Q: $P(X_1=k|Y=n)$ ?
+
+Note $P(X_1=k|Y=u) = f_{X_1|Y=n}(k)$
+
+A:
+$P(X_1=k|Y=n)$ can only be non-zero for $k=0, \cdots, n$ in this case,
+
+$$
+\begin{aligned}
+    P(X_1=k|Y=n) &= \frac{P(X_1=k, Y=n)}{P(Y=n)}    \\
+                & \propto P(X_1=k, Y=n)     \\
+                & = P(X_1=k, X_2=n-k)   \\
+                & = e^{-\lambda_1}\frac{\lambda_1^k}{k!}\cdot e^{-\lambda_2}\frac{\lambda_2^{n-k}}{(n-k)!}    \\
+                & \propto (\frac{\lambda_1}{\lambda_2})^k / k!(n-k)!
+
+\end{aligned}
+$$
+
+we can get $P(X=k|Y=n)$ by normalizing the above expression.
+
+$$
+\begin{aligned}
+    P(X_1=k, Y=n) = \frac{(\frac{\lambda_1}{\lambda_2})^k / k!(n-k)!}{\sum_{k=0}^n(\frac{\lambda_1}{\lambda_2})^k/k!(n-k)!}
+\end{aligned}
+$$
+
+but then we will need to fine $\sum_{k=0}^n(\frac{\lambda_1}{\lambda_2})^k/k!(n-k)!$
+
+An easier way is to compare $\sum_{k=0}^n(\frac{\lambda_1}{\lambda_2})^k/k!(n-k)!$ with the known results for common distribution. In particular, if $X\sim Bin(n, p)$
+
+$$
+\begin{aligned}
+    P(X=k)  &= (\stackrel{n}{k})p^k(1-p)^{n-k}    \\
+            &\propto (\frac{p}{1-p})^k/k! (n-k)!
+\end{aligned}
+$$
+
+$\Rightarrow P(X_1=k|Y=n)$ follows a binomial distributions with parameters $n$ and $p$ given by $\frac{p}{1-p}=\frac{\lambda_1}{\lambda_2} \Rightarrow p=\frac{\lambda_1}{\lambda_1+\lambda_2}$
+
+Thus, given $Y=X_1+X_2=n$, the conditional distribution of $X_1$ is binomial with parameter $n$ and $\frac{\lambda_1}{\lambda_1+\lambda_2}$
+
+#### 3.1.2 Continuous case
+
+__Definition__: Let $X$ and $Y$ be continuous r.v's. The conditional distribution of $X$ given $Y$ is given by
+
+$$
+f_{X|Y}(x|y) = f_{X|Y=y}(x) = \frac{f(x,y)}{f_Y(y)}
+$$
+
+A conditional pdf is a legitimate pdf
+$$
+\begin{aligned}
+f_{X|Y}(x|y) \geq 0\quad \quad\quad& x,y\in \R\\
+\int_{-\infty}^\infty f_{X|Y}(x|y) dx = 1,\quad &y\in \R
+\end{aligned}
+$$
+
+##### 3.1.2.1 Example
+
+Suppose $X\sim Exp(\lambda)$, $Y|X=x \sim Exp(x) = f_{Y|X}(y|x) = x e^{-xy}, y = e$ $\leftarrow$ conditional distribution of $Y$ given $X=x$
+
+Q: Find the condition pdf $f_{X|Y}(x|y)$
+
+A:
+
+$$
+\begin{aligned}
+    f_{X|Y}(x|y) &= \frac{f(x,y)}{f_Y(y)}   \\
+        & \propto f(x,y)    \\
+        & = f_{Y|X}(y|x)\cdot f_X(x)    \\
+        & = xe^{xy}\lambda e^{-\lambda xa}  \\
+        & \propto xe^{-x(y+\lambda)}, \quad\quad x>0, y>0
+\end{aligned}
+$$
+
+Normalization ( make the total probability 1)
+
+$$
+\begin{aligned}
+    f_{X|Y}(x|y) & = \frac{xe^{-x(y+\lambda)}}{\int_0^\infty xe^{-x(y+\lambda)}dx}  \\
+    \int_0^\infty xe^{-x(y+\lambda)}dx &= \frac{1}{\lambda + t}^2 \leftarrow \text{integration by parts}
+\end{aligned}
+$$
+
+Thus, $f_{X|Y}(x|y) = (\lambda + y)^2xe^{-x(y+\lambda)}$, $x>0$.
+
+This is a gamma distribution with parameters $\gamma$ and $\lambda + y$
+
+##### 3.1.2.1. Example 2
+
+Find the distribution of $z=XY$.
+
+__Attention__: the following method is wrong:
+
+$$
+f_Z(z) = \int_0^\infty f_{Y|X}(\frac{z}{x}|x)\cdot f_X(x)dx
+$$
+
+If we want to directly work with pdf's, we will need to use the change of variable formula for multi-variables. The right formula have turns out to be
+
+$$
+\begin{aligned}
+
+    f_Z(z) & = \int_0^\infty f_{X,Z}(x,z)dx = \int_0^\infty f_{Z|X}(z|x) f_X(x)dx \\
+        &= \int_0^{\infty} f(x, \frac{z}{x})\cdot \frac{1}{x}dx \\
+        &= f_{Y|X}(\frac{z}{x}|x) f_X(x)\cdot\frac{1}{x}dx
+\end{aligned}
+$$
+
+As an __easier way__ is to use cdf, which gives probability rather than density:
+
+$$
+\begin{aligned}
+    P(Z=z) & = P(XY\leq z) \\
+        & = \int_0^\infty P(XY\leq z|X=x) f_X(x) dx \quad\quad (\text{law of total probability}) \\
+        &= \int_0^\infty P(Y\leq\frac{z}{x}|X=x)\cdot f_X(x)dx  \\
+Y|X=x \sim Exp(x)  \\
+        &= \int_0^\infty(1-e^{-x\cdot\frac{z}{x}})\cdot\lambda e^{-\lambda x} dx    \\
+        &= 1 - e^{-z}\int_0^\infty \lambda e^{-\lambda x}dx \\
+\Rightarrow Z\sim Exp(1)
+\end{aligned}
+$$
+
+Notation $X,Y|\{ Z = k \}\stackrel{iid}{\sim}\cdots$ means that given $Z=k$, $X$ and $Y$ are _conditionally independent_, and they follow certain distribution.
+
+(the conditional joint cdf/pmf/pdf equals the predict of the conditional cdf's/pmf's/pdf's)
+
+### 3.2 Conditional expectation
+
+We have seen that conditional pmf/pdf are legitimate pmf/pdf. Correspondingly, a conditional distribution is nothing else but a probability distributions. It is simply a (potentially) different distribution, since it takes more information into consideration.
+
+As a result, we can define everything which are previously defined for unconditional distributions also for conditional distributions.
+
+In particular, it is natural to define the conditional expectation.
+
+__Definition__. The conditional expectation of $g(X)$ given $Y=y$ is defined as
+
+$$
+\mathbb{E}(g(X)|Y=y) =   \begin{cases}
+                    \sum_{i_1}^\infty g(x_i) P(X=x_u|Y=y) \quad\quad \text{ if } X|Y=y \text{ is discrete}  \\
+                    \int_{-\infty}^\infty g(x)f_{X|Y}(x|y) dx   \quad\quad\quad\quad\quad \text{ if } X|X=y \text{ is continuous}
+                \end{cases}
+
+$$
+
+Fix $y$, the conditional expectation is nothing but the expectation taken under the conditional distribution.
