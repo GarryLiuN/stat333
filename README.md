@@ -2,6 +2,8 @@
 
 ## Table of Contents
 
+* __[Full Note](./pdf/full_note.pdf)__
+
 * [Lecture 1](./md/01_Jan_08.md)([pdf](./pdf/01_Jan_08.pdf)) - January 8
   * __Fundamental of Probability__
     * Probability Models
