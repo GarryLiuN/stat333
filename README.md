@@ -15,7 +15,7 @@
       * Bernoulli distribution
       * Binomial distribution
       * Geometric distribution
-* [Lecture 3](./md/03_Jan_15.md)([pdf](./pdf/03_Jan_15.pdf)) - January 10
+* [Lecture 3](./md/03_Jan_15.md)([pdf](./pdf/03_Jan_15.pdf)) - January 15
   * __Random variables and distributions__ (cont'd)
     * Discrete random variables and distribution (cont'd)
       * Geometric distribution
@@ -34,3 +34,7 @@
     * Indicator (cont'd)
     * Moment generating function (mgf)
       * Joint mgf
+* [Lecture 6](./md/06_Jan_24.md)([pdf](./pdf/06_Jan_24.pdf)) - January 24
+  * __Conditional distribution and conditional expectation__
+    * Conditional distribution
+    * Conditional expectation
