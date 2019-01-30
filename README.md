@@ -40,3 +40,7 @@
   * __Conditional distribution and conditional expectation__
     * Conditional distribution
     * Conditional expectation
+* [Lecture 7](./md/07_Jan_29.md)([pdf](./pdf/07_Jan_29.pdf)) - January 29
+  * __Conditional distribution and conditional expectation__ (cont'd)
+    * Conditional expectation (cont'd)
+    * Decomposition of variance (Conditional variance)
