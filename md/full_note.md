@@ -1,57 +1,61 @@
 
 # STAT 333 Course Note
 
-## Table of Contents
+# Table of Contents
 
 - [STAT 333 Course Note](#stat-333-course-note)
-  - [Table of Contents](#table-of-contents)
-  - [1. Fundamental of Probability](#1-fundamental-of-probability)
-    - [1.1 What's Probability](#11-whats-probability)
-      - [1.1.1 Examples](#111-examples)
-        - [Example 1](#example-1)
-    - [1.2 Probability Models](#12-probability-models)
-      - [1.2.1 Examples](#121-examples)
-        - [1.2.1.1 Example 2](#1211-example-2)
-      - [1.2.2 Remark: why do we need the notion of event?](#122-remark-why-do-we-need-the-notion-of-event)
-    - [1.3 Conditional Probability](#13-conditional-probability)
-    - [1.4 Independence](#14-independence)
-    - [1.5 Bayes' rule and law of total probability](#15-bayes-rule-and-law-of-total-probability)
-      - [1.5.1 Bayes' rule](#151-bayes-rule)
-  - [2 Random variables and distributions](#2-random-variables-and-distributions)
-    - [2.1 Random variables](#21-random-variables)
-    - [2.2 Discrete random variables and distributions](#22-discrete-random-variables-and-distributions)
-      - [2.2.1 Examples of discrete distributions](#221-examples-of-discrete-distributions)
-        - [1. Bemoulli distribution](#1-bemoulli-distribution)
-        - [2.Binomial distribution](#2binomial-distribution)
-        - [3.Geometric distribution](#3geometric-distribution)
-        - [4. Poisson distribution](#4-poisson-distribution)
-    - [2.3 Continuous random variables and distributions](#23-continuous-random-variables-and-distributions)
-      - [2.3.1 Example of continuous distribution](#231-example-of-continuous-distribution)
-    - [2.4 Joint distribution of r.v's](#24-joint-distribution-of-rvs)
-    - [2.5 Expectation](#25-expectation)
-      - [2.5.1 Properties of expectation](#251-properties-of-expectation)
-      - [2.5.2 Definitions](#252-definitions)
-    - [2.6 Indicator](#26-indicator)
-      - [2.6.1 Example](#261-example)
-      - [2.6.1 Example 3](#261-example-3)
-    - [2.7 Moment generating function](#27-moment-generating-function)
-      - [2.7.1 Properties of mgf](#271-properties-of-mgf)
-      - [2.7.2 Joint mgf](#272-joint-mgf)
-        - [2.7.2.1 Properties of the joint mgf](#2721-properties-of-the-joint-mgf)
-  - [3. Conditional distribution and conditional expectation](#3-conditional-distribution-and-conditional-expectation)
-    - [3.1 Conditional distribution](#31-conditional-distribution)
-      - [3.1.1 Discrete case](#311-discrete-case)
-        - [3.1.1.1 Example](#3111-example)
-      - [3.1.2 Continuous case](#312-continuous-case)
-        - [3.1.2.1 Example](#3121-example)
-        - [3.1.2.1. Example 2](#3121-example-2)
-    - [3.2 Conditional expectation](#32-conditional-expectation)
+- [Table of Contents](#table-of-contents)
+- [1. Fundamental of Probability](#1-fundamental-of-probability)
+  - [1.1 What's Probability](#11-whats-probability)
+    - [1.1.1 Examples](#111-examples)
+      - [Example 1](#example-1)
+  - [1.2 Probability Models](#12-probability-models)
+    - [1.2.1 Examples](#121-examples)
+      - [1.2.1.1 Example 2](#1211-example-2)
+    - [1.2.2 Remark: why do we need the notion of event?](#122-remark-why-do-we-need-the-notion-of-event)
+  - [1.3 Conditional Probability](#13-conditional-probability)
+  - [1.4 Independence](#14-independence)
+  - [1.5 Bayes' rule and law of total probability](#15-bayes-rule-and-law-of-total-probability)
+    - [1.5.1 Bayes' rule](#151-bayes-rule)
+- [2 Random variables and distributions](#2-random-variables-and-distributions)
+  - [2.1 Random variables](#21-random-variables)
+  - [2.2 Discrete random variables and distributions](#22-discrete-random-variables-and-distributions)
+    - [2.2.1 Examples of discrete distributions](#221-examples-of-discrete-distributions)
+      - [1. Bemoulli distribution](#1-bemoulli-distribution)
+      - [2.Binomial distribution](#2binomial-distribution)
+      - [3.Geometric distribution](#3geometric-distribution)
+      - [4. Poisson distribution](#4-poisson-distribution)
+  - [2.3 Continuous random variables and distributions](#23-continuous-random-variables-and-distributions)
+    - [2.3.1 Example of continuous distribution](#231-example-of-continuous-distribution)
+  - [2.4 Joint distribution of r.v's](#24-joint-distribution-of-rvs)
+  - [2.5 Expectation](#25-expectation)
+    - [2.5.1 Properties of expectation](#251-properties-of-expectation)
+    - [2.5.2 Definitions](#252-definitions)
+  - [2.6 Indicator](#26-indicator)
+    - [2.6.1 Example](#261-example)
+    - [2.6.1 Example 3](#261-example-3)
+  - [2.7 Moment generating function](#27-moment-generating-function)
+    - [2.7.1 Properties of mgf](#271-properties-of-mgf)
+    - [2.7.2 Joint mgf](#272-joint-mgf)
+      - [2.7.2.1 Properties of the joint mgf](#2721-properties-of-the-joint-mgf)
+- [3. Conditional distribution and conditional expectation](#3-conditional-distribution-and-conditional-expectation)
+  - [3.1 Conditional distribution](#31-conditional-distribution)
+    - [3.1.1 Discrete case](#311-discrete-case)
+      - [3.1.1.1 Example](#3111-example)
+    - [3.1.2 Continuous case](#312-continuous-case)
+      - [3.1.2.1 Example](#3121-example)
+      - [3.1.2.1. Example 2](#3121-example-2)
+  - [3.2 Conditional expectation](#32-conditional-expectation)
+    - [3.2.1 What is $\mathbb{E}(X|Y)\;?$](#321-what-is-mathbbexy)
+    - [3.2.2 Properties of conditional expectation](#322-properties-of-conditional-expectation)
+  - [3.3 Decomposition of variance (EVVE's low)](#33-decomposition-of-variance-evves-low)
 
-## 1. Fundamental of Probability
 
-### 1.1 What's Probability
+# 1. Fundamental of Probability
 
-#### 1.1.1 Examples
+## 1.1 What's Probability
+
+### 1.1.1 Examples
 
 1. Coin toss
     * "H" - head
@@ -64,19 +68,19 @@
 
 Although things are random, they are not haphazard/arbitrary. There are "patterns"
 
-##### Example 1
+#### Example 1
 
 If we repeat tossing a coin, then the fraction of times that we get a "H" goes to $\frac{1}{2}$ as the number of toss goes to infinity.
 $$
-\frac{\text{\# of "H"}}{\text{total \# of toss}} = \frac{1}{2}
+\frac{\#\; of \;"H"}{total\; \#\; of\; toss} = \frac{1}{2}
 $$
-This number $\frac{1}{2}$ reflects how "likely" a "H" will appear in one toss (Even if the experiment is not repeated)
+This number $1/2$ reflects how "likely" a "H" will appear in one toss (Even if the experiment is not repeated)
 
-### 1.2 Probability Models
+## 1.2 Probability Models
 
 The _Sample space_ $\Omega$ is the set consisting of al the possible outcomes of a random experiment.
 
-#### 1.2.1 Examples
+### 1.2.1 Examples
 
 1. $\{H, T\}$
 2. $\{1,2,3,4,5,6\}$
@@ -87,11 +91,11 @@ An _event_ $E\in \Omega$ is a subset of $\Omega$
 
 for which we can talk about "likelihood of happening"; for example
 
-* in __2__:
-  * {getting an even number} = {2, 4, 6}
-* in __4__:
-  * $\{the \;point\; is\; between\; 0\; and\; 1/3\} = [0, \frac{1}{3}]$ is an event
-  * $\{the\; point\; is\; rational\} = Q \cap [0, 1]$
+- in __2__:
+  - {getting an even number} = {2, 4, 6}
+- in __4__:
+  - $\{the \;point\; is\; between\; 0\; and\; 1/3\} = [0, \frac{1}{3}]$ is an event
+  - $\{the\; point\; is\; rational\} = Q \cap [0, 1]$
 
 We say an even $E$ "happens", if the result of the experiment turns out to belong to $E$ (a subset of $\Omega$)
 
@@ -108,8 +112,8 @@ which satisfies the following 3 properties:
 1. $\forall E \in \xi, 0 \leq P(E) \leq 1$
 2. $P(\Omega) = 1$
 3. For
-   * countably many disjoint events $E_1, E_2,...,$ we have $P(U_{i=1}^{\infty}E_i) = \sum_{i=1}^{\infty}P(E_i)$
-   * countable: $\exists$ 1-1 mapping to natural numbers $1,2,3,...$
+   - countably many disjoint events $E_1, E_2,...,$ we have $P(U_{i=1}^{\infty}E_i) = \sum_{i=1}^{\infty}P(E_i)$
+   - countable: $\exists$ 1-1 mapping to natural numbers $1,2,3,...$
 
 Intuitively, one can think the probability of an event as the "likelihood/chance" for the event happens. If we repeat the experiment for a large number of events, the probability is the fraction of time that the event happens
 
@@ -117,7 +121,7 @@ $$
 P(E) = \lim_{n\rightarrow\infty} \frac{\text{\# of times the E happens in n trials}}{n}
 $$
 
-##### 1.2.1.1 Example 2
+#### 1.2.1.1 Example 2
 
 $$
 \begin{aligned}
@@ -135,7 +139,7 @@ Properties of probability:
 4. $P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)$
    * $P(E_1 \cap E_2)$: $E_1$ and $E_2$ happen
 
-#### 1.2.2 Remark: why do we need the notion of event?
+### 1.2.2 Remark: why do we need the notion of event?
 
 If the sample space $\Omega$ is __discrete__, then everything can has at most countable elements be built from the "atoms"
 $$
@@ -160,7 +164,7 @@ To summarize: A __Probability Space__ consists of a triplet $(\Omega, \xi, P)$:
 * $\xi$: collection of events
 * $P$: probability
 
-### 1.3 Conditional Probability
+## 1.3 Conditional Probability
 
 If we know some information, the probability of an event can be updated
 
@@ -185,7 +189,7 @@ $$
 P(E\cap F) = P(E\mid F) \cdot P(F)
 $$
 
-### 1.4 Independence
+## 1.4 Independence
 
 __Def__: Two events $E$ and $F$ are said to be independent, if $P(E\cap F)=P(E)\cdot P(F)$; denoted as $E\perp\!\!\!\perp F$. __This is different rom disjoint.__
 
@@ -203,7 +207,7 @@ $$
 P(\bigcap_{i\in I}E_i)=\prod_{i\in I} P(E_i)
 $$
 
-### 1.5 Bayes' rule and law of total probability
+## 1.5 Bayes' rule and law of total probability
 
 __Theorem__: Let $F_1, F_2,\ldots$ be disjoint events, and $\bigcap_{i=1}^\infty F_i=\Omega$, we say $\{F_u\}_{i=1}^\infty$ forms a "partition" of the sample space $\Omega$
 
@@ -217,7 +221,7 @@ $$
 P(E\cap F_2) = P(E|F+2)\cdot P(F_2)
 $$
 
-#### 1.5.1 Bayes' rule
+### 1.5.1 Bayes' rule
 
 $$
 P(F_i | E) = \frac{P(E|F_i)\cdot P(F_i)}{\sum_{h=1}^\infty P(E|F_j)\cdot P(F_j)}
@@ -232,9 +236,9 @@ P(F_i | E)  & = \frac{P(F_i\cap E)}{P(E)}                               & \hspac
             & = \frac{P(E|F_i)P(F_i)}{\sum_{j=1}^\infty P(E|F_j)P(F_j)} & \text{law of total probability}
 \end{aligned}$$
 
-## 2 Random variables and distributions
+# 2 Random variables and distributions
 
-### 2.1 Random variables
+## 2.1 Random variables
 
 $(\Omega,\xi, P)$: Probability space.
 
@@ -271,7 +275,7 @@ Properties of cdf:
    * $lim_{x\downarrow a}F(x) = F(a)$ : $x$ decreases to $a$(approaching from the right)
    * Hint: $\{x\leq a\}=\bigcap_{i=1}^\infty\{X\leq a_i\}$ for $a_i\downarrow a$
   
-### 2.2 Discrete random variables and distributions
+## 2.2 Discrete random variables and distributions
 
 A random variable $X$ is called __discrete__ if it only takes values in an __at most countable__ set $\{x_1, x_2, \ldots\}$ (finite or countable).
 
@@ -288,9 +292,9 @@ Properties of pmf:
 
 Q: what does the cdf of a discrete random variable look like?
 
-#### 2.2.1 Examples of discrete distributions
+### 2.2.1 Examples of discrete distributions
 
-##### 1. Bemoulli distribution
+#### 1. Bemoulli distribution
 
 $$\begin{aligned}
 p(1) &= P(X=1)=p \\
@@ -299,7 +303,7 @@ p(x) &= 0 otherwise
 \end{aligned}$$
 Denote $X\sim Ber(p)$
 
-##### 2.Binomial distribution
+#### 2.Binomial distribution
 
 $$\begin{aligned}
     p(k) = P(X=k) = \lgroup\stackrel{n}{k}\rgroup p^k(1-p)^{n-k}
@@ -308,7 +312,7 @@ $$\begin{aligned}
 * $X\sim Bin(n, p)$ to choose $k$ successes.
 * Binomial distribution is the distribution of number of successes in $n$ independent trials; each having probability $p$ of sucess.
   
-##### 3.Geometric distribution
+#### 3.Geometric distribution
 
 $$
 p(k) = P(X=k)=(1-p)^{k-1}p \\
@@ -343,7 +347,7 @@ $$
 
 __Intuition__: The failures in the past have no influence on how long we still need to wait to get the first success in the future
 
-##### 4. Poisson distribution
+#### 4. Poisson distribution
 
 $$
 p(k)=P(X=k)=\frac{\lambda^k e^{-\lambda}}{k!}, k=0,1,2,\ldots, \lambda > 0
@@ -354,7 +358,7 @@ Other discrete distributions:
 * negative binomial
 * discrete uniform
 
-### 2.3 Continuous random variables and distributions
+## 2.3 Continuous random variables and distributions
 
 __Definition__: A random variable $X$ is called __continuous__ if there exists a non-negative function $f$, such that for any interval $[a,b]$, $(a,b)$ or $[a,b)$:
 
@@ -382,7 +386,7 @@ Property of pdf:
 2. $\int_{-\infty}^\infty f(x)dx = 1$ 
 3. For $A\subseteq R, P(X\in A)=\int_A f(x)dx$
 
-#### 2.3.1 Example of continuous distribution
+### 2.3.1 Example of continuous distribution
 
 __Exponential distribution__
 $$
@@ -409,7 +413,7 @@ Exercises:
    P(X>t+s|x>t)=P(X>s)
    $$
 
-### 2.4 Joint distribution of r.v's
+## 2.4 Joint distribution of r.v's
 
 Let $X$ and $Y$ be two r.v's. defined on the same probability space $(\Omega, \xi, P)$
 
@@ -472,7 +476,7 @@ P(X\in A, Y\in B)   &= \int_{y\in B}\int_{x\in A} f(x,y) dxdy \\
 \end{aligned}
 $$
 
-### 2.5 Expectation
+## 2.5 Expectation
 
 __Definition__: For a r.v $X$, the expectation of $g(x)$ is defined as
 $$
@@ -494,7 +498,7 @@ $$
                     \end{cases}
 $$
 
-#### 2.5.1 Properties of expectation
+### 2.5.1 Properties of expectation
 
 1. Linearity:expectation of $X$: $\mathbb{E}(X)= \begin{cases}
                                             \sum X_i \mathbb{P}(X=x_i) \\
@@ -514,7 +518,7 @@ $$
     $$
     * In particular, $\mathbb{E}(XY)=\mathbb{E}(X)\mathbb{E}(Y)$ if $X\perp \!\!\! \perp Y$
 
-#### 2.5.2 Definitions
+### 2.5.2 Definitions
 
 __Definition__: The expectation $\mathbb{E}(X^n)$ is called the n-th moment of $X$:
 
@@ -609,7 +613,7 @@ the other two, $\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y)$ and $Var(X+Y)=Var(X
 
 It is more appropriate to consider them as __properties of independence__ rather than properties of expectation and variance
 
-### 2.6 Indicator
+## 2.6 Indicator
 
 A random variable $I$ is called an indicator, if
 $$
@@ -644,7 +648,7 @@ $$
 \Rightarrow \mathbb{E}(I_A)=1\cdot \mathbb{P}(A)+c\cdot (1-\mathbb{P}(A)) = \mathbb{P}(A)
 $$
 
-#### 2.6.1 Example
+### 2.6.1 Example
 
 we see $I_A\sim Ber(\mathbb{P}(A))$
 
@@ -681,7 +685,7 @@ $$
 
 
 
-#### 2.6.1 Example 3
+### 2.6.1 Example 3
 
 Let $X$ be a r.v. taking values in non-negative integers, then
 $$
@@ -709,13 +713,13 @@ $$
 \end{aligned}
 $$
 
-### 2.7 Moment generating function
+## 2.7 Moment generating function
 
 __Definition__: Let $X$ be a r.v. Then the function $M(t)=\mathbb{E}(e^{tx})$ is called the _moment generating function(mgf)_ of $X$, if the expectation exists for all $t\in (-h, h)$ for some $h>0$.
 
 __Remark__: The mgf is not always well-defined. It is important to check the existence of the expectation.
 
-#### 2.7.1 Properties of mgf
+### 2.7.1 Properties of mgf
 
 1. Moment Generating Function generates moments
    * __Theorem__: 
@@ -778,13 +782,13 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
 
         In general, if $X_1, X_2, \ldots, X_n$ independent, $X_i\sim Poi(\lambda_i)$, then $\sum X_i \sim Poi(\sum \lambda_i$
 
-#### 2.7.2 Joint mgf
+### 2.7.2 Joint mgf
 
 __Definition__: Let $X,Y$ be r.v's. Then $M(t_1, t_2):=\mathbb{E}(e^{t_1X+t_2Y}$ is called the joint mgf of $X$ and $Y$, if the expectation exists for all $t_1\in(-h_1, h_1)$, $t_2\in(-h_2, h_2)$ for some $h_1, h_2 >0$.
 
 More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_iX_i))$ for r.v's $X_1, \cdots,X_n$, if the expectation exists for $\{(t_1,\cdots, t_n):t_i\in(-h_i,h_i), i=1,\cdots,n\}$ for some $\{h_i>0\}, i=1,\cdots, n$
 
-##### 2.7.2.1 Properties of the joint mgf
+#### 2.7.2.1 Properties of the joint mgf
 
 1. $$
    \begin{aligned}
@@ -814,11 +818,11 @@ More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_
      * $M_{X+Y}(t)\rightarrow$ mgf of $X+Y$; single argument function $t$
      * $M(t_1,t_2)\rightarrow$ joint mgf of $(X,Y)$; two arguments $t_1, t_2$
 
-## 3. Conditional distribution and conditional expectation
+# 3. Conditional distribution and conditional expectation
 
-### 3.1 Conditional distribution
+## 3.1 Conditional distribution
 
-#### 3.1.1 Discrete case
+### 3.1.1 Discrete case
 
 __Definition__ Let $X$ and $Y$ be discrete r.v's. The conditional distribution of $X$ given $Y$ is given by:
 
@@ -843,7 +847,7 @@ $$
 
 This is useful for solving problems where the denominator $P(Y=y)$ is hard to find.
 
-##### 3.1.1.1 Example
+#### 3.1.1.1 Example
 
 $X_1\sim Poi(\lambda_1), X_2\sim Poi(\lambda_2)$. $X_1\perp\!\!\!\perp X_2$, $Y=X_1 + X_2$
 
@@ -888,7 +892,7 @@ $\Rightarrow P(X_1=k|Y=n)$ follows a binomial distributions with parameters $n$ 
 
 Thus, given $Y=X_1+X_2=n$, the conditional distribution of $X_1$ is binomial with parameter $n$ and $\frac{\lambda_1}{\lambda_1+\lambda_2}$
 
-#### 3.1.2 Continuous case
+### 3.1.2 Continuous case
 
 __Definition__: Let $X$ and $Y$ be continuous r.v's. The conditional distribution of $X$ given $Y$ is given by
 
@@ -904,7 +908,7 @@ f_{X|Y}(x|y) \geq 0\quad \quad\quad& x,y\in \R\\
 \end{aligned}
 $$
 
-##### 3.1.2.1 Example
+#### 3.1.2.1 Example
 
 Suppose $X\sim Exp(\lambda)$, $Y|X=x \sim Exp(x) = f_{Y|X}(y|x) = x e^{-xy}, y = e$ $\leftarrow$ conditional distribution of $Y$ given $X=x$
 
@@ -935,7 +939,7 @@ Thus, $f_{X|Y}(x|y) = (\lambda + y)^2xe^{-x(y+\lambda)}$, $x>0$.
 
 This is a gamma distribution with parameters $\gamma$ and $\lambda + y$
 
-##### 3.1.2.1. Example 2
+#### 3.1.2.1. Example 2
 
 Find the distribution of $z=XY$.
 
@@ -974,7 +978,7 @@ Notation $X,Y|\{ Z = k \}\stackrel{iid}{\sim}\cdots$ means that given $Z=k$, $X$
 
 (the conditional joint cdf/pmf/pdf equals the predict of the conditional cdf's/pmf's/pdf's)
 
-### 3.2 Conditional expectation
+## 3.2 Conditional expectation
 
 We have seen that conditional pmf/pdf are legitimate pmf/pdf. Correspondingly, a conditional distribution is nothing else but a probability distributions. It is simply a (potentially) different distribution, since it takes more information into consideration.
 
@@ -993,3 +997,151 @@ $$
 $$
 
 Fix $y$, the conditional expectation is nothing but the expectation taken under the conditional distribution.
+
+
+### 3.2.1 What is $\mathbb{E}(X|Y)\;?$
+
+Different ways to understand *conditional expectation*
+
+1. Fix a value $y$, $\mathbb{E}(g(X)|Y=y)$ is a number
+2. As $y$ changes $\mathbb{E}(g(x)|Y=y)$ becomes a function of $y$ (that each $y$ gives a value): $h(y) =: \mathbb{E}(g(x)|Y=y)$
+3. since $y$ is actually random, we can define $\mathbb{E}(g(x)|Y)=h(Y)$. This is a random variable
+   $$ \mathbb{E}(g(x)|Y))_{(\omega)} = \mathbb{E}(g(x)|Y=Y(\omega)$$
+   $\omega \in \Omega$ this random variable takes value
+   $\mathbb{E}(g(x)|Y=y)$
+   When $Y=y$
+   $$ \Omega \rightarrow \R \\ h(Y)_{(\omega)} = h(Y(\omega))$$
+
+### 3.2.2 Properties of conditional expectation
+
+1. Linearity (inherited from expectation)
+   $$ \mathbb{E}(aX+b | Y = y) = a\mathbb{E}(X|Y=y) +b $$
+   $$ \mathbb{E}(X+Z|Y=y) = \mathbb{E}(X|Y=y)+\mathbb{E}(Z|Y=y) $$
+2. $\mathbb{E}(g(X,Y)|Y=y) = \mathbb{E}(g(X,y)|Y=y) \not = \mathbb{E}(g(X,y)) \text{ when X and Y are not independent}$
+   
+   __Proof__ (Discrete):
+    $$
+    \mathbb{E}(g(X,Y)|Y=y) =\sum_{x_i}\sum_{y_j}g(x_i,y_j)\cdot P(X=x_i,Y=y_j|Y=y)  \\ \\
+
+    P(X=x_i,Y=y_j|Y=y) =
+    \begin{cases}
+        \begin{aligned}
+            &0                                  & \text{ if  } y_j\not =y    \\  \\
+            &P(X=x_1,Y=y_j)/P(Y+y)=P(X=x_i|Y=y) \quad\quad&\text{ if } y_j=y
+        \end{aligned}
+    \end{cases}\\
+
+    \begin{aligned} \\\\
+        \Rightarrow \mathbb{E}(g(X,Y)|Y=y) 
+            &= \sum_{x_i}g(x_i,y)\cdot P(X=x_i|Y=y)   \\
+            &= \mathbb{E}(g(X,y)|Y=y) &g(X,y)\text{ regarded as a function of } x
+    \end{aligned}
+    $$
+    In particular,
+    $$
+        \mathbb{E}(g(X)\cdot h(Y) | Y=y) = h(y) \mathbb{E}(g(X)|Y=y)
+    $$
+    $$
+        \mathbb{E}(g(X)\cdot h(Y)|Y) = h(Y)\mathbb{E}(g(X)|Y)
+    $$
+3. If $X\perp Y$, then $\mathbb{E}(g(X)|Y=y) = \mathbb{E}(g(X))$
+
+    __Fact__: If $X\perp Y$, then conditional distribution of $X$ given $Y=y$ is the same as the unconditional distribution of $X$
+
+    __Proof__(Discrete):
+    $$
+    \begin{aligned}
+        & \text{if } X\perp Y \\
+        & P(X=x_i|Y=y_j)        \\
+        &\quad= P(X=x_i|Y=y_j) / P(Y=y_j)       \\
+        &\quad= P(X=x_i)P(Y=y_j)/P(Y=y_j)       \\
+        &\quad=P(X=x_i)
+    \end{aligned}
+    $$
+4. Law of iterated expectation (or double expectation): Expectation of conditionally expectation is its unconditional expectation
+   $$ 
+   \mathbb{E}(\mathbb{E}(X|Y)))=\mathbb{E}(X)
+   $$
+   $\mathbb{E}(X|Y)$ is a r.v, a function of $Y$. <br/>
+   __Proof__(Discrete):
+
+   When $Y=y_j$, the r.v. $\mathbb{E}(X|Y)=\mathbb{E}(X|Y=y_j) = \sum_{x_i}x_iP(X=x_i|Y=y_j)$. This happens with probability $P(Y=y_j)$
+   $$ \Rightarrow \begin{aligned}
+   \mathbb{E}(\mathbb{E}(X|Y))
+        &= \sum_{y_j}(\sum_{x_i}x_iP(X=x_i|Y=y_j))P(Y=y_j)      \\
+        &= \sum_{x_i}\sum_{y_j} P(X=x_i|Y=y_j)P(Y=y_j)          \\
+        &= \sum_{x_i}x_i\sum_{y_j}P(X=x_i|Y=y_j)P(Y=y_2)        &\text{law of total probability}    \\
+        &= \sum_{x_i}x_i P(X=x_i) = \mathbb{E}(X)
+   \end{aligned} $$
+   Alternatively,
+   $$ 
+   \begin{aligned}
+   &\sum_{x_i}\sum_{y_j} x_i P(X=x_i|Y=y_j)P(Y=y_j)  \\
+   &\quad=\sum_{x_i}\sum_{y_j} x_i P(X=x_i,Y=y_j)  & g(X,Y)=X \text{ at } (x_i, y_j)\\
+   &\quad= \mathbb{E}(X)
+
+   \end{aligned}
+   $$
+   __Example__: 
+
+   $Y$: # of claims receive by insurance company <br/>
+   $X$: some random parameter
+   $$ Y|X\sim Poi(X), X\sim Exp(\lambda) $$
+   a) $\mathbb{E}(Y)$ ? <br/>
+   b) $P(Y=n)$ ?
+
+   __a)__
+   $$
+   Y|X\sim Poi(X) \Rightarrow \mathbb{E}(Y|X=x) = x \Rightarrow \mathbb{E}(Y|X)=X \\
+
+   \therefore \begin{aligned}   \\
+    \mathbb{E}(Y) &= \mathbb{E}(\mathbb{E}(Y|X))   \\
+        &= \mathbb{E}(X) = \frac{1}{\lambda}
+   \end{aligned}
+   $$
+
+   __b)__
+   $$
+    \begin{aligned}
+        P(Y=n) &= \int_0^\infty P(Y=n|X=x)f_x(x)dx   \\
+            &= \int_o^\infty \frac{e^{-x}x^n}{n!}\cdot \lambda e^{-\lambda x} dx    \\
+            &= \frac{\lambda}{n!}\int_0^\infty x^n e^{-(\lambda+1)x}dx  \\
+            &= \frac{\lambda}{(\lambda+1)^{n+1}n!}\int_0^\infty((\lambda+1)x)^n e^{-(\lambda+1)x}d(\lambda+1)x  \\
+            &= \frac{\lambda}{(\lambda+1)^{n+1}n!}\Gamma(n+1)   &\Gamma(n+1) = n! \text{ ; formula for gamma function or integration by parts}  \\
+            &= \frac{\lambda}{(\lambda+1)^{n+1}} = (\frac{1}{\lambda+1})^n\cdot\frac{1}{\lambda+1}  \\
+            &\Rightarrow Y+1\sim Geo(\lambda/(\lambda+1))
+    \end{aligned}
+   $$
+   We verify that $\mathbb{E}(Y)=\frac{\lambda +1}{\lambda}-1=\frac{1}{\lambda}$
+
+## 3.3 Decomposition of variance (EVVE's low)
+
+__Definition__: The conditional variance of $Y$ given $X=x$ is defined as
+$$
+Var(Y|X=x)=\mathbb{E}((Y-\mathbb{E}(Y|X=x))^2|X=x)
+$$
+$$
+Var(Y|X)_{(\omega)} = Var(Y|X=X_{(\omega)}) \quad \quad Var(Y|X)_{(\omega)} \text{: a r.v, a function of }X
+$$
+The conditional variance is simply the variance taken under the conditional distribution
+$$
+\Rightarrow V(Y|X=x)=\mathbb{E}(Y^2|X=x)-(\mathbb{E}(Y|X=x))^2
+$$
+Thus
+$$
+Var(Y)=\mathbb{E}(Var(Y|X))+Var(\mathbb{E}(Y|X))
+$$
+$$
+\mathbb{E}(Var(Y|X)): \text{"intra-group variance" } \quad\quad Var(\mathbb{E}(Y|X)): \text{"inter-group variance"}
+$$
+
+__Proof__:
+
+$$
+\begin{aligned}
+    RHS &= E(E(Y^2|X)-(E(Y|X))^2)  + E((E(Y|X))^2) - (E(E(Y|X)))^2 \\
+    &=E(E(Y^2|X)) - \sout{E((E(Y|X))^2)}  + \sout{E((E(Y|X))^2)} - (E(E(Y|X)))^2  \\
+    &=E(Y^2) - (E(Y))^2 \\
+    &=Var(Y)
+\end{aligned}
+ $$
