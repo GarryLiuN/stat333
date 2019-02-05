@@ -48,3 +48,8 @@
     * Decomposition of variance (Conditional variance)
 * [Lecture 8](./md/08_Jan_31)([pdf](./pdf/08_Jan_31.pdf)) - January 31
   * __Stochastic Processes__
+    * Simple random walk
+* [Lecture 9](./md/09_Feb_05)([pdf](./pdf/00_Feb_05.pdf)) - February 05
+  * __Stochastic Processes__ (cont'd)
+    * Markov Chain
+    * One-step transition probability matrix

@@ -50,6 +50,16 @@
     - [3.2.2 Properties of conditional expectation](#322-properties-of-conditional-expectation)
   - [3.3 Decomposition of variance (EVVE's low)](#33-decomposition-of-variance-evves-low)
 - [4. Stochastic Processes](#4-stochastic-processes)
+  - [4.1 Simple Random Walk](#41-simple-random-walk)
+  - [4.2 Markov Chain](#42-markov-chain)
+    - [4.2.1 Discrete-time Markov Chain](#421-discrete-time-markov-chain)
+      - [4.2.1.1 Definition and Examples](#4211-definition-and-examples)
+        - [Example: simple random walk](#example-simple-random-walk)
+  - [4.3 One-step transition probability matrix](#43-one-step-transition-probability-matrix)
+    - [Example 1 : simple random walk](#example-1--simple-random-walk)
+    - [Example 2: Ehrenfest's urn](#example-2-ehrenfests-urn)
+    - [Example 3: Gambler's ruin](#example-3-gamblers-ruin)
+    - [Example 4: Bonus-Malus system](#example-4-bonus-malus-system)
 
 # 1. Fundamental of Probability
 
@@ -1180,6 +1190,8 @@ Then $\{S_n\}_{n=0,1,...}$ is a stochastic process, with state space $S=\Z$ (int
 
 ![Stochastic Processes Example2](drawio_assets/stochastic_example2.svg)
 
+## 4.1 Simple Random Walk
+
 $\{S_n\}_{n=0,1,...}$ is called a __"simple random walk"__. ($S_n=S_{n-1}+X_n$)
 
 $$ 
@@ -1196,7 +1208,9 @@ __Answer__: The joint distribution of a large number of r.v's is very complicate
 For example, simple random walk. The full distribution of $(S_0, S_1, ..., S_n$ is complicated or $n$ large. However, the structure is actually simple if we focus on the adjacent times:
 
 $$
-S_{n+1}=S_n+X_{n+1} \\S_n: \text{ last value. } \quad X_{n+1}: \text{related to }Ber(p). \text{ They are independent}
+S_{n+1}=S_n+X_{n+1}$$
+$$
+S_n: \text{ last value. } \quad X_{n+1}: \text{related to }Ber(p). \text{ They are independent}
 $$
 
 By introducing time into the framework, we can greatly simplify many things.
@@ -1218,3 +1232,217 @@ $$
 As time passes, the expression becomes more and more complicated $\rightarrow$ impossible to handle.
 
 However, if we know that this conditional distribution is actually the same as the conditional distribution only given $X_n$, then the structure will remain simple for any time. This motivates the notion of _Markov chain_.
+
+## 4.2 Markov Chain
+
+### 4.2.1 Discrete-time Markov Chain
+
+#### 4.2.1.1 Definition and Examples
+
+__Definition__: A discrete-time Stochastic process $\{X_n\}_{n=0,1,...}$ is called a __discrete-time Markov Chain (DTMC)__, if its state space $S$ is discrete, and it has the Markov property:
+
+$$
+\begin{aligned}
+    &\quad P(X_{n+1}=x_{n+1}|X_n=x_n,...,X_o=x_o)  \\
+    &= P(X_{n+1}=x_{n+1}|X_n=x_n)
+\end{aligned}
+$$
+for all $n, x_0,...,x_n,x_{n+1}\in S$
+
+If $X_{n+1}|\{x_n=i\}$ does not change over time, $P(X_{n+1}=j|N_n=i)=P(X_1=j|X_0=i)$, then we call this Markov chain __time-homogeneous__ (default setting for this course).
+
+$$
+\begin{aligned}
+    &\quad P(X_{n+1}=x_{n+1}|X_n=x_n,...,X_0=x_0   ) \quad\quad &X_{n+1}=x_{n+1}\text{: future; } X_{n}=x_{n}\text{: present(state)} \\
+    &= P(X_{n+1}=x_{x+1}|X_n=x_n)               &X_{n-1}=x_{n-1},...,X_{0}=x_{0}\text{: past(history)}
+\end{aligned}
+$$
+
+__Intuition__: Given the present state, the past and the future are independent. In other words, the future depends on the previous results only through the current state.
+
+##### Example: simple random walk
+
+The simple random walk $\{S_n\}_{n=0,1,...}$ is a Markov chain
+
+__Proof__:
+
+Recall that $S_{n+1}=S_n+X_{n+1}$
+$$
+\begin{aligned}
+&\quad P(S_{n+1}=s_{n+1}|S_n=s_n,...,S_0=s_0) \\
+& = 0   \\
+& = P(S_{n+1}=s_{n+1}|S_n=s_n)
+s
+\end{aligned}
+$$
+if $s_{n+1}\not= s_n \pm$
+$$
+\begin{aligned}
+&\quad P(S_{n+1}=s_n+1|S_n=s_n,...,s_0=0)   \\
+&=P(X_{n+1}|S_n=s_n,...,S_0=0)  \\
+&=P(X_{n+1}=1)      \quad\quad\quad X_{n+1} \perp (X_1,...,X_n) \text{ hence also } (S_0, ..., S_n)
+\end{aligned}
+$$
+
+Similarly,
+
+$$
+\begin{aligned}
+    &\quad P(S_{n+1}=s_n+1|S_n=s_n) \\
+    &=P(X_{n+1}=1|S_n=s_n)  \\
+    &=P(X_{n+1}=1)          \\
+    &\Rightarrow P(S_{n+1}|S_n=s_n,...,S_0=s_0)
+\end{aligned}
+$$
+
+Similarly,
+
+$$
+\begin{aligned}
+    &\quad P(S_{n+1}=s_n-1|S_n=s_n,...,S_0=0)   \\
+    &=P(S_{n+1}=s_n-1|S_n=s_n)  \\
+    &=P(X_{n+1}=-1) \\
+    &\Rightarrow \{S_n\}_{n=0,1,...} \text{ is a DTMC}  \quad\quad\blacksquare
+\end{aligned}
+$$
+
+## 4.3 One-step transition probability matrix
+
+For a time-homogeneous DTMC, define
+$$
+\begin{aligned}
+    P_{ij}  &= P(X_1=j|X_0=i)    \\
+            &= P(X_{n+1}=j|X_n=i)   \quad\quad n=0,1,...
+\end{aligned}
+$$
+$P_{ij}$: one step transition probability
+
+The collection of $P_{ij}, i,j\in S$ governs all the one-step transitions of the DTMC. Since it has two indices $i$ and $j$; it naturally forms a matrix $P=\{P_{ij}\}_{i,k\in S}$, called the __(one-setp) transition (probability) matrix__ or __transition matrix__
+
+__Property of a transition matrix $P=\{P_{ij}\}_{i,j\in S}$__: 
+$$
+\begin{aligned}
+    &P_{ij}\geq 0\quad \forall i,j\in S  \\
+    &\sum_{j\in S}P_{ij}=1 \quad \forall i\in S \quad\rightarrow\text{ the row some of } P \text {are all }1
+\end{aligned}
+$$
+
+__Reason__:
+$$
+\begin{aligned}
+    \sum_{j\in S}P_{ij} 
+        &=\sum_{j\in S} P(X_1=j|X_0=i)  \\
+        &= P(X_1\in S|X_o=i)    \\
+        &= 1
+
+\end{aligned}
+$$
+
+### Example 1 : simple random walk
+There will be 3 cases:
+
+$$
+\begin{aligned}
+& P_{i,i+1} = P(S_1=i+1|S_0=i) = P(X_1=1)= p    \\
+& P_{i,i-1} = P(S_1=i-1|S_0=i) = P(X_1=-1) = 1 - p =:q \\
+& P_{i,j}=0 \quad\quad\quad\quad\text{ for } j\not=i\pm 1  \\
+\end{aligned}
+$$
+$$
+\Rightarrow
+\text{(infinite dimension)}p=\begin{Bmatrix}
+    ... & ... & ... & ... & ... & ... & ...\\
+    ... & 0 & p & 0 & ...  & ... & ...\\
+    ... & q & 0& p & ... & ... & ...\\
+    ...& ... & q & 0 & p & ... & ... \\
+    ... & ... & ... & q & 0 & p & ... \\
+     ... & ... & ... & ... & ... & ... & ...
+\end{Bmatrix}
+$$
+
+### Example 2: Ehrenfest's urn
+
+Two urns $A, B$, total $M$ balls. Each time, pick one ball randomly(uniformly), and move it to the opposite urn.
+$$ X_n: \# \text{ of balls in } A \text{after step }n $$
+$$ S=\{0,1,...,M\} $$
+
+$$
+\begin{aligned}
+P_{ij}
+    & =P(X_1=j|X_0=j) \quad\quad\text{($i$ balls in $A$, $M-i$ balls in $B$)}\\
+    & =\begin{cases}
+        \begin{aligned}
+        & i/M  \quad\quad\quad\quad\quad\quad&j=i-1\\
+        & (M-i)/M   &j=i+1  \\
+        & 0         & j\not=i\pm 1
+        \end{aligned}
+    \end{cases}
+\end{aligned}
+$$
+
+$$
+p=\begin{Bmatrix}
+    0 & 1     \\
+    1/M & 0 & (M-1)/M \\
+    &1/M & 0 & (M-1)/M \\
+    &&2/M & 0 & (M-2)/M \\
+    ...&...&...&...&...&...&...\\
+    &&&&(M-1)/M & 0 & 1/M \\
+    &&&&&1&0
+\end{Bmatrix}
+$$
+
+### Example 3: Gambler's ruin
+
+A gambler, each time wins 1 with probability  $p$, losses 1 with probability $1-p=q$. Initial wealth $S_0=a$; wealth at time $n$: $S_n$. The gambler leaves if $S_n=0$ (loses all money) or $S_n=M>a$ (wins certain amount of money and gets satisfied)
+
+This is a variant of the simple random walk, where we have absorbing barriers($P_{ii}=1$) at $0$ and $M$
+
+$$
+S=\{0,...,M\}
+$$
+$$
+P_{ij}=\begin{cases}
+    \begin{aligned}
+        & p     \quad\quad & j=i+1, i=1,...,M-1    \\
+        & q     & j=i-1, i=1,...,M-1    \\
+        & 1      & i=j=0 \text{ or } i=j=M  \\
+        & 0      & \text{otherwise}
+    \end{aligned}
+\end{cases}
+$$
+
+$$
+p=\begin{Bmatrix}
+    1 & 0 &...& \\
+    q & 0 & p & ... \\
+    ... & q & 0 & p & ... \\
+    &...  & q & 0 & p & ... \\
+    ...&...&...&...&...&...&...\\
+    & & & ... & q & 0 & p    \\
+    & & & & ... & 0 & 1
+\end{Bmatrix}
+$$
+
+### Example 4: Bonus-Malus system
+
+Insurance company has 4 premium levels: 1, 2, 3, 4
+
+Let $X_n\in\{1,2,3,4\}$ be the premium level for a customer at year $n$
+$$ Y_n \stackrel{iid}{\sim}Poi(\lambda) : \text{ \# of claims at year $n$} $$
+
+- If $Y_n=0$ (no claims)
+  - $X_{n+1}=max(X_{n-1},1)$
+- If $Y_n>0$
+  - $X_{n+1}=min(X_{n} + Y_n,4)$
+
+Denote $a_k=P(Y_n=k), k=0,1,...$
+
+$$
+p=\begin{Bmatrix}
+    a_0 & a_1 & a_2 & (1-a_0-a_1-a_2)   \\
+    a_0 & 0 & a_1 & (1-a_0-a_1)         \\
+    0  & a_0 & 0 & (1-a_0)              \\
+    0 & 0 & a_0 & (1-a_0)
+\end{Bmatrix}
+$$
