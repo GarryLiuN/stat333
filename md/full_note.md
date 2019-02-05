@@ -49,7 +49,7 @@
     - [3.2.1 What is $\mathbb{E}(X|Y)\;?$](#321-what-is-mathbbexy)
     - [3.2.2 Properties of conditional expectation](#322-properties-of-conditional-expectation)
   - [3.3 Decomposition of variance (EVVE's low)](#33-decomposition-of-variance-evves-low)
-
+- [4. Stochastic Processes](#4-stochastic-processes)
 
 # 1. Fundamental of Probability
 
@@ -58,12 +58,12 @@
 ### 1.1.1 Examples
 
 1. Coin toss
-    * "H" - head
-    * "T" - tail
+   - "H" - head
+   - "T" - tail
 2. Roll a dice
-   * every number in the set: $\{1,2,3,4,5,6\}$
+   - every number in the set: $\{1,2,3,4,5,6\}$
 3. Tomorrow weather
-   * {sunny, rainy, cloudy,...}
+   - {sunny, rainy, cloudy,...}
 4. Randomly pick a number in $[0, 1]$
 
 Although things are random, they are not haphazard/arbitrary. There are "patterns"
@@ -137,7 +137,7 @@ Properties of probability:
 2. $P(\emptyset)=0$
 3. $E_1\subseteq E_2 \Rightarrow P(E_1)\leq P(E_2)$
 4. $P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)$
-   * $P(E_1 \cap E_2)$: $E_1$ and $E_2$ happen
+   -$P(E_1 \cap E_2)$: $E_1$ and $E_2$ happen
 
 ### 1.2.2 Remark: why do we need the notion of event?
 
@@ -160,9 +160,9 @@ This is why we need the notion of event; and we define $P$ as a set function fro
 
 To summarize: A __Probability Space__ consists of a triplet $(\Omega, \xi, P)$:
 
-* $\Omega$: sample space,
-* $\xi$: collection of events
-* $P$: probability
+- $\Omega$: sample space,
+- $\xi$: collection of events
+- $P$: probability
 
 ## 1.3 Conditional Probability
 
@@ -269,11 +269,11 @@ Properties of cdf:
 
 1. $F$ is non-decreasing. $F(x_1)\leq F(x_2), x_1 < x_2$
 2. limits
-   * $\lim_{x\rightarrow -\infty}F(x) = 0$
-   * $\lim_{x\rightarrow\infty}F(x)=1$
+   - $\lim_{x\rightarrow -\infty}F(x) = 0$
+   - $\lim_{x\rightarrow\infty}F(x)=1$
 3. $F(x)$ is right continuous
-   * $lim_{x\downarrow a}F(x) = F(a)$ : $x$ decreases to $a$(approaching from the right)
-   * Hint: $\{x\leq a\}=\bigcap_{i=1}^\infty\{X\leq a_i\}$ for $a_i\downarrow a$
+   - $lim_{x\downarrow a}F(x) = F(a)$ : $x$ decreases to $a$(approaching from the right)
+   - Hint: $\{x\leq a\}=\bigcap_{i=1}^\infty\{X\leq a_i\}$ for $a_i\downarrow a$
   
 ## 2.2 Discrete random variables and distributions
 
@@ -309,8 +309,8 @@ $$\begin{aligned}
     p(k) = P(X=k) = \lgroup\stackrel{n}{k}\rgroup p^k(1-p)^{n-k}
 \end{aligned}$$
 
-* $X\sim Bin(n, p)$ to choose $k$ successes.
-* Binomial distribution is the distribution of number of successes in $n$ independent trials; each having probability $p$ of sucess.
+- $X\sim Bin(n, p)$ to choose $k$ successes.
+- Binomial distribution is the distribution of number of successes in $n$ independent trials; each having probability $p$ of success.
   
 #### 3.Geometric distribution
 
@@ -321,9 +321,9 @@ $$
 (1-p)^{k-1}: \text{the first k-1 trials are all failures},\;\; p: \text{success in }k^{th}\text{ trial}
 $$
 
-* $X\sim Geo(p)$
-* $X$ is the number of trials needed to get the first success in $n$ independent trials with probability $p$ of success each
-* $X$ has the memoryless property
+- $X\sim Geo(p)$
+- $X$ is the number of trials needed to get the first success in $n$ independent trials with probability $p$ of success each
+- $X$ has the memoryless property
     $P(X>n+m|X>m) = P(x>n) \hspace{2em} n, m=0,1,\ldots$
 
 __Memoryless property__:
@@ -355,8 +355,8 @@ $$
 
 Other discrete distributions:
 
-* negative binomial
-* discrete uniform
+- negative binomial
+- discrete uniform
 
 ## 2.3 Continuous random variables and distributions
 
@@ -402,8 +402,8 @@ $$
 
 Other continuous distributions:
 
-* Normal distribution
-* Uniform distribution
+- Normal distribution
+- Uniform distribution
 
 Exercises:
 
@@ -421,13 +421,13 @@ For each $\omega \in \Omega$, we have at the same time $X(\omega)$ and $Y(\omega
 
 Two joint distribution of r.v's is characterized by joint cdf, joint pmf(discrete case) or joint pdf(continuous case).
 
-* Joint cdf:
-  * $F(x,y) = P(X<x, Y<y)$
-* Joint pmf:
-  * $f(x,y)=P(X=x, Y=y)$
-* joint pdf $f(x,y)$ such that for $a<b, c<d$
-  * $P(X,Y)\in(a,b]\times(c,d] = P(X\in(a,b], Y\in(c,d])=\int_a^b\int_c^d f(x,y)dy dx$
-  * Equivalently:
+- Joint cdf:
+  - $F(x,y) = P(X<x, Y<y)$
+- Joint pmf:
+  - $f(x,y)=P(X=x, Y=y)$
+- joint pdf $f(x,y)$ such that for $a<b, c<d$
+  - $P(X,Y)\in(a,b]\times(c,d] = P(X\in(a,b], Y\in(c,d])=\int_a^b\int_c^d f(x,y)dy dx$
+  - Equivalently:
     1. $F(x,y)=\int_{-\infty}^x\int_{-\infty}^y f(s,t)dtds \\$ $f(x,y)=\frac{\partial^2}{\partial x \partial y}F(x,y)$
     2. $P((X,Y)\in A) = \int\int_A f(x,y)dxdy$ for $A\subseteq R^2$
 
@@ -504,11 +504,11 @@ $$
                                             \sum X_i \mathbb{P}(X=x_i) \\
                                             \int_{-\infty}^{x_1} xf(x)dx
                                         \end{cases}$, $g(X)=x$
-    * $\mathbb{E}(ax+b)=a\mathbb{E}(x)+b$
+    - $\mathbb{E}(ax+b)=a\mathbb{E}(x)+b$
     * $\mathbb{E}(X+Y)=\mathbb{E}(X)+\mathbb{E}(Y)$
 2. If $X\perp \!\!\! \perp Y$, then $\mathbb{E}(g(X)h(Y))=\mathbb{E}(g(X))\cdot \mathbb{E}(h(Y))$
-    * __proof__: (continuous case)
-    * $$
+    - __proof__: (continuous case)
+    - $$
         \begin{aligned}
             \mathbb{E}(g(X)h(Y))
             &= \int_{-\infty}^\infty\int_{-\infty}^\infty g(x)h(y)f(x,y)dxdy    \\
@@ -516,14 +516,14 @@ $$
             &= \int_{-\infty}^\infty g(x)f_X(x)\cdot\int_{-\infty}^\infty h(y)f_Y(y)dy\\
         \end{aligned}
     $$
-    * In particular, $\mathbb{E}(XY)=\mathbb{E}(X)\mathbb{E}(Y)$ if $X\perp \!\!\! \perp Y$
+    - In particular, $\mathbb{E}(XY)=\mathbb{E}(X)\mathbb{E}(Y)$ if $X\perp \!\!\! \perp Y$
 
 ### 2.5.2 Definitions
 
 __Definition__: The expectation $\mathbb{E}(X^n)$ is called the n-th moment of $X$:
 
-* 1st moment: $\mathbb{E}(X)$
-* 2st moment: $\mathbb{E}(X^2)$
+- 1st moment: $\mathbb{E}(X)$
+- 2st moment: $\mathbb{E}(X^2)$
 
 __Definition__: The variance of a r.v $X$ is defined as:
 
@@ -604,8 +604,8 @@ We have $\mathbb{E}(X+Y)=\mathbb{E}(X)+\mathbb{E}(Y)$.
 
 If $X\perp \!\!\! \perp Y$, we also have:
 
-* $\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y)$, and
-* $Var(X+Y)=Var(X)+Var(Y)$
+- $\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y)$, and
+- $Var(X+Y)=Var(X)+Var(Y)$
 
 It's important to remember that the first result and the other two results are of very different nature. While $\mathbb{E}(X+Y)=\mathbb{E}(X)+\mathbb{E}(Y)$ is a property of expectation and holds unconditionally; 
 
@@ -680,11 +680,6 @@ $$
 Var(I_1)=\mathbb{E}(I_1^2)-(\mathbb{E}(I_1))^2 = \mathbb{E}(I_1)-(\mathbb{E}(I_1))^2=p-p^2=p(1-p)
 $$
 
-
-
-
-
-
 ### 2.6.1 Example 3
 
 Let $X$ be a r.v. taking values in non-negative integers, then
@@ -705,7 +700,7 @@ $$
 $$
 
 In particular, let $X\sim Geo(p)$. As we have seen, $P(X>n)=(1-p)^n\Rightarrow$
-$$ 
+$$
 \begin{aligned}
 \mathbb{E}(X)    &= \sum_{n=0}^\infty P(X>n)   \\
         &= \sum_{n=0}^\infty (1-p)^n    \\
@@ -722,10 +717,10 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
 ### 2.7.1 Properties of mgf
 
 1. Moment Generating Function generates moments
-   * __Theorem__: 
-     * $M(0) = 1$
-     * $M^{(k)}(0) = \mathbb{E}(X^k), k=1,2,\ldots$ ($M^{(k)}=\frac{d^k}{dt^k} M(t)|_{t=0}$)
-       * __Proof__: 
+   - __Theorem__: 
+     - $M(0) = 1$
+     - $M^{(k)}(0) = \mathbb{E}(X^k), k=1,2,\ldots$ ($M^{(k)}=\frac{d^k}{dt^k} M(t)|_{t=0}$)
+       - __Proof__: 
             $$\begin{aligned}
                 & M(0) = \mathbb{E}(e^{0\cdot X})=\mathbb{E}(1) = 1    \\
 
@@ -735,12 +730,12 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
                     &= \mathbb{E}(X^k)
             \end{aligned}
             $$
-     * As a result, we have: $M(t)=\sum_{k=0}^\infty \frac{M^{(k)}(0)}{k!} t^k = \sum_{k=0}^\infty \frac{E*X^k}{k!}t^k$  (a method to get moment of a r.v)
+     - As a result, we have: $M(t)=\sum_{k=0}^\infty \frac{M^{(k)}(0)}{k!} t^k = \sum_{k=0}^\infty \frac{E*X^k}{k!}t^k$  (a method to get moment of a r.v)
 2. $X\perp \!\!\! \perp  Y$, with mgf's $M_x, M_y$. Let $M_{X+Y}$ be the mgf of $X+Y$. then
     $$ 
         M_{X+Y}(t)=M_X(t)M_Y(y)
     $$
-   * __Proof__:
+   - __Proof__:
     $$ 
         \begin{aligned}
             M_{X+Y}(t) 
@@ -751,9 +746,9 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
         \end{aligned}
     $$
 3. The mgf completely determines the distribution of a r.v.
-   * $M_X(t)=M_Y(t)$ for all $t\in (-h,h)$ for some $h>0$, then $X\stackrel{d}{=}Y$. ($\stackrel{d}{=}$: have the smae distribution)
-   * Example: Let $X\sim Poi(\lambda_1)$, $Y\sim Poi(\lambda_2)$. $X\perp \!\!\! \perp  Y$. Find the distribution of $X+Y$
-     * First, derive the mgf of a Poisson distribution.
+   - $M_X(t)=M_Y(t)$ for all $t\in (-h,h)$ for some $h>0$, then $X\stackrel{d}{=}Y$. ($\stackrel{d}{=}$: have the smae distribution)
+   - Example: Let $X\sim Poi(\lambda_1)$, $Y\sim Poi(\lambda_2)$. $X\perp \!\!\! \perp  Y$. Find the distribution of $X+Y$
+     - First, derive the mgf of a Poisson distribution.
         $$
         \begin{aligned}
             M_X(t)
@@ -805,7 +800,7 @@ More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_
     \text{the proof is similar to the single r.v. case}
    $$
 3. If $X\perp \!\!\! \perp  Y$, then $M(t_1, t_2)=M_X(t_1)M_Y(t_2)$
-   * __Proof__:
+   - __Proof__:
         $$
         \begin{aligned}
             M(t_1, t_2) &= \mathbb{E}(e^{t_1X+t_2Y}) \\
@@ -814,9 +809,9 @@ More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_
                         &= M_X(t_1)\cdot M_Y(t_2)
         \end{aligned}
         $$
-   * __Remark__: Don't confuse this with the result $X\perp \!\!\! \perp  Y\Rightarrow M_{X+Y}(t)=M_X(t)M_Y(t)$.
-     * $M_{X+Y}(t)\rightarrow$ mgf of $X+Y$; single argument function $t$
-     * $M(t_1,t_2)\rightarrow$ joint mgf of $(X,Y)$; two arguments $t_1, t_2$
+   - __Remark__: Don't confuse this with the result $X\perp \!\!\! \perp  Y\Rightarrow M_{X+Y}(t)=M_X(t)M_Y(t)$.
+     - $M_{X+Y}(t)\rightarrow$ mgf of $X+Y$; single argument function $t$
+     - $M(t_1,t_2)\rightarrow$ joint mgf of $(X,Y)$; two arguments $t_1, t_2$
 
 # 3. Conditional distribution and conditional expectation
 
@@ -998,7 +993,6 @@ $$
 
 Fix $y$, the conditional expectation is nothing but the expectation taken under the conditional distribution.
 
-
 ### 3.2.1 What is $\mathbb{E}(X|Y)\;?$
 
 Different ways to understand *conditional expectation*
@@ -1018,7 +1012,7 @@ Different ways to understand *conditional expectation*
    $$ \mathbb{E}(aX+b | Y = y) = a\mathbb{E}(X|Y=y) +b $$
    $$ \mathbb{E}(X+Z|Y=y) = \mathbb{E}(X|Y=y)+\mathbb{E}(Z|Y=y) $$
 2. $\mathbb{E}(g(X,Y)|Y=y) = \mathbb{E}(g(X,y)|Y=y) \not = \mathbb{E}(g(X,y)) \text{ when X and Y are not independent}$
-   
+
    __Proof__ (Discrete):
     $$
     \mathbb{E}(g(X,Y)|Y=y) =\sum_{x_i}\sum_{y_j}g(x_i,y_j)\cdot P(X=x_i,Y=y_j|Y=y)  \\ \\
@@ -1145,3 +1139,82 @@ $$
     &=Var(Y)
 \end{aligned}
  $$
+
+
+
+# 4. Stochastic Processes
+
+![Stochastic Processes](drawio_assets/stochastic_process.svg)
+
+1. sequence / family of random variables
+2. a random function (hard to formulate)
+
+__Definition__: A __stochastic process__ $\{X_t\}_{t\in T}$ is a collection of random variables, defined on a common probability space.
+
+$T$: index set. In most cases, $T$ corresponds to time, and is either discrete $\{0,1,2,\cdots\}$ or continuous $[0,\infty)$
+
+In discrete case, we writes $\{X_n\}_{n=0,1,2,\ldots}$
+
+This __state space__ $S$ os a stochastic process is the set of all possible value of $X_t, t\in T$
+
+$S$ can also be either discrete or continuous. In this course, we typically deal with __discrete__ stat space. Then we relabel the stats so that $S=\{0,1,2,\cdots\}$ (countable state space) or $S=\{0,1,2,\cdots,M\}$ (finite state space)
+
+__Remark__: As in the case of the joint distribution, we need the r.v's in a stochastic process to be defined on a common probability space, because we want to discuss their joint behaviours, i.t, how things change over time.
+
+![Stochastic Processes Graph](drawio_assets/stochastic_graph.svg)
+
+Thus, we can identify each point $\omega$ in the sample space $\Omega$ with a function defined on $T$ and taking value in $S$. Each function is called a __path__ of this stochastic process
+
+__Example__ Let $X_0, X_1, \cdots$ be independent and identical r.v's following some distribution. Then $\{X_n\}_{n=0,1,2,...}$ is a stochastic process
+
+![Stochastic Processes Example1](drawio_assets/stochastic_example1.svg)
+
+__Example__ Let $X_1, X_2,...$ be independent and identical r.v.'s. $P(X_1=1)=p$, and $P(X_1=-1)=1-p$. Define $S_0=0, S_n=\sum_{i=1}^n X_i, n\leq 1$, e.g.
+
+- $S_0=0$
+- $S_1=X_1$
+- $S_2=X_1+X_2$
+- $\cdots\cdots$
+
+Then $\{S_n\}_{n=0,1,...}$ is a stochastic process, with state space $S=\Z$ (integer)
+
+![Stochastic Processes Example2](drawio_assets/stochastic_example2.svg)
+
+$\{S_n\}_{n=0,1,...}$ is called a __"simple random walk"__. ($S_n=S_{n-1}+X_n$)
+
+$$ 
+S_n=\begin{cases}
+S_{n-1} + 1     \\
+S_{n-1} - 1
+\end{cases}
+$$
+
+__Remark__: Why we need the concept of "stochastic process"? Why don't we just look at the joint distribution of $(X_0, X_1,...,X_n)$?
+
+__Answer__: The joint distribution of a large number of r.v's is very complicated, because it does not take advantage of the special structure of $T$(time).
+
+For example, simple random walk. The full distribution of $(S_0, S_1, ..., S_n$ is complicated or $n$ large. However, the structure is actually simple if we focus on the adjacent times:
+
+$$
+S_{n+1}=S_n+X_{n+1} \\S_n: \text{ last value. } \quad X_{n+1}: \text{related to }Ber(p). \text{ They are independent}
+$$
+
+By introducing time into the framework, we can greatly simplify many things.
+
+More precisely, we fine that for simple random walk, $\{S_n\}_{n=0,1,...}$, if we know $S_n$ the distribution of $S_n+1$ will not depend on the history $(S_0, ..., S_n-1$. THis is a very useful property
+
+In general for a stochastic process $\{X_n\}_{n=0,1,...}$, at time $n$, we already know $X_0, X_1,..., X_n$, $S_0$ our best estimate of the distribution of $X_{n+1}$ should be the conditional distribution:
+
+$$
+X_{n+1}|X_n,...,X_n
+$$
+
+given by:
+
+$$
+P(X_{n+1}=x_{n+1}|X_n=x_n,..., X_0=x_0)
+$$
+
+As time passes, the expression becomes more and more complicated $\rightarrow$ impossible to handle.
+
+However, if we know that this conditional distribution is actually the same as the conditional distribution only given $X_n$, then the structure will remain simple for any time. This motivates the notion of _Markov chain_.

@@ -3,6 +3,8 @@
 ## Table of Contents
 
 * __[Full Note](./pdf/full_note.pdf)__
+    * for [full_note.md](./md/full_note.md), use Visual Studio Code with [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) and [Markdown+Math](https://marketplace.visualstudio.com/items?itemName=goessner.mdmath) extensions to render markdown files, or
+    * use [StackEdit](https://stackedit.io) to view it online
 
 * [Lecture 1](./md/01_Jan_08.md)([pdf](./pdf/01_Jan_08.pdf)) - January 8
   * __Fundamental of Probability__
@@ -44,3 +46,5 @@
   * __Conditional distribution and conditional expectation__ (cont'd)
     * Conditional expectation (cont'd)
     * Decomposition of variance (Conditional variance)
+* [Lecture 8](./md/08_Jan_31)([pdf](./pdf/08_Jan_31.pdf)) - January 31
+  * __Stochastic Processes__
