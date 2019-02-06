@@ -1,5 +1,9 @@
 # STAT 333 W19 Notes
 
+## Find Mistakes
+
+If you find any typo or mistake in the note, feel free to fix them and create a PR or create an issue so I can fix them.
+
 ## Table of Contents
 
 * __[Full Note](./pdf/full_note.pdf)__
