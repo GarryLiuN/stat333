@@ -50,16 +50,21 @@
     - [3.2.2 Properties of conditional expectation](#322-properties-of-conditional-expectation)
   - [3.3 Decomposition of variance (EVVE's low)](#33-decomposition-of-variance-evves-low)
 - [4. Stochastic Processes](#4-stochastic-processes)
-  - [4.1 Simple Random Walk](#41-simple-random-walk)
-  - [4.2 Markov Chain](#42-markov-chain)
-    - [4.2.1 Discrete-time Markov Chain](#421-discrete-time-markov-chain)
-      - [4.2.1.1 Definition and Examples](#4211-definition-and-examples)
+  - [4.1 Markov Chain](#41-markov-chain)
+    - [4.1.1 Simple Random Walk](#411-simple-random-walk)
+    - [4.1.2 Markov Chain](#412-markov-chain)
+      - [4.1.2.1 Discrete-time Markov Chain](#4121-discrete-time-markov-chain)
+        - [Definition and Examples](#definition-and-examples)
         - [Example: simple random walk](#example-simple-random-walk)
-  - [4.3 One-step transition probability matrix](#43-one-step-transition-probability-matrix)
-    - [Example 1 : simple random walk](#example-1--simple-random-walk)
-    - [Example 2: Ehrenfest's urn](#example-2-ehrenfests-urn)
-    - [Example 3: Gambler's ruin](#example-3-gamblers-ruin)
-    - [Example 4: Bonus-Malus system](#example-4-bonus-malus-system)
+    - [4.1.3 One-step transition probability matrix](#413-one-step-transition-probability-matrix)
+      - [Example 1 : simple random walk](#example-1--simple-random-walk)
+      - [Example 2: Ehrenfest's urn](#example-2-ehrenfests-urn)
+      - [Example 3: Gambler's ruin](#example-3-gamblers-ruin)
+      - [Example 4: Bonus-Malus system](#example-4-bonus-malus-system)
+  - [4.2 Chapman-Kolmogorov equations](#42-chapman-kolmogorov-equations)
+    - [4.2.1 Conditional Law of total probability](#421-conditional-law-of-total-probability)
+    - [4.2.2 Distribution of $X_n$](#422-distribution-of-x_n)
+  - [4.3 Stationary distribution (invariant distribution)](#43-stationary-distribution-invariant-distribution)
 
 # 1. Fundamental of Probability
 
@@ -84,7 +89,7 @@ If we repeat tossing a coin, then the fraction of times that we get a "H" goes t
 $$
 \frac{\#\; of \;"H"}{total\; \#\; of\; toss} = \frac{1}{2}
 $$
-This number $1/2$ reflects how "likely" a "H" will appear in one toss (Even if the experiment is not repeated)
+This number $1/2$ reflects how "likely" a "H" will appear in one toss (if the experiment is not repeated)
 
 ## 1.2 Probability Models
 
@@ -107,7 +112,7 @@ for which we can talk about "likelihood of happening"; for example
   - $\{the \;point\; is\; between\; 0\; and\; 1/3\} = [0, \frac{1}{3}]$ is an event
   - $\{the\; point\; is\; rational\} = Q \cap [0, 1]$
 
-We say an even $E$ "happens", if the result of the experiment turns out to belong to $E$ (a subset of $\Omega$)
+We say an event $E$ "happens", if the result of the experiment turns out to belong to $E$ (a subset of $\Omega$)
 
 A probability $P$ is a set function ( a mapping from events to real numbers)
 $$
@@ -219,7 +224,7 @@ $$
 
 ## 1.5 Bayes' rule and law of total probability
 
-__Theorem__: Let $F_1, F_2,\ldots$ be disjoint events, and $\bigcap_{i=1}^\infty F_i=\Omega$, we say $\{F_u\}_{i=1}^\infty$ forms a "partition" of the sample space $\Omega$
+__Theorem__: Let $F_1, F_2,\ldots$ be disjoint events, and $\bigcap_{i=1}^\infty F_i=\Omega$, we say $\{F_i\}_{i=1}^\infty$ forms a "partition" of the sample space $\Omega$
 
 Then $P(E)=\sum_{i=1}^\infty P(E|F_i)\cdot P(F_i)$
 
@@ -228,13 +233,13 @@ __Proof__: Exercise
 Intuition: Decompose the total probability into different cases.
 
 $$
-P(E\cap F_2) = P(E|F+2)\cdot P(F_2)
+P(E\cap F_2) = P(E|F_2)\cdot P(F_2)
 $$
 
 ### 1.5.1 Bayes' rule
 
 $$
-P(F_i | E) = \frac{P(E|F_i)\cdot P(F_i)}{\sum_{h=1}^\infty P(E|F_j)\cdot P(F_j)}
+P(F_i | E) = \frac{P(E|F_i)\cdot P(F_i)}{\sum_{j=1}^\infty P(E|F_j)\cdot P(F_j)}
 $$
 
 ___Bayes' rule___ tells us how to find conditional probability by switching the role of the event and the condition.
@@ -309,7 +314,7 @@ Q: what does the cdf of a discrete random variable look like?
 $$\begin{aligned}
 p(1) &= P(X=1)=p \\
 p(c) &= P(X=c) = 1-p \\
-p(x) &= 0 otherwise
+p(x) &= 0 \quad otherwise
 \end{aligned}$$
 Denote $X\sim Ber(p)$
 
@@ -339,7 +344,7 @@ $$
 __Memoryless property__:
 
 $$
-p(X>n+m|X>m)=P(X>n)a
+p(X>n+m|X>m)=P(X>n)
 $$
 
 __Proof__:
@@ -1190,7 +1195,9 @@ Then $\{S_n\}_{n=0,1,...}$ is a stochastic process, with state space $S=\Z$ (int
 
 ![Stochastic Processes Example2](drawio_assets/stochastic_example2.svg)
 
-## 4.1 Simple Random Walk
+## 4.1 Markov Chain
+
+### 4.1.1 Simple Random Walk
 
 $\{S_n\}_{n=0,1,...}$ is called a __"simple random walk"__. ($S_n=S_{n-1}+X_n$)
 
@@ -1233,11 +1240,11 @@ As time passes, the expression becomes more and more complicated $\rightarrow$ i
 
 However, if we know that this conditional distribution is actually the same as the conditional distribution only given $X_n$, then the structure will remain simple for any time. This motivates the notion of _Markov chain_.
 
-## 4.2 Markov Chain
+### 4.1.2 Markov Chain
 
-### 4.2.1 Discrete-time Markov Chain
+#### 4.1.2.1 Discrete-time Markov Chain
 
-#### 4.2.1.1 Definition and Examples
+##### Definition and Examples
 
 __Definition__: A discrete-time Stochastic process $\{X_n\}_{n=0,1,...}$ is called a __discrete-time Markov Chain (DTMC)__, if its state space $S$ is discrete, and it has the Markov property:
 
@@ -1306,7 +1313,7 @@ $$
 \end{aligned}
 $$
 
-## 4.3 One-step transition probability matrix
+### 4.1.3 One-step transition probability matrix
 
 For a time-homogeneous DTMC, define
 $$
@@ -1338,7 +1345,8 @@ $$
 \end{aligned}
 $$
 
-### Example 1 : simple random walk
+#### Example 1 : simple random walk
+
 There will be 3 cases:
 
 $$
@@ -1360,7 +1368,7 @@ $$
 \end{Bmatrix}
 $$
 
-### Example 2: Ehrenfest's urn
+#### Example 2: Ehrenfest's urn
 
 Two urns $A, B$, total $M$ balls. Each time, pick one ball randomly(uniformly), and move it to the opposite urn.
 $$ X_n: \# \text{ of balls in } A \text{after step }n $$
@@ -1392,7 +1400,7 @@ p=\begin{Bmatrix}
 \end{Bmatrix}
 $$
 
-### Example 3: Gambler's ruin
+#### Example 3: Gambler's ruin
 
 A gambler, each time wins 1 with probability  $p$, losses 1 with probability $1-p=q$. Initial wealth $S_0=a$; wealth at time $n$: $S_n$. The gambler leaves if $S_n=0$ (loses all money) or $S_n=M>a$ (wins certain amount of money and gets satisfied)
 
@@ -1424,7 +1432,7 @@ p=\begin{Bmatrix}
 \end{Bmatrix}
 $$
 
-### Example 4: Bonus-Malus system
+#### Example 4: Bonus-Malus system
 
 Insurance company has 4 premium levels: 1, 2, 3, 4
 
@@ -1446,3 +1454,147 @@ p=\begin{Bmatrix}
     0 & 0 & a_0 & (1-a_0)
 \end{Bmatrix}
 $$
+
+## 4.2 Chapman-Kolmogorov equations
+
+__Q__: Given the (one-step) transition matrix, $P=\{P_{ij}\}_{i,j\in S}$, how can we decide the n-step transition probability
+
+$$
+\begin{aligned}
+    P_{ij}^{(n)} &:= P(X_n=j|X_0=i) \\
+                &=P(X_{n+m}=j|X_m=i), \quad m=0,1,...
+\end{aligned}
+$$
+
+As a special case, let us start with $P_{ij}^{(2)}$ and their collection $p^{(2)}=\{P_{ij}^{(2)}\}_{i,j\in S}$ (also a square matrix, same dimension as $P$)
+
+Condition on what happens at time $1$:
+
+$$
+\begin{aligned}
+    P_{ij}^{(2)} &= P(X_2=j|X_0=i)   \\
+                &= \sum_{j\in S} P(X_2=j|X_0=i, X_1=k) \cdot P(X_1=k | X_0=i)  \quad \text{conditional law of total probability}
+\end{aligned}
+$$  
+
+### 4.2.1 Conditional Law of total probability
+$$
+\begin{aligned}
+    &\quad P(X_2=j|X_0=i)      \\
+    &=\sum_{k\in S} P(X_2=j, X_1=k | X_0=i)   \\
+    &=\sum_{k\in S} \frac{P(X_2=j, X_1=k, X_0=i)}{P(X_0=i)}     \\
+    &=\sum_{k\in S} \frac{P(X_2=j, X_1=k, X_0=i)}{P(X_1=k, X_0=i)} \cdot\frac{P(X_1=k, X_0=i)}{P(X_0=i)}   \\
+    &=\sum_{k\in S} P(X_2=j|X_0=i,X_1=k)\cdot P(X_1=k|X_0=i)
+\end{aligned}
+$$
+
+continue on $P_{ij}^{(2)}$
+$$
+\begin{aligned}
+    
+    P_{ij}^{(2)} &= P(X_2=j|X_0=i)   \\
+                &= \sum_{j\in S} P(X_2=j|X_0=i, X_1=k) \cdot P(X_1=k | X_0=i)  \quad \text{conditional law of total probability}    \\
+                &=\sum_{k\in S} P(X_2=j|X_1=k)\cdot P(X_1=k|X_0=i)  \\
+                &=\sum_{k\in S} P(X_1=j|X_0=k)\cdot P(X_1=k|X_0=i)  \\
+                &=\sum_{k\in S} P_{ik}\cdot P_{kj}  \\
+                &= (P \cdot P)_{ij}
+\end{aligned}
+$$
+
+Thus, $p^{(2)} = P\cdot P=p^2$
+
+Using the smae idea, for $n,m=0,1,2,3...$:
+
+$$ 
+\begin{aligned}
+    P_{ij}^{(n+m)} &=P(X_{n+m}=j|X_0=i)    \\
+        &= \sum_{k\in S}P(X_{n+m}=j|X_0=i, X_m=k) \cdot P(X_m=k|X_0=i)  \\
+        &= \sum_{k\in S}P(X_{n+m}=j|X_m=k) \cdot P(X_m=k|X_0=i)  \quad \text{Markov property}       \\
+        &= \sum_{k\in S}P(X_{n}=j|X_0=k) \cdot P(X_m=k|X_0=i)  \\
+        &=\sum_{k\in S} p_{ik}^{(m)}\cdot P_{kj}^{(n)}  \\
+        &=(p^{(m)}\cdot p^{(n)})_{ij}   \\
+        &\Rightarrow p^{(n+m)} = p^{(m)}\cdot p^{(n)}   \quad\quad (*)
+
+\end{aligned}
+$$
+
+By definition, $p^{(1)}=p$ 
+
+- $\Rightarrow$ $p^{(2)}=p^{(1)}\cdot p^{(1)}=p^2$
+- $\Rightarrow$ $p^{(3)}=p^{(2)}\cdot p^{(1)}=p^3$
+- $\cdots\cdots\cdots$
+- $\Rightarrow$ $p^{(n)}=p^n$
+
+Note:
+
+- $n$ from $p^{(n)}$: n-step transition probability matrix
+  - $p^{(n)}=\{p_{ij}^{(n)}\}_{i,j\in S}    \\ p_{ij}^{(n)}=P(X_n=j|X_0=i)$
+- $n$ from $p^n$: n-th power of the (one-step) transition matrix
+  - $p^n=p\cdot...\cdot p   \\  p=\{P_{ij}\}_{i,j\in S} \\ p_{ij}=P(X_1=j|X_0=i)$
+
+$(*)$ is called the __Chapman-Kolmogorov equations__ (c-k equation). Entry-wise:
+$$P_{ij}^{n+m}=\sum_{k\in S}P_{ik}^{(m)}P_{kj}^{(n)}$$
+
+__Intuition__:
+
+![ck-equation](drawio_assets/ck_equation.svg)
+
+"Condition at time $m$ (on $X_m$) and sum p all the possibilities"
+
+### 4.2.2 Distribution of $X_n$
+
+So far, we have seen transition probability $P_{ij}^{(m)}=P(X_n=j|X_0=i)$. This is not the probability $P(X_n=j)$. In order to get this distribution, we need the information about which state the Markov chain starts with.
+
+Let $\alpha_{0,i}=P(X_0=i)$. The row vector $\alpha_0=(\alpha_0,0,\alpha_0,1,...)$ is called the __initial distribution__ of the Markov chain. This is the distribution of the initial state $X_0$
+
+Similarly, we define distribution of $X_n$: $\alpha_n=(\alpha_n,0,\alpha_n,1,...)$ where $\alpha_{n,i}=P(X_n=i)$
+
+__Fact__: $\alpha_n=\alpha_0\cdot p^n$
+
+__Proof__:
+$$
+\forall j \in S \\\\
+\begin{aligned}
+\alpha_{n,j}    &=P(X_n=j)   \\
+                &= \sum_{i\in S} P(X_n=j|X_0=i)\cdot P(X_0=i)   \\
+                &= \sum_{i\in S} \alpha_{0,i}\cdot P_{ij}^{(n)} \\
+                &=(\alpha_0\cdot P^{(n)})_j = (\alpha_0\cdot p^n)_j \\
+\end{aligned}
+$$
+
+$$ \Rightarrow \alpha_n =\alpha0\cdot p^n $$
+
+- $\alpha_n$: distribution of $X_n$
+- $\alpha_0$: initial distribution
+- $p^n$: transition matrix
+
+__Remark__: The distribution of a DTMC is completely determined by two things:
+
+- the initial distribution $\alpha_0$ (row vector), and
+- the transition matrix $p$ (square matrix)
+
+## 4.3 Stationary distribution (invariant distribution)
+
+__Definition__: A probability distribution $\pi = (\pi_0,\pi_1,...)$ os ca;;ed a __stationary distribution__(invariant distribution) of the DTMC $\{X_n\}_{n=0,1,...}$ with transition matrix $P$, if :
+
+1. $\underline{\pi}=\pi\cdot P$
+2. $\sum_{i\in S}\pi_i = 1 (\Leftrightarrow \underleftarrow{\pi} \cdot 1\!\!\!\!\!\perp)$. ($1\!\!\!\!\perp$: a column of all 1's)
+
+Why such $\underline{\pi}$ is called stationary/invariant distribution?
+
+$$ 
+    \sum_{i\in S} \pi_i = 1, \pi_i \geq 0, i=0,1,... \Rightarrow \text{distribution}    \\
+    \underline{\pi} = \pi\cdot P \Rightarrow \text{invariant/stationary.}
+$$
+Assume the MC starts from the initial distribution $\alpha_0=\underline{\pi}$. hen the distribution of $X_1$ is
+$$
+    \alpha_1=\alpha_0\cot P=\underline{\pi}\cdot P = \underline{\pi} = \alpha_0
+$$
+The distribution of $X_2$:
+$$
+    \alpha_2=\alpha_0\cdot P^2 =\underline{\pi}\cdot P\cdot P = \underline{\pi} \cdot P = \underline(\pi) = \alpha_0
+$$
+$$ \cdots\cdots $$
+$$ \alpha_n=\alpha_0 $$
+
+Thus, if the MC starts from a stationary distribution, then its distribution will not change over time.

@@ -7,8 +7,8 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
 ## Table of Contents
 
 * __[Full Note](./pdf/full_note.pdf)__
-    * for [full_note.md](./md/full_note.md), use Visual Studio Code with [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) and [Markdown+Math](https://marketplace.visualstudio.com/items?itemName=goessner.mdmath) extensions to render markdown files, or
-    * use [StackEdit](https://stackedit.io) to view it online
+  * for [full_note.md](./md/full_note.md), use Visual Studio Code with [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) and [Markdown+Math](https://marketplace.visualstudio.com/items?itemName=goessner.mdmath) extensions to render markdown files, or
+  * use [StackEdit](https://stackedit.io) to view it online
 
 * [Lecture 1](./md/01_Jan_08.md)([pdf](./pdf/01_Jan_08.pdf)) - January 8
   * __Fundamental of Probability__
@@ -53,7 +53,11 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
 * [Lecture 8](./md/08_Jan_31)([pdf](./pdf/08_Jan_31.pdf)) - January 31
   * __Stochastic Processes__
     * Simple random walk
-* [Lecture 9](./md/09_Feb_05)([pdf](./pdf/00_Feb_05.pdf)) - February 05
+* [Lecture 9](./md/09_Feb_05.md)([pdf](./pdf/09_Feb_05.pdf)) - February 05
   * __Stochastic Processes__ (cont'd)
     * Markov Chain
     * One-step transition probability matrix
+* [Lecture 10](./md/10_Feb_08.md)([pdf](./pdf/10_Feb_08.pdf)) - February 07
+  * __Stochastic Processes__ (cont'd)
+    * Chapman-Kolmogorov equations
+    * Stationary distribution (invariant distribution)
