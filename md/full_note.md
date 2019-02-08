@@ -214,7 +214,7 @@ __Proof__:
 $$\begin{aligned}
 E\perp\!\!\!\perp F & \Leftrightarrow P(E\cap F) = P(E)\cdot P(F) \\
          & \Leftrightarrow \frac{P(E\cap F)}{P(F)} = P(E) \\
-         & \Leftrightarrow P(E|F)) = P(E)
+         & \Leftrightarrow P(E|F) = P(E)
 \end{aligned}$$
 
 More generally, a sequence of events $E_1, E_2, \ldots$ are called independent if for __any__ finite index set $I$,
@@ -351,12 +351,16 @@ __Proof__:
 $$
 \begin{aligned}
 P(X>k)  & = \sum_{j=k+1}^\infty P(X=j) \\
-        & = \sum_{j=k+1}^\infty (i-p)^{j-1}p    \\
+        & = \sum_{j=k+1}^\infty (1-p)^{j-1}p    \\
         & = (1-p)^kp \cdot \frac{1}{1-(1-p)}    \\
         & = (1-p)^k \\
+\end{aligned}
+$$
 
-P(X>n+m|x>m)    &= \frac{P(X>n+m), X>m}{P(X>m)} \\
-                &= \frac{P(X>n+m)}{P(X>m)} = \frac{1-p)^{n+m}}{(1-p)^m} = (1-p)^n=P(X>n)
+$$
+\begin{aligned}
+P(X>n+m|x>m)    &= \frac{P(X>n+m\bigcap X>m)}{P(X>m)} \\
+                &= \frac{P(X>n+m)}{P(X>m)} = \frac{(1-p)^{n+m}}{(1-p)^m} = (1-p)^n=P(X>n)
 \end{aligned}
 $$
 
@@ -388,7 +392,7 @@ __Remark__: probability density function(pdf) is not probability. $P(X=x)=0$ if 
 If $X$ is continuous, then we can get cdf by:
 
 $$
-F(a)=P(X\in(-\infty, a])=\int^a_\infty f(x)dx
+F(a)=P(X\in(-\infty, a])=\int^a_{-\infty} f(x)dx
 $$
 
 hence, $F(x)$ is continuous, and differentiable "almost everywhere".
@@ -423,9 +427,19 @@ Other continuous distributions:
 Exercises:
 
 1. Find the cdf of $X\sim Exp(x)$
+    $$
+    \begin{aligned}
+    F(k) = P(X\leq k)
+        &= \int_{-\infty}^k f(x)dx    \\
+        &= \int_0^k \lambda e^{-\lambda x}dx    \\
+        &= -e^{-\lambda x} \Big|^k_0    \\
+        &= -e^{-\lambda k} - (-e^0) \\
+        &= 1 - e^{-\lambda k}
+    \end{aligned}
+    $$
 2. Show that the exponential distribution has the memoryless property:
    $$
-   P(X>t+s|x>t)=P(X>s)
+   P(X>t+s|X>t)=P(X>s)
    $$
 
 ## 2.4 Joint distribution of r.v's
@@ -443,12 +457,12 @@ Two joint distribution of r.v's is characterized by joint cdf, joint pmf(discret
 - joint pdf $f(x,y)$ such that for $a<b, c<d$
   - $P(X,Y)\in(a,b]\times(c,d] = P(X\in(a,b], Y\in(c,d])=\int_a^b\int_c^d f(x,y)dy dx$
   - Equivalently:
-    1. $F(x,y)=\int_{-\infty}^x\int_{-\infty}^y f(s,t)dtds \\$ $f(x,y)=\frac{\partial^2}{\partial x \partial y}F(x,y)$
+    1. $F(x,y)=\int_{-\infty}^x\int_{-\infty}^y f(s,t)dtds \\\text{and} \\$ $f(x,y)=\frac{\partial^2}{\partial x \partial y}F(x,y)$
     2. $P((X,Y)\in A) = \int\int_A f(x,y)dxdy$ for $A\subseteq R^2$
 
-__Definition__: Two r.v's $X$ and $Y$ are called independent, if for all sets $A,B\subseteq R$, 
+__Definition__: Two r.v's $X$ and $Y$ are called independent, if for all sets $A,B\subseteq R$,
 $$
-P(X<A,Y<B)=P(X\in A)P(Y\in B)
+P(X<A,Y<B)=P(X\in A)\cdot P(Y\in B)
 $$
 ($\{X\in A\}$ and $\{Y\in B\}$ are independent events)
 
@@ -462,7 +476,7 @@ __Proof__:
 
 1.$\Rightarrow$ 2.
 
-If $X \perp Y$, then by definition, 
+If $X \perp\!\!\!\perp Y$, then by definition, 
 $$
 F(x,y)=P(X\in(-\infty, x],Y\in(-\infty, y])) = P(X\in(-\infty, x]))\cdot P(Y\in(-\infty,y])) = F_x(x)F_y(y)
 $$
@@ -495,7 +509,7 @@ $$
 
 __Definition__: For a r.v $X$, the expectation of $g(x)$ is defined as
 $$
-\exists(g(x))=  \begin{cases}
+\mathbb{E}(g(X))=  \begin{cases}
                 \begin{aligned}
                     & \sum_{i=1}^\infty g(x_i)P(X=x_i) & \text{for discrete } X \\
                     & \int_{-\infty}^\infty g(x)f(x)dx & \text{for continuous} X
@@ -505,9 +519,9 @@ $$
 Let $X$,$Y$ be two r.v's; then the expectation of $g(X,Y)$ is defined in a similar way.
 
 $$
-\exists(g(x,y)) =   \begin{cases}
+\mathbb{E}(g(X,Y)) =   \begin{cases}
                         \begin{aligned}
-                        &\sum\sum g(x_i,y_j)P(X=x_i, Y=y_j)\\
+                        &\sum_i\sum_j g(x_i,y_j)P(X=x_i, Y=y_j)\\
                         & \int\int g(x_i, y_j)f(x,y)dxdy
                         \end{aligned}
                     \end{cases}
@@ -516,8 +530,8 @@ $$
 ### 2.5.1 Properties of expectation
 
 1. Linearity:expectation of $X$: $\mathbb{E}(X)= \begin{cases}
-                                            \sum X_i \mathbb{P}(X=x_i) \\
-                                            \int_{-\infty}^{x_1} xf(x)dx
+                                            \sum x_i P(X=x_i) \\
+                                            \int_{-\infty}^{\infty} xf(x)dx
                                         \end{cases}$, $g(X)=x$
     - $\mathbb{E}(ax+b)=a\mathbb{E}(x)+b$
     * $\mathbb{E}(X+Y)=\mathbb{E}(X)+\mathbb{E}(Y)$
@@ -527,7 +541,7 @@ $$
         \begin{aligned}
             \mathbb{E}(g(X)h(Y))
             &= \int_{-\infty}^\infty\int_{-\infty}^\infty g(x)h(y)f(x,y)dxdy    \\
-            &= \int_{-\infty}^\infty\int_{-\infty}^\infty g(x)h(y)f_X(f)f_Y(y)dxdy \\
+            &= \int_{-\infty}^\infty\int_{-\infty}^\infty g(x)h(y)f_X(x)f_Y(y)dxdy \\
             &= \int_{-\infty}^\infty g(x)f_X(x)\cdot\int_{-\infty}^\infty h(y)f_Y(y)dy\\
         \end{aligned}
     $$
@@ -549,7 +563,7 @@ $$
 __Definition__: the covariance of the r.v's $X$ and $Y$ is defined as:
 
 $$
-Cov(X,Y)=\mathbb{E}((X-\mathbb{E}(X)))\mathbb{E}((Y-\mathbb{E}(Y)))
+Cov(X,Y)=\mathbb{E}[(X-\mathbb{E}(X))(Y-\mathbb{E}(Y))]
 $$
 Thus $Var(X)=Cov(X,X)$
 
@@ -565,38 +579,58 @@ __Proof__:
 $$
 \begin{aligned}
 Var(X)  &= \mathbb{E}((X-\mathbb{E}(X))^2)  \\
-        &= \mathbb{E}(X^2-2X\mathbb{E}(X)+(\mathbb{E}(X)^2))    \\
+        &= \mathbb{E}(X^2-2X\mathbb{E}(X)+(\mathbb{E}(X))^2)    \\
         &= \mathbb{E}(X^2)-2\mathbb{E}(X\mathbb{E}(X))+(\mathbb{E}(X))^2    \\
         &= \mathbb{E}(X^2)-2(\mathbb{E}(X))^2+(\mathbb{E}(X))^2 \\
-        &= \mathbb{E}(X^2)-(\mathbb{E}(X))^2
+        &= \mathbb{E}(X^2)-(\mathbb{E}(X))^2 \quad\quad\blacksquare
 \end{aligned}
 $$
 
 __Fact__: $Cov(X,Y)=\mathbb{E}(XY)-\mathbb{E}(X)\mathbb{E}(Y)$
 
-__Proof__: similar to previous
+__Proof__:
+
+$$
+\begin{aligned}
+Cov(X,Y)
+    &=\mathbb{E}[(X-\mathbb{E}[X])(Y-\mathbb{E}[Y])]    \\
+    &=\mathbb{E}[XY - X\mathbb{E}[Y]-Y\mathbb{E}[X] + \mathbb{E}[X]\mathbb{E}[Y]]    \\
+    &=\mathbb{E}[XY] - \mathbb{E}[X\mathbb{E}[Y]] - \mathbb{E}[Y\mathbb{E}[X]] + \mathbb{E}[E]X]\mathbb{E}[Y]) \\
+    &=\mathbb{E}[XY] - \mathbb{E}[X]\mathbb{E}[Y] - \mathbb{E}[Y]\mathbb{E}[X] + \mathbb{E}[X]\mathbb{E}[Y]    \\
+    &=\mathbb{E}[XY]-\mathbb{E}[X]\mathbb{E}[Y] \quad\quad\blacksquare
+\end{aligned}
+$$
 
 Variance and covariance are __translation invariant__. Variance is quadratic, covariance is bilinear.
 $$
-Var(aX+b)=a\cdot Var(X)
+Var(aX+b)=a^2\cdot Var(X)
 $$
 $$
 Cov(aX+b, cY+d)=ac\cdot Cov(X,Y)
 $$
 
-__Proof__:
+__Proof__: $Var(aX+b)=a^2\cdot Var(X)$
 $$
 \begin{aligned}
-Var(aX+b)   &= \mathbb{E}((aX+b0\mathbb{E}(aX+b)^2))    \\
-            &= \mathbb{E}([a(X-\mathbb{E}(X))]^2)       \\
-            &= a^2\mathbb{E}((X-\mathbb{E}(X)^2))   \\
-            &= a^2\mathbb{E}(X)
+Var(aX+b)   &= \mathbb{E}((aX+b)^2)-(\mathbb{E}(aX+b))^2    \\
+    &= \mathbb{E}(a^2X^2 + 2abX + b^2) - (a\mathbb{E}(X)+b)^2    \\
+    &= a^2\mathbb{E}(X^2) + 2ab\mathbb{E}(X)+b^2 - a^2\mathbb{E}^2(X) - ab\mathbb{E}(X) - b^2   \\
+    &= a^2\mathbb{E}(X^2)-a^2\mathbb{E}^2(X)    \\
+    &= a^2 Var(X)   \quad\quad\blacksquare
 \end{aligned}
 $$
 
 __Proof__: $Var(X+Y) = Var(X)+Var(Y)+2Cov(X,Y)$
 
-Exercise
+$$
+\begin{aligned}
+Var(X+Y) &= \mathbb{E}[(X+Y)^2] - E^2[X+Y]   \\
+    &=\mathbb{E}[X^2 + XY + Y^2] - (\mathbb{E}[X]+\mathbb{E}[Y])^2 \\
+    &=\mathbb{E}[X^2] + \mathbb{E}[XY] + \mathbb{E}[Y^2] - E^2[X] - 2\mathbb{E}[X]\mathbb{E}[Y] - E^2[Y] \\
+    &=(\mathbb{E}[X^2]-E^2[X]) + (\mathbb{E}[Y^2]-E^2[Y]) + (\mathbb{E}[XY]-2\mathbb{E}[X]\mathbb{E}[Y]) \\
+    &=Var(X) + Var(Y) + 2 Cov(X,Y)  \quad\quad\blacksquare
+\end{aligned}
+$$
 
 If $X\perp \!\!\! \perp Y$, then $Cov(X,Y)=0$ and $Var(X+Y)=Var(X)+Var(Y)$
 
@@ -605,11 +639,11 @@ $$
 \begin{aligned}
 &   Cov(X,Y)=\mathbb{E}(XY)-\mathbb{E}(X)\mathbb{E}(Y) \\
 &   \text{we know:} \\
-&   X\  Y\Rightarrow \mathbb{E}(XY)=\mathbb{E}(X)\mathbb{E}(Y)   \\
+&   X\ \perp\!\!\!\perp Y\Rightarrow \mathbb{E}(XY)=\mathbb{E}(X)\mathbb{E}(Y)   \\
 &   \text{Thus, } Cov(X,Y)=0 \Rightarrow Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y)   \\
 &   \text{So we see independence} \Rightarrow \text{Covariance is 0: "uncorrelated"}    \\
 &   \text{the converse is not true.}    \\
-&   Cov(X,Y)=0 \Rightarrow\not \text{independence}
+&   Cov(X,Y)=0 \not\Rightarrow \text{independence}
 \end{aligned}
 $$
 
@@ -635,12 +669,12 @@ $$
 I(w)=   \begin{cases}
         \begin{aligned}
         & 1 & \omega\in A    \\
-        & 0 & \omega\in\not A
+        & 0 & \omega\not\in A
         \end{aligned}
         \end{cases}
 $$
 $$
-    P(I_A) = P(A)
+    E(I_A) = P(A)
 $$
 for some event $A$
 
@@ -673,12 +707,12 @@ $$
 $$
 where $I_1,\cdots,I_n$ are indicators for independent events. $I_i=1$ if th $i$ the trial is a success. $I_i=0$ if the $i$ th trial is a failure.
 
-Hence $I_i$ are __i.d.__(independent and identically distributed) r.v's
+Hence $I_i$ are __idd__(independent and identically distributed) r.v's
 $$
 \begin{aligned}
 \Rightarrow \mathbb{E}(X)
-    &= \mathbb{E}(I_1+\cdot,I_N)    \\
-    &= \mathbb{E}(I_1)+\cdots|\mathbb{E}(I_n)   \\
+    &= \mathbb{E}(I_1+\cdots+I_N)    \\
+    &= \mathbb{E}(I_1)+\cdots+\mathbb{E}(I_n)   \\
     &= p + \cdots + p = n\cdot p
 \end{aligned}
 $$
@@ -725,7 +759,7 @@ $$
 
 ## 2.7 Moment generating function
 
-__Definition__: Let $X$ be a r.v. Then the function $M(t)=\mathbb{E}(e^{tx})$ is called the _moment generating function(mgf)_ of $X$, if the expectation exists for all $t\in (-h, h)$ for some $h>0$.
+__Definition__: Let $X$ be a r.v. Then the function $M(t)=\mathbb{E}(e^{tX})$ is called the _moment generating function(mgf)_ of $X$, if the expectation exists for all $t\in (-h, h)$ for some $h>0$.
 
 __Remark__: The mgf is not always well-defined. It is important to check the existence of the expectation.
 
@@ -748,7 +782,7 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
      - As a result, we have: $M(t)=\sum_{k=0}^\infty \frac{M^{(k)}(0)}{k!} t^k = \sum_{k=0}^\infty \frac{E*X^k}{k!}t^k$  (a method to get moment of a r.v)
 2. $X\perp \!\!\! \perp  Y$, with mgf's $M_x, M_y$. Let $M_{X+Y}$ be the mgf of $X+Y$. then
     $$ 
-        M_{X+Y}(t)=M_X(t)M_Y(y)
+        M_{X+Y}(t)=M_X(t)M_Y(t)
     $$
    - __Proof__:
     $$ 
@@ -757,11 +791,11 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
                 &= \mathbb{E}(e^{t(X+Y)}) \\
                 &= \mathbb{E}(e^{tx}e^{ty})  \\
                 &= \mathbb{E}(e^{tx})\mathbb{E}(e^{ty})   \\
-                &= M_X(y)M_Y(t)
+                &= M_X(t)M_Y(t)
         \end{aligned}
     $$
 3. The mgf completely determines the distribution of a r.v.
-   - $M_X(t)=M_Y(t)$ for all $t\in (-h,h)$ for some $h>0$, then $X\stackrel{d}{=}Y$. ($\stackrel{d}{=}$: have the smae distribution)
+   - $M_X(t)=M_Y(t)$ for all $t\in (-h,h)$ for some $h>0$, then $X\stackrel{d}{=}Y$. ($\stackrel{d}{=}$: have the same distribution)
    - Example: Let $X\sim Poi(\lambda_1)$, $Y\sim Poi(\lambda_2)$. $X\perp \!\!\! \perp  Y$. Find the distribution of $X+Y$
      - First, derive the mgf of a Poisson distribution.
         $$
@@ -794,7 +828,7 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
 
 ### 2.7.2 Joint mgf
 
-__Definition__: Let $X,Y$ be r.v's. Then $M(t_1, t_2):=\mathbb{E}(e^{t_1X+t_2Y}$ is called the joint mgf of $X$ and $Y$, if the expectation exists for all $t_1\in(-h_1, h_1)$, $t_2\in(-h_2, h_2)$ for some $h_1, h_2 >0$.
+__Definition__: Let $X,Y$ be r.v's. Then $M(t_1, t_2):=\mathbb{E}(e^{t_1X+t_2Y})$ is called the joint mgf of $X$ and $Y$, if the expectation exists for all $t_1\in(-h_1, h_1)$, $t_2\in(-h_2, h_2)$ for some $h_1, h_2 >0$.
 
 More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_iX_i))$ for r.v's $X_1, \cdots,X_n$, if the expectation exists for $\{(t_1,\cdots, t_n):t_i\in(-h_i,h_i), i=1,\cdots,n\}$ for some $\{h_i>0\}, i=1,\cdots, n$
 
@@ -804,14 +838,14 @@ More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_
    \begin{aligned}
         M_X(t)
             &= \mathbb{E}(e^{tX})     \\
-            &=\mathbb{E}(e^{tX+oY})   \\
-            &=M(t,o)        \\
+            &=\mathbb{E}(e^{tX+0Y})   \\
+            &=M(t,0)        \\
         M_Y(t)
-            &=M(o, t)
+            &=M(0, t)
     \end{aligned}
    $$
 2. $$
-    \frac{\partial^{m+n}}{\partial t_1^m \partial t_2^n} M(t_1, t_2)|_{(0,0)} = \mathbb{E}(X^mY^n    \\
+    \frac{\partial^{m+n}}{\partial t_1^m \partial t_2^n} M(t_1, t_2)|_{(0,0)} = \mathbb{E}(X^mY^n)    \\
     \text{the proof is similar to the single r.v. case}
    $$
 3. If $X\perp \!\!\! \perp  Y$, then $M(t_1, t_2)=M_X(t_1)M_Y(t_2)$
@@ -841,7 +875,7 @@ P(X=x | Y=y) = \frac{(P(X=x, Y=u))}{P(Y=y)}
 $$
 
 $$
-P(X=x|Y=y): f_{X|Y} = y(x), f_{X|Y}(x|y) \leftarrow \text{conditional probability mass function)}$$
+P(X=x|Y=y): f_{X|Y = y}(x).\quad\quad f_{X|Y}(x|y) \leftarrow \text{conditional probability mass function)}$$
 
 Conditional pmf is a legitimate pmf: given any $y$, $f_{X|Y=y}(x) \geq 0, \forall x$
 
@@ -863,7 +897,7 @@ $X_1\sim Poi(\lambda_1), X_2\sim Poi(\lambda_2)$. $X_1\perp\!\!\!\perp X_2$, $Y=
 
 Q: $P(X_1=k|Y=n)$ ?
 
-Note $P(X_1=k|Y=u) = f_{X_1|Y=n}(k)$
+Note $P(X_1=k|Y=n) = f_{X_1|Y=n}(k)$
 
 A:
 $P(X_1=k|Y=n)$ can only be non-zero for $k=0, \cdots, n$ in this case,
@@ -931,7 +965,7 @@ $$
     f_{X|Y}(x|y) &= \frac{f(x,y)}{f_Y(y)}   \\
         & \propto f(x,y)    \\
         & = f_{Y|X}(y|x)\cdot f_X(x)    \\
-        & = xe^{xy}\lambda e^{-\lambda xa}  \\
+        & = xe^{-xy}\lambda e^{-\lambda x}  \\
         & \propto xe^{-x(y+\lambda)}, \quad\quad x>0, y>0
 \end{aligned}
 $$
@@ -941,7 +975,7 @@ Normalization ( make the total probability 1)
 $$
 \begin{aligned}
     f_{X|Y}(x|y) & = \frac{xe^{-x(y+\lambda)}}{\int_0^\infty xe^{-x(y+\lambda)}dx}  \\
-    \int_0^\infty xe^{-x(y+\lambda)}dx &= \frac{1}{\lambda + t}^2 \leftarrow \text{integration by parts}
+    \int_0^\infty xe^{-x(y+\lambda)}dx &= (\frac{1}{\lambda + y})^2 \leftarrow \text{integration by parts}
 \end{aligned}
 $$
 
@@ -951,7 +985,7 @@ This is a gamma distribution with parameters $\gamma$ and $\lambda + y$
 
 #### 3.1.2.1. Example 2
 
-Find the distribution of $z=XY$.
+Find the distribution of $Z=XY$.
 
 __Attention__: the following method is wrong:
 
@@ -974,12 +1008,13 @@ As an __easier way__ is to use cdf, which gives probability rather than density:
 
 $$
 \begin{aligned}
-    P(Z=z) & = P(XY\leq z) \\
+    P(Z<z) & = P(XY\leq z) \\
         & = \int_0^\infty P(XY\leq z|X=x) f_X(x) dx \quad\quad (\text{law of total probability}) \\
         &= \int_0^\infty P(Y\leq\frac{z}{x}|X=x)\cdot f_X(x)dx  \\
 Y|X=x \sim Exp(x)  \\
         &= \int_0^\infty(1-e^{-x\cdot\frac{z}{x}})\cdot\lambda e^{-\lambda x} dx    \\
         &= 1 - e^{-z}\int_0^\infty \lambda e^{-\lambda x}dx \\
+        &= 1-e^{-z}
 \Rightarrow Z\sim Exp(1)
 \end{aligned}
 $$
@@ -1078,8 +1113,8 @@ Different ways to understand *conditional expectation*
    $$ \Rightarrow \begin{aligned}
    \mathbb{E}(\mathbb{E}(X|Y))
         &= \sum_{y_j}(\sum_{x_i}x_iP(X=x_i|Y=y_j))P(Y=y_j)      \\
-        &= \sum_{x_i}\sum_{y_j} P(X=x_i|Y=y_j)P(Y=y_j)          \\
-        &= \sum_{x_i}x_i\sum_{y_j}P(X=x_i|Y=y_j)P(Y=y_2)        &\text{law of total probability}    \\
+        &= \sum_{x_i}\sum_{y_j} x_iP(X=x_i|Y=y_j)P(Y=y_j)          \\
+        &= \sum_{x_i}x_i\sum_{y_j}P(X=x_i|Y=y_j)P(Y=y_j)        &\text{law of total probability}    \\
         &= \sum_{x_i}x_i P(X=x_i) = \mathbb{E}(X)
    \end{aligned} $$
    Alternatively,
@@ -1093,7 +1128,7 @@ Different ways to understand *conditional expectation*
    $$
    __Example__: 
 
-   $Y$: # of claims receive by insurance company <br/>
+   $Y$: # of claims received by insurance company <br/>
    $X$: some random parameter
    $$ Y|X\sim Poi(X), X\sim Exp(\lambda) $$
    a) $\mathbb{E}(Y)$ ? <br/>
@@ -1112,7 +1147,7 @@ Different ways to understand *conditional expectation*
    __b)__
    $$
     \begin{aligned}
-        P(Y=n) &= \int_0^\infty P(Y=n|X=x)f_x(x)dx   \\
+        P(Y=n) &= \int_0^\infty P(Y=n|X=x)f_X(x)dx   \\
             &= \int_o^\infty \frac{e^{-x}x^n}{n!}\cdot \lambda e^{-\lambda x} dx    \\
             &= \frac{\lambda}{n!}\int_0^\infty x^n e^{-(\lambda+1)x}dx  \\
             &= \frac{\lambda}{(\lambda+1)^{n+1}n!}\int_0^\infty((\lambda+1)x)^n e^{-(\lambda+1)x}d(\lambda+1)x  \\
@@ -1172,7 +1207,7 @@ In discrete case, we writes $\{X_n\}_{n=0,1,2,\ldots}$
 
 This __state space__ $S$ os a stochastic process is the set of all possible value of $X_t, t\in T$
 
-$S$ can also be either discrete or continuous. In this course, we typically deal with __discrete__ stat space. Then we relabel the stats so that $S=\{0,1,2,\cdots\}$ (countable state space) or $S=\{0,1,2,\cdots,M\}$ (finite state space)
+$S$ can also be either discrete or continuous. In this course, we typically deal with __discrete__ state space. Then we relabel the states so that $S=\{0,1,2,\cdots\}$ (countable state space) or $S=\{0,1,2,\cdots,M\}$ (finite state space)
 
 __Remark__: As in the case of the joint distribution, we need the r.v's in a stochastic process to be defined on a common probability space, because we want to discuss their joint behaviours, i.t, how things change over time.
 
@@ -1212,7 +1247,7 @@ __Remark__: Why we need the concept of "stochastic process"? Why don't we just l
 
 __Answer__: The joint distribution of a large number of r.v's is very complicated, because it does not take advantage of the special structure of $T$(time).
 
-For example, simple random walk. The full distribution of $(S_0, S_1, ..., S_n$ is complicated or $n$ large. However, the structure is actually simple if we focus on the adjacent times:
+For example, simple random walk. The full distribution of $(S_0, S_1, ..., S_n)$ is complicated for $n$ large. However, the structure is actually simple if we focus on the adjacent times:
 
 $$
 S_{n+1}=S_n+X_{n+1}$$
@@ -1222,9 +1257,9 @@ $$
 
 By introducing time into the framework, we can greatly simplify many things.
 
-More precisely, we fine that for simple random walk, $\{S_n\}_{n=0,1,...}$, if we know $S_n$ the distribution of $S_n+1$ will not depend on the history $(S_0, ..., S_n-1$. THis is a very useful property
+More precisely, we find that for simple random walk, $\{S_n\}_{n=0,1,...}$, if we know $S_n$ the distribution of $S_n+1$ will not depend on the history $(S_0, ..., S_{n-1})$. This is a very useful property
 
-In general for a stochastic process $\{X_n\}_{n=0,1,...}$, at time $n$, we already know $X_0, X_1,..., X_n$, $S_0$ our best estimate of the distribution of $X_{n+1}$ should be the conditional distribution:
+In general for a stochastic process $\{X_n\}_{n=0,1,...}$, at time $n$, we already know $X_0, X_1,..., X_n$, $S_0$; our best estimate of the distribution of $X_{n+1}$ should be the conditional distribution:
 
 $$
 X_{n+1}|X_n,...,X_n
@@ -1279,7 +1314,7 @@ $$
 &\quad P(S_{n+1}=s_{n+1}|S_n=s_n,...,S_0=s_0) \\
 & = 0   \\
 & = P(S_{n+1}=s_{n+1}|S_n=s_n)
-s
+
 \end{aligned}
 $$
 if $s_{n+1}\not= s_n \pm$
@@ -1324,13 +1359,13 @@ $$
 $$
 $P_{ij}$: one step transition probability
 
-The collection of $P_{ij}, i,j\in S$ governs all the one-step transitions of the DTMC. Since it has two indices $i$ and $j$; it naturally forms a matrix $P=\{P_{ij}\}_{i,k\in S}$, called the __(one-setp) transition (probability) matrix__ or __transition matrix__
+The collection of $P_{ij}, i,j\in S$ governs all the one-step transitions of the DTMC. Since it has two indices $i$ and $j$; it naturally forms a matrix $P=\{P_{ij}\}_{i,j\in S}$, called the __(one-setp) transition (probability) matrix__ or __transition matrix__
 
 __Property of a transition matrix $P=\{P_{ij}\}_{i,j\in S}$__: 
 $$
 \begin{aligned}
     &P_{ij}\geq 0\quad \forall i,j\in S  \\
-    &\sum_{j\in S}P_{ij}=1 \quad \forall i\in S \quad\rightarrow\text{ the row some of } P \text {are all }1
+    &\sum_{j\in S}P_{ij}=1 \quad \forall i\in S \quad\rightarrow\text{ the row some of } P \text { are all }1
 \end{aligned}
 $$
 
@@ -1371,7 +1406,7 @@ $$
 #### Example 2: Ehrenfest's urn
 
 Two urns $A, B$, total $M$ balls. Each time, pick one ball randomly(uniformly), and move it to the opposite urn.
-$$ X_n: \# \text{ of balls in } A \text{after step }n $$
+$$ X_n: \# \text{ of balls in } A \text{ after step }n $$
 $$ S=\{0,1,...,M\} $$
 
 $$
