@@ -65,6 +65,11 @@
     - [4.2.1 Conditional Law of total probability](#421-conditional-law-of-total-probability)
     - [4.2.2 Distribution of $X_n$](#422-distribution-of-x_n)
   - [4.3 Stationary distribution (invariant distribution)](#43-stationary-distribution-invariant-distribution)
+    - [Example 4.3.1](#example-431)
+  - [4.4. Classification of States](#44-classification-of-states)
+    - [4.4.1. Transience and recurrence](#441-transience-and-recurrence)
+      - [Definition 4.4.1](#definition-441)
+      - [Example 4.4.1](#example-441)
 
 # 1. Fundamental of Probability
 
@@ -1633,3 +1638,148 @@ $$ \cdots\cdots $$
 $$ \alpha_n=\alpha_0 $$
 
 Thus, if the MC starts from a stationary distribution, then its distribution will not change over time.
+
+### Example 4.3.1
+
+An electron has two states: $ground(0), excited(1)$. Let $X_n\in\{0,1\}$ be the state at time $n$.
+
+At each step, changes state with probability:
+
+- $\alpha$ if it is in state $0$.
+- $\beta$ if it is in state $1$.
+
+THen $\{X_n\}$ is a DTMC. ITs transitional matrix is:
+
+$$
+P=\begin{Bmatrix}
+    1-\alpha & \alpha \\
+    \beta & 1-\beta
+\end{Bmatrix}
+ $$
+
+ Now let us solve for the stationary distribution $\underline{\pi} =\underline{\pi}\cdot P$.
+
+$$
+(\pi_0,\pi_1) \begin{pmatrix}
+    1-\alpha & \alpha \\
+    \beta & 1-\beta
+\end{pmatrix}
+=(\pi_0,\pi_1)
+$$
+$$
+\Rightarrow \begin{cases}
+\pi_0(1-\alpha) + \pi_1\beta=\pi_0\quad(1)  \\
+\pi_0\alpha + \pi_1(1-\beta) = \pi_1\quad(2)
+\end{cases}
+$$
+
+We have two equations and two unknowns. However, note that they are not linearly independent:
+
+sum of LHS $=\pi_0+\pi_1=$ sum of RHS. Hence $(2)$ can be derived from $(1)$. By $(1)$, we have:
+$$ \alpha\pi_0=\beta\pi_1\quad\text{or}\quad\frac{\pi_0}{\pi_1}=\frac{\beta}{\alpha} $$
+This where we need $\underline{\pi}\cdot1\!\!\!\!\perp$:
+$$ \pi_0+\pi_1=1 \Rightarrow\pi_0=\frac{\beta}{\alpha+\beta},\quad \pi_1 =\frac{\alpha}{\alpha+\beta}$$
+Thus, we conclude that there exists a unique stationary distribution $(\frac{\beta}{\alpha+\beta},\frac{\alpha}{\alpha+\beta})=\underline{\pi}$
+
+The above procedure for solving for stationary distribution is typical:
+
+1. Use $\underline{\pi}=\underline{\pi}P$ to get the properties between different components of $\underline{\pi}$
+2. Use $\underline{\pi}\cdot 1\!\!\!\!\perp = 1$ to normalize (get exact values)
+
+## 4.4. Classification of States
+
+### 4.4.1. Transience and recurrence
+
+Let $T$: be the waiting for a MC to visit/revisit state $i$ for the first time
+$$ T_i:=min\{n>0:X_n=i\}\quad\quad T_i \text{ is a r.v.}$$
+
+$T_i=\infty$ if the MC never (re)visits state $i$.
+
+#### Definition 4.4.1
+
+A state $i$ is called:
+
+- transient, if $P(T_1<\infty|X_0=i) < 1$ (never goes back to $i$ positive probability)
+- recurrence, if $P(T_i<\infty|X_0=i) = 1$ (always goes back to state $i$)
+  - positive recurrent, if $E(T_i|X_0=i)<\infty$
+  - null recurrent, if $E(T_i|X_0=i)=\infty$
+  - (note: a r.v. is finite with probability $\not\Rightarrow$ its expectation is finite)
+    - Example: $T=2,4,...,2^n, p=\frac{1}{2},\frac{1}{4},...,2^{-n}\\$ $E(T_=2\cdot\frac{1}{2} + 4\cdot\frac{1}{4}+...+2^n\cdot 2^{-n}=\infty$
+
+#### Example 4.4.1
+
+$$
+P=\begin{pmatrix}
+    \frac{1}{2} & \frac{1}{2}   \\
+    & \frac{1}{2} & \frac{1}{2} \\
+    & & 1
+\end{pmatrix}
+$$
+
+<p align="center">
+<img src="drawio_assets/transience_and_recurrence.svg">
+</p>
+
+Given $X_0=0$, 
+$$P(\underbrace{X_1=0}_{T_0=1}|X_0=0)=P(\underbrace{X_1=1}_{T_0=\infty \text{ since state 1}\atop\text{and 2 do not go to 0}}|X_0=0)=\frac{1}{2} \quad\Rightarrow\quad P(T_0<\infty|X_0=0)=\frac{1}{2}<1$$
+
+Thus, state $0$ is transient
+
+Similarly, state $1$ is transient.
+
+Given $X_0=2$, 
+$$P(X_1=2|X_0=2)\Rightarrow P(T_2<\infty|X_0=2) = 1$$
+As $E(T_2|X_0=2)=1$Thus, state $2$ is a positive recurrence.
+
+In general, the distribution of $T_i$ is very hard to determine $\Rightarrow$ need better criteria for recurrence/transience.
+
+__Criteria (1)__: Define $f_{ii}=P(T_i<\infty|X_0=i)$, and
+$$V_i= \text{\# of times that the MC (revisits) state i}=\sum_{n=1}^\infty 1\!\!\!\!\perp_{\{X_n=i\}}$$
+
+If state $i$ is transient
+$$ P(V_i=k|X_0=j)=\underbrace{f_{ii}^k}_{\text{goes back to}\atop\text{$i$ for $k$ times}}(\underbrace{1-f_{ii}}_{\text{never visits}\atop\text{$i$ again}}) $$
+$$ \Rightarrow V_i+1\sim Geo(1-f_{ii}) $$
+In particular, $P(V_i<\infty|X_0=i)=1\Rightarrow$ If state $i$ is transient, it is visited away finitely many times with probability 1. The MC will leave state $i$ forever sooner or later.
+
+On the other hand, if state $i$ is recurrent, then $f_{ii}=1$
+$$ P(V_i=k)=0\quad k=0,1,... \Rightarrow P(V_1=\infty)=1$$
+
+If the MC starts at a recurrent state $i$, it will visit that state infinitely many times. $\\$<br/>
+
+__Criteria (2)__: In terms of $E(V_i|X_0=i)$:
+$$
+\begin{aligned}
+&E(V_i|X_0=i)=\frac{1}{1-f_{ii}} - 1 = \frac{f_{ii}}{1-f_{ii}} < \infty &\text{if } f_{ii} < 1, (i \text{ transient}) \\
+
+&E(V_i|X_0=i)=\infty, &\text{if } f_{ii}=1, (i \text{ recurrent})
+\end{aligned}
+$$
+
+__Criteria (3)__: Note that
+$$
+\begin{aligned}
+    E(V_i|X_0=i) &= E(\sum_{n=1}^\infty 1\!\!\!\!\perp_{\{X_n=i\}}|X_0=i) \\
+    &= \sum_{n=1}^\infty E( 1\!\!\!\!\perp_{\{X_n=i\}}|X_0=i) \\
+    &= \sum_{n=1}^\infty P(X_n=i|X_0=i) \\
+    &=\sum_{n=1}^\infty P_{ii}^{(n)}
+\end{aligned}
+$$
+$$
+\begin{aligned}
+\Rightarrow &\sum_{n=1}^\infty P_{ii}^{(n)} < \infty &\text{if } i \text{ transient} \\
+\Rightarrow &\sum_{n=1}^\infty P_{ii}^{(n)} = \infty &\text{if } i \text{ recurrent} \\
+\end{aligned}
+$$
+
+To conclude,
+$$ 
+define:\quad
+\begin{aligned}
+    i\quad\quad & recureent & transient   \\
+    &P(T_i<infty |X_0=i) = 1 \quad& P(T_i<\infty|X_0=i)<1    \\
+    &P(V_i=\infty|X_0=i)=1&P(V_i<\infty|X_0=i)=1    \\
+    &E(V_i|X_0=i)=\infty &E(V_i|X_0=i)<\infty   \\
+    \text{easiest to use: } &\sum_{n=1}^\infty P_{ii}^{(n)}=\infty &\sum_{n=1}^\infty P_{ii}^{(n)}<\infty
+\end{aligned}
+$$
+

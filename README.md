@@ -61,3 +61,8 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
   * __Stochastic Processes__ (cont'd)
     * Chapman-Kolmogorov equations
     * Stationary distribution (invariant distribution)
+* [Lecture 11](./md/11_Feb_14.md)([pdf](./pdf/11_Feb_14.pdf)) - February 14
+  * __Stochastic Processes__ (cont'd)
+    * Stationary distribution (invariant distribution)(cont'd)
+    * Classification of States
+      * 4Transience and recurrence
