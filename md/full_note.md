@@ -70,6 +70,27 @@
     - [4.4.1. Transience and recurrence](#441-transience-and-recurrence)
       - [Definition 4.4.1](#definition-441)
       - [Example 4.4.1](#example-441)
+    - [4.4.2 Periodicity](#442-periodicity)
+      - [Definition 4.4.2 : Period](#definition-442--period)
+      - [Remark 4.4.2](#remark-442)
+    - [4.4.3 Equivalent classes and irreducibility](#443-equivalent-classes-and-irreducibility)
+      - [Definition 4.4.3.1 : Assessable](#definition-4431--assessable)
+      - [Definition 4.4.3.2 : Communicate](#definition-4432--communicate)
+      - [Fact 4.4.3.1](#fact-4431)
+      - [Definition 4.4.3.3 : Class](#definition-4433--class)
+      - [Definition 4.4.3.4 : Irreducible](#definition-4434--irreducible)
+      - [Example 4.4.3.1 : Find the classes](#example-4431--find-the-classes)
+      - [Example 4.4.3.2 : Find the classes](#example-4432--find-the-classes)
+      - [Fact 4.4.3.2](#fact-4432)
+      - [Definition 4.4.3.5 : Proposition](#definition-4435--proposition)
+      - [Remark 4.4.3.1](#remark-4431)
+      - [Theorem 4.4.3.1](#theorem-4431)
+  - [4.5 Limiting Distribution](#45-limiting-distribution)
+    - [Theorem 4.5.1 : Basic Limit Theorem](#theorem-451--basic-limit-theorem)
+    - [Remark 4.5.1](#remark-451)
+    - [Remark 4.5.2](#remark-452)
+    - [Example 4.5.1](#example-451)
+    - [Example 4.5.2](#example-452)
 
 # 1. Fundamental of Probability
 
@@ -1783,3 +1804,306 @@ define:\quad
 \end{aligned}
 $$
 
+
+### 4.4.2 Periodicity
+
+Example:
+$$P=
+\begin{pmatrix}
+    & 1 & & \\
+    \frac{1}{2} & & \frac{1}{2} & \\
+    &\frac{1}{2}&&\frac{1}{2}\\
+    &&1&
+\end{pmatrix} $$
+
+<p align="center">
+    <img src="drawio_assets/4.4.2.periodicity.svg">
+</p>
+
+Note that if we starts from 0, we can only get back to 0 in $2, 4, 6,\cdots$, i.t., even number of steps $P_{00}^{(2n+1)}=0 \forall n$
+
+#### Definition 4.4.2 : Period
+
+The *__period__* of state $i$ is defined as
+$$ d_i=\underbrace{gcd}_{\text{greates}\atop\text{common divisor}}(\{n:\underbrace{P_{ii}^{(n)}>0}_{\text{$i$ can go back} \atop\text{to $i$ in $n$ steps} }\}) $$
+
+In this example above, $d_0=gcd(\{\text{even numbers}\}) = 2$
+
+If $d_i=1$, state $i$ is called *__"aperiodic"__*
+
+If $\not\exists n > 0$ such that $P_{ii}^{(n)}>0$, then $d_i=\infty$
+
+#### Remark 4.4.2
+
+Note that $P_{ii} > 0 \Rightarrow d_i = 1$. The converse is __not true__.
+
+<p align="center">
+    <img src="drawio_assets/4.4.2.1.svg">
+</p>
+
+$$ P_{00}^{(2)} >0, P_{00}^{(3)} > 0 \Rightarrow d_0 =1 \text{ but } P_{00}=0$$
+
+In general, $d_i=d \not\Rightarrow P_{ii}^{(d)}>0$
+
+### 4.4.3 Equivalent classes and irreducibility
+
+#### Definition 4.4.3.1 : Assessable
+
+Let $\{X_n\}_n=0,1,\cdots$ be a DTMC with state space $S$. State $j$ is said to be $\text{\underline{assessable}}$ from state $i$, denoted by $i\rightarrow j$, if $P_{ij}^{(n)}>0$ for some $n\geq 0$.
+
+Intuitively, $i$ can go to state $j$ in finite steps.
+
+#### Definition 4.4.3.2 : Communicate
+
+If $i\rightarrow j$ and $j\rightarrow i$, we say $i$ and $j$ __communicate__, denoted by $i\leftrightarrow j$.
+
+#### Fact 4.4.3.1
+
+"Communication" is an equivalence relation.
+
+1. $i\leftrightarrow j$ then $P_{ii}^{(0)}= 1 \bold{=} P(X_0=i|X_0=i)$ (Identity)
+2. $i\leftrightarrow j$ then $j\leftrightarrow i$ (symmetry)
+3. $i\leftrightarrow j, j\leftrightarrow k$, then $i\leftrightarrow k$ (transitivity)
+
+#### Definition 4.4.3.3 : Class
+
+As a result, we can use "$\leftrightarrow$" to divide the state space into different *__classes__*, each containing only the states which communicate with each other.
+
+$$ \begin{cases}
+    S=\bigcup_kC_k \quad\quad\quad\quad \text{($\{C_n\}$ is a partition of $S$)}\\ 
+    C_k\bigcap C_k' = \emptyset, k\not=k'
+\end{cases} $$
+
+- For state $i$ and $j$ in the same class $C_k$, $i\leftrightarrow j$. 
+- For $i$ $j$ in different classes, $i\not\leftrightarrow j$ ($i\not\rightarrow j$ or $j\not\rightarrow i$)
+
+#### Definition 4.4.3.4 : Irreducible
+
+A MC is called __irreducible__, if it has only one class. In other words, $i\leftrightarrow j$ for any $i, j\in S$
+
+<br/>
+
+-Q: How to find equivalent classes?
+
+-A: "Draw a graph and find the loops"
+
+#### Example 4.4.3.1 : Find the classes
+
+$$ P=\begin{pmatrix}
+    \frac{1}{2} & \frac{1}{2} & & \\
+    \frac{1}{2}&\frac{1}{2}&&\\
+    \frac{1}{4}&\frac{1}{4}&\frac{1}{4}&\\
+    &&&1
+\end{pmatrix} $$
+
+Draw an arrow from $i$ to $j$ if $P_{ij} > 0$
+
+<p align="center">
+    <img src="drawio_assets/4.4.3.1.find_classes.svg">
+</p>
+
+- $P_{01}>0, P{10}>0 \Rightarrow 0\leftrightarrow1$
+- State 2 does not communicate with any other state, since $P_{i2}=0, i\not=2$
+- State 3 does not communicate with any other state, since $P_{i3}=0, i\not=3$
+
+$\Rightarrow$ 3 classes: $\{0,1\}, \{2\}, \{3\}$
+
+#### Example 4.4.3.2 : Find the classes
+
+$$ P=\begin{pmatrix}
+    \frac{1}{2} & \frac{1}{2} & & \\
+    \frac{1}{2}&&\frac{1}{2}&\\
+    \frac{1}{2}&&&\frac{1}{2}\\
+    &&\frac{1}{2}&\frac{1}{2}
+\end{pmatrix} $$
+
+<p align="center">
+    <img src="drawio_assets/4.4.3.2.find_classes.svg">
+</p>
+
+- $P_{01}, P_{12}, P_{20} > 0 \Rightarrow 0,1,2$ are in the same class
+- $P_{23}, P_{32} > 0 \Rightarrow 2,3$ are in the same class
+- Transitivity $\Rightarrow$ 0,1,2,3 are all in the same class.
+
+$\Rightarrow$ This MC is irreducible
+
+#### Fact 4.4.3.2
+
+Preposition Transience/Recurrence are class properties. That is, if $i\leftrightarrow j$, then $j$ is transient/recurrent if and only if $i$ is transient/recurrent
+
+__Proof__:
+
+Suppose $i$ is recurrent, then $\sum_{k=1}^\infty P_{ii}^{(k)}=\infty$
+
+Since $i \leftrightarrow j$, $\exists m,n$ such that $P_{ij}^{(m)}>0, P_{ij}^{(n)}>0$
+
+Note that 
+$$
+\begin{aligned}
+\underbrace{P_{jj}^{(m+n+k)}}_{P(X_{m+n+k}=j|X_0=j)} \geq \underbrace{P_{ji}^{(n)}P_{ii}^{(k)}P_{ij}^{(m)}}_{P(X_{m+n+k}=j, X_{n+k}=i, X_n=i|X_0=j)} 
+     \Rightarrow \sum_{l=1}^\infty P_{jj}^{(l)} 
+        &\geq \sum_{l=m+n+1}^\infty P_{jj}^{(l)}    \\
+        & = \sum_{k=1}^\infty P_{jj}^{(m+n+k)}  \\
+        & \geq \sum_{k=1}^\infty P_{ji}^{(n)}P_{ii}^{(k)}P_{ji}^{(m)}   \\
+        & = \underbrace{P_{jj}^{(n)}}_{0}\underbrace{P_{ij}^{(m)}}_{0}\   \underbrace{\sum_{k=1}^\infty P_{ii}^{(k)}}_\infty = \infty
+\end{aligned}
+$$
+
+Thus, $j$ is recurrent. Symmetrically, $j$ is recurrent $\Rightarrow$ $i$ is recurrent
+
+Thus,
+
+- $i$ recurrent $\Leftrightarrow$ $j$ recurrent
+- $i$ transient $\Leftrightarrow$ $j$ transient
+
+For irreducible MC, since recurrence and transience are class properties, we also say the Markov Chain is recurrent/transient
+#### Definition 4.4.3.5 : Proposition
+
+If an irreducible MC has a finite state space, then it is recurrent
+
+__Idea of proof__
+
+If the MC is transient, then with probability 1, each state has a last visit time. Finite states $\Rightarrow$ $\exists$ a last visit time for all the states. As a result, the MC has nowhere to go after that time. $\Rightarrow$ Contradiction.
+
+#### Remark 4.4.3.1
+
+We can actually prove that the MC must be positive recurrent, if the state space is finite and the MC is irreducible.
+
+#### Theorem 4.4.3.1
+
+Periodicity is a class property: $i\leftrightarrow j\Rightarrow d_i=d_j$.
+
+For an irreducible MC, its period is defined as the period of any state.
+
+## 4.5 Limiting Distribution
+
+In this part, we are interested in $lim_{n\rightarrow\infty} P_{ij}^{(n)}$ and $lim_{n\rightarrow\infty}P(X_u=i)$
+
+To make things simple, we focus on the irreducible case.
+
+### Theorem 4.5.1 : Basic Limit Theorem
+
+Let $\{X_n\}_{n=0,1,\ldots}$ be an __irreducible, aperiodic, positive recurrent__ DTMC. Then a unique stationary distribution:
+$$ \underline{\pi}=(\pi_0,\pi_1,\ldots) \text{ exits} $$
+Moreover:
+$$ 
+
+(*)\underbrace{lim_{n-\rightarrow\infty} P_{ij}^{(n)}}_{\text{limiting distribution}\atop\text{(does not depend on the initial state i)} }
+
+=lim_{n\rightarrow\infty}
+\underbrace{\frac{\sum_{k=1}^n1\!\!\!\!\perp_{\{X_k=j\}}}{n}}_{\text{long-run fraction of time spent in j}}
+
+=\underbrace{\frac{1}{\mathbb{E}(T_j|X_0=j)}}_{\text{$T_j=min\{n>0:X_n=j\}$}\atop\text{expected revisite time}}
+
+=\pi_j\quad\quad, i,j\in S
+
+$$
+
+Limiting distribution =
+
+- long-run fraction of time
+- $1 /$ expected revisit time
+- stationary distribution
+
+### Remark 4.5.1
+
+The result $(*)$ is still true if the MC is null recurrent, where all the terms are __0__, and $\underline{\pi}$ is no longer a distribution. (in other words, there does not exist a stationary distribution)
+
+### Remark 4.5.2
+
+If $\{X_n\}_{n=0,1,\ldots}$ has a period $d>1$:
+$$ 
+
+\frac{\lim_{n\rightarrow\infty} P_{jj}^{(nd)}}{d}
+
+= \lim_{n\rightarrow\infty}\frac{\sum_{k=1}^n1\!\!\!\!\perp_{\{X_k=j\}}}{n}
+
+= \quad\frac{1}{\mathbb{E}(T_j|X_0=j)}=\pi_j
+
+$$
+
+Back  to the aperiodic case. SInce the limit $\lim_{n\rightarrow\infty}P_{ij}^{(n)}$ does not depend on $i$, $\lim_{n\rightarrow\infty}P_{ij}^{(n)}=\pi_j$ is also the limiting(marginal) distribution at state $j$:
+$$ \lim_{n\rightarrow\infty}\alpha_{n,j} = \lim_{n\rightarrow\infty}P(X_n=j)=\pi_j $$
+regardless of the initial distribution $\alpha_0$
+
+__Detail:__
+
+$$
+\begin{aligned}
+    \lim_{n\rightarrow\infty}\alpha_{n,j} 
+        & = \lim_{n\rightarrow\infty}(\alpha_0\cdot p^{(n)})_j \\
+        & = \lim_{n\rightarrow\infty}\sum_{i\in S}\alpha_{0,i}\cdot P_{ij}^{(n)} \\
+        & = \sum_{i\in S}\lim_{n\rightarrow\infty}\alpha_{0,i}\cdot P_{ij}^{(n)} \\
+        & = \sum_{i\in S}\alpha_{0,i}\lim_{n\rightarrow\infty}\cdot P_{ij}^{(n)} \\
+        & = (\sum_{i\in S}\alpha_{0,i})\pi_j    \\
+        & = \pi_j
+\end{aligned}
+$$
+
+Why are the conditions in the _Basic Limit Theorem_ necessary?
+
+### Example 4.5.1
+
+Consider a MC with
+
+$$ p=\begin{pmatrix}
+    \frac{1}{2} & \frac{1}{2} & & \\
+    \frac{1}{2} & \frac{1}{2} & & \\
+    & & \frac{1}{2} & \frac{1}{2} \\
+    & & \frac{1}{2} & \frac{1}{2}
+\end{pmatrix} $$
+
+<p align="center">
+    <img src="drawio_assets/example.4.5.1.svg">
+</p>
+
+Two classes: $\{0,1\}, \{2, 3\}$ $\Rightarrow$ it is __not__ irreducible. All the states are still aperiodic, positive recurrent
+
+This MC can be decomposed into two MC's:
+
+State $0, 1$, with
+$$ p_1=\begin{pmatrix}
+    \frac{1}{2} & \frac{1}{2} \\\\
+    \frac{1}{2} & \frac{1}{2}
+\end{pmatrix} \quad\quad \text{irreducible}$$
+
+State $2, 3$, with
+$$ p_1=\begin{pmatrix}
+    \frac{1}{2} & \frac{1}{2} \\\\
+    \frac{1}{2} & \frac{1}{2}
+\end{pmatrix} \quad\quad \text{irreducible}$$
+
+And
+$$ p=\begin{pmatrix}
+    P_1 & \\
+    & P_2
+\end{pmatrix} $$
+
+Note that both $(\frac{1}{2},\frac{1}{2},0,0)$ and $(0,0,\frac{1}{2},\frac{1}{2})$ are stationary distributions. Consequently, any convex combination of these two distributions, of the form:
+$$ a(\frac{1}{2},\frac{1}{2},0,0) + (1-a)(0,0,\frac{1}{2},\frac{1}{2})\quad, a\in\{0,1\} $$
+is also a stationary distribution
+
+Thus, irreducibility is related to the uniqueness of the stationary distribution.
+
+Correspondingly, the limiting transition probability will depend on $i$:
+
+$$ \lim_{n\rightarrow\infty}P_{00}^{(n)} = (\lim_{n\rightarrow\infty}P_1^n)_{00}=\frac{1}{2} $$
+
+but $\lim_{n\rightarrow\infty}P_{20}^{(n)}=0$
+
+### Example 4.5.2
+Consider a MC with
+$$ p = \begin{pmatrix}
+0 & 1\\
+1 & 0
+\end{pmatrix} $$
+<p align="center">
+    <img src="drawio_assets/example.4.5.2.svg">
+</p>
+Irreducible, positive recurrent, but not aperiodic: $d=2$
+
+Note that $p^2=\begin{pmatrix}1&\\&1\end{pmatrix}=I\Rightarrow p^{2n}=\begin{pmatrix}1&\\&1\end{pmatrix}, p^{2n+1}=p=\begin{pmatrix}&1\\1\end{pmatrix}$
+
+$p_{00}^{(n)}=1$ for $n$ even, $0$ for $n$ odd $\Rightarrow$ $\lim_{n\rightarrow\infty}P_{00}^{(n)}$ does not exist.
+
+Aperiodicity is related to the existence of the limit $\lim_{n\rightarrow\infty}P_{ij}^{(n)}$
