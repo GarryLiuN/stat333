@@ -65,4 +65,23 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
   * __Stochastic Processes__ (cont'd)
     * Stationary distribution (invariant distribution)(cont'd)
     * Classification of States
-      * 4Transience and recurrence
+      * Transience and recurrence
+* [Lecture 12](./md/12_Feb_26.md)([pdf](./pdf/12_Feb_26.pdf)) - February 26
+  * __Stochastic Processes__ (cont'd)
+    * Stationary distribution (invariant distribution)(cont'd)
+    * Classification of States
+      * Periodicity
+      * Equivalent classes and irreducibility
+        * Assessable
+        * Communicate
+        * Class
+        * Irreducible
+* [Lecture 13](./md/13_Feb_28.md)([pdf](./pdf/13_Feb_28.pdf)) - February 28
+  * __Stochastic Processes__ (cont'd)
+    * Stationary distribution (invariant distribution)(cont'd)
+    * Classification of States
+      * Periodicity
+      * Equivalent classes and irreducibility
+        * Proposition
+      * Limiting Distribution
+        * Basic Limit Theorem
