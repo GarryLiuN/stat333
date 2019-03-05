@@ -1993,7 +1993,7 @@ $$
 =lim_{n\rightarrow\infty}
 \underbrace{\frac{\sum_{k=1}^n1\!\!\!\!\perp_{\{X_k=j\}}}{n}}_{\text{long-run fraction of time spent in j}}
 
-=\underbrace{\frac{1}{\mathbb{E}(T_j|X_0=j)}}_{\text{$T_j=min\{n>0:X_n=j\}$}\atop\text{expected revisite time}}
+=\underbrace{\frac{1}{\mathbb{E}(T_j|X_0=j)}}_{\text{$T_j=min\{n>0:X_n=j\}$}\atop\text{expected revisit time}}
 
 =\pi_j\quad\quad, i,j\in S
 
@@ -2092,6 +2092,7 @@ $$ \lim_{n\rightarrow\infty}P_{00}^{(n)} = (\lim_{n\rightarrow\infty}P_1^n)_{00}
 but $\lim_{n\rightarrow\infty}P_{20}^{(n)}=0$
 
 ### Example 4.5.2
+
 Consider a MC with
 $$ p = \begin{pmatrix}
 0 & 1\\
