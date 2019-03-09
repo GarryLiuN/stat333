@@ -57,7 +57,7 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
   * __Stochastic Processes__ (cont'd)
     * Markov Chain
     * One-step transition probability matrix
-* [Lecture 10](./md/10_Feb_08.md)([pdf](./pdf/10_Feb_08.pdf)) - February 07
+* [Lecture 10](./md/10_Feb_07.md)([pdf](./pdf/10_Feb_07.pdf)) - February 07
   * __Stochastic Processes__ (cont'd)
     * Chapman-Kolmogorov equations
     * Stationary distribution (invariant distribution)
@@ -85,3 +85,25 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
         * Proposition
       * Limiting Distribution
         * Basic Limit Theorem
+* [Lecture 13](./md/13_Feb_28.md)([pdf](./pdf/13_Feb_28.pdf)) - February 28
+  * __Stochastic Processes__ (cont'd)
+    * Stationary distribution (invariant distribution)(cont'd)
+    * Classification of States
+      * Periodicity
+      * Equivalent classes and irreducibility
+        * Proposition
+      * Limiting Distribution
+        * Basic Limit Theorem
+* [Lecture 14](./md/14_Mar_05.md)([pdf](./pdf/14_Mar_05.pdf)) - March 05
+  * __Stochastic Processes__ (cont'd)
+    * Limiting Distribution
+      * Examples
+    * __Generating function and branching processes__
+      * Properties of generating function
+* [Lecture 14](./md/14_Mar_05.md)([pdf](./pdf/14_Mar_05.pdf)) - March 07
+  * __Stochastic Processes__ (cont'd)
+    * __Generating function and branching processes__
+      * Properties of generating function (cont'd)
+      * Branching Process
+      * Mean and variance
+      * Extinction Probability
