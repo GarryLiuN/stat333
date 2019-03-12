@@ -91,6 +91,16 @@
     - [Remark 4.5.2](#remark-452)
     - [Example 4.5.1](#example-451)
     - [Example 4.5.2](#example-452)
+    - [Example 4.5.3](#example-453)
+    - [Example 4.5.4 : Electron](#example-454--electron)
+  - [4.6 Generating function and branching processes](#46-generating-function-and-branching-processes)
+    - [Definition 4.6.1](#definition-461)
+    - [Properties of generating function](#properties-of-generating-function)
+  - [4.6 Generating function and branching processes](#46-generating-function-and-branching-processes-1)
+    - [Properties of generating function](#properties-of-generating-function-1)
+    - [4.6.1 Branching Process](#461-branching-process)
+      - [4.6.1.2 Mean and Variance](#4612-mean-and-variance)
+      - [4.6.1.2 Extinction Probability](#4612-extinction-probability)
 
 # 1. Fundamental of Probability
 
@@ -2108,3 +2118,352 @@ Note that $p^2=\begin{pmatrix}1&\\&1\end{pmatrix}=I\Rightarrow p^{2n}=\begin{pma
 $p_{00}^{(n)}=1$ for $n$ even, $0$ for $n$ odd $\Rightarrow$ $\lim_{n\rightarrow\infty}P_{00}^{(n)}$ does not exist.
 
 Aperiodicity is related to the existence of the limit $\lim_{n\rightarrow\infty}P_{ij}^{(n)}$
+
+
+### Example 4.5.3
+
+$$ P_{o,j} = p_j, j=0,1,\cdots, p_0>0   \\
+P_{i,i-1}=1, i\geq 1 $$
+
+<p align="center">
+    <img src="drawio_assets/example.4.5.3.svg">
+</p>
+
+Given $X_0=0$, $T_0=n+1$ if and only if $X_1=n$. his happens with prob $p_n$.
+
+$$
+\begin{aligned}
+    \Rightarrow\mathbb{E}(T_0|X_0=0)
+        &=\sum_{n=0}^\infty (n+1)p_n    \\
+        &=1 + \sum_{n=0}^\infty np_n
+\end{aligned}
+$$
+
+We can construct $p_n$ such that $\sum_{n=0}^\infty np_n=\infty$. (For example, $p_0=\frac{1}{2}, p_2=\frac{1}{4}, p_4=\frac{1}{4},\cdots$)
+
+In this case, the chain is __null recurrent__. It is irreducible and aperiodic ($P_{00}=p_0>0$)
+
+A stationary distribution does not exist. Reason: 
+$$
+p=
+\begin{pmatrix}
+    p_0 & p_1& p_2 & \cdots & p_i & \cdots \\
+    1 && 0\\
+    &1\\
+    \cdots\\
+    &&&&1
+\end{pmatrix}   \\
+
+\underline{\pi}\cdot P=\underline{\pi} \Rightarrow
+$$
+$$
+\begin{aligned}
+    &p_0\pi_0 + \pi_1 = \pi_0 \\
+    &p_1\pi_0 + \pi_2 = \pi_1 \\
+    &\quad\quad\vdots\\
+    &p_{i-1}\pi_0 + \pi_i = \pi_{i-1} \\
+    &p_i\pi_0 + \pi_{i+1} = \pi_I \\
+\end{aligned}
+$$
+
+Add the first $i$ equations:
+$$ (p_0+\cdots+p_{i-1})\pi_0 + (\cancel{\pi_1}+\cancel{\pi_2}+\cancel{\cdots}+\pi_i) = \pi_0 + \cancel{\cdots} + \cancel{\pi_{i-1}}\\
+
+(p_0+\cdots+p_{i-1})\pi_0 + \pi_i = \pi_0\\
+
+\Rightarrow \pi_i=(1-(p_o+\cdots+p_{i-1}))\pi_0 = \sum_{k=i}^\infty p_k\pi_0
+$$
+
+Try to normalize:
+
+$$ \begin{aligned}
+    1
+        &= \sum_{i=1}^\infty \pi_i  \\
+        &= \sum_{i=0}^\infty\sum_{k_i}^\infty p_k\pi_0 \\
+        &= \sum_{k_i}^\infty \sum_{i=0}^\infty p_k\pi_0 \\
+        &= \sum_{k_i}^\infty p_k \sum_{i=0}^\infty\pi_0 \\
+        &= (\underbrace{\sum_{k_i}^\infty (k+1)p_k }_{\infty})\pi_0
+\end{aligned} 
+\\
+\Rightarrow \pi_0=0\quad,\quad pi_i=0 \quad\forall i$$
+
+This is not a distribution. Thus, a stationary distribution does not exist.
+
+positive recurrence is related to the existence of the stationary distribution
+
+### Example 4.5.4 : Electron
+
+$$
+P=\begin{pmatrix}
+    1-\alpha    & \alpha \\
+    \beta       & 1-\beta
+\end{pmatrix}
+\quad \alpha,\beta\in(0,1)$$
+
+Irreducible, aperiodic, positive recurrence.
+
+In order to find of $P^n$; we use the diagonalization technique.
+
+$$
+P=Q\Lambda Q^{-1} \quad\text{where $\Lambda$ is diagonal}\\\\
+
+\Lambda = \begin{pmatrix}
+    1   & 0 \\
+    0   & 1-\alpha-\beta
+\end{pmatrix}
+\quad
+Q=\begin{pmatrix}
+    1   & \alpha  \\
+    1   & 1-\beta
+\end{pmatrix}
+\quad
+Q^{-1}=\frac{1}{\alpha+\beta}\begin{pmatrix}
+    \beta   & \alpha\\
+    1       & -1
+\end{pmatrix}
+$$
+Then
+$$ \begin{aligned}
+P^n
+    &= (Q\Lambda \cancel{Q}^{-1})(\cancel{Q}\Lambda \cancel{Q}^{-1})\cdot(\cancel{Q}\Lambda Q^{-1}) \\
+    &= Q\Lambda^nQ^{n-1}    \\
+    &= \begin{pmatrix}
+            1   & \alpha    \\
+            1   & -\beta
+        \end{pmatrix}
+        \begin{pmatrix}
+            1   \\
+            &   (1-\alpha-\beta)^n
+        \end{pmatrix}
+        \frac{1}{\alpha+\beta}
+        \begin{pmatrix}
+            \beta   & \alpha \\
+            1       & -1
+        \end{pmatrix}
+        \\
+    &=\frac{1}{\alpha+\beta}
+        \begin{pmatrix}
+            \beta+\alpha(1-\alpha-\beta)^n  & \alpha-\alpha(1-\alpha-\beta)^n   \\
+            \beta-\beta(1-\alpha-\beta)^n  & \alpha+\beta(1-\alpha-\beta)^n
+        \end{pmatrix}\\
+    &\Rightarrow \lim_{n\rightarrow\infty}P^n=\frac{1}{\alpha+\beta}\begin{pmatrix}
+           \beta & \alpha \\
+           \beta & \alpha
+        \end{pmatrix}
+        =\begin{pmatrix}
+            \frac{\beta}{\alpha+\beta} & \frac{\alpha}{\alpha+\beta}    \\  \\
+            \frac{\beta}{\alpha+\beta} & \frac{\alpha}{\alpha+\beta}
+        \end{pmatrix}
+\end{aligned} $$
+
+Note that $\lim_{n\rightarrow\infty} P^n$ has identical rows. This corresponds to the result that $\lim_{n\rightarrow\infty}P_{ij}^{(n)}$ does not depend on $i$
+
+We saw that the stationary distribution $\underline{\pi}=(\frac{\beta}{\alpha+\beta},\frac{\alpha}{\alpha+\beta})$. So we verity that $\pi_j=\lim_{n\rightarrow\infty} P_{ij}^{(n)}$
+
+Also, given $X_0=0$, $\mathbb{P}(T_0=1|X_0=0)=1-\alpha$ .
+
+For $k=2,3,\cdots$
+
+$$ \begin{aligned}
+    \mathbb{P}(T_0=k|X_0=0) &= \mathbb{P}(X_k=0,X_{k-1}=1,\cdots, X_1=1|X_0=0)  \\
+    &=\alpha(1-\beta)^{k-2}\beta\\
+    &\Rightarrow \mathbb{E}(T_0|X_0=0)  \\
+    &=1\cdot(1-\alpha)+\sum_{k=2}^\infty \alpha(1-\beta)^{k-2}\beta k   \\
+    &=1-\alpha+\sum_{k=1}^\infty\underbrace{\alpha(1-\beta)^{k-2}\beta(k-1)}_{\mathbb{E}(Geo(\beta))}+\sum_{k=2}^\infty\alpha\underbrace{(1-\beta)^{k-2}\beta}_{\text{pmf of Geo($\beta$)}}\\
+    &=1-\alpha+\alpha\sum_{k=1}^\infty(1-\beta)^{k-2}\beta(k-1)+\sum_{k=2}^\infty\alpha(1-\beta)^{k-2}\beta\\
+    &=1\alpha+\alpha\cdot\frac{1}{\beta}+\alpha\cdot 1 \\
+    &=1-\cancel{\alpha}+\frac{\alpha}{\beta}+\cancel{\alpha}\\
+    &=\frac{\alpha+\beta}{\beta}
+\end{aligned} $$
+
+Hence we verify that $\mathbb{E}(T_0|X_0=0)=\frac{1}{\pi_0}$
+
+## 4.6 Generating function and branching processes
+
+### Definition 4.6.1
+
+Let $\underline{p}=(p_0,p_1,\cdots)$ be a distribution on $\{0,1,2,\cdots\}$. Let $\xi$ be a r.v. following distribution $\underline{p}$. That is $\mathbb{P}(\xi=i)=p_i$. Then the generating function of $\xi$, or of $\underline{p}$, is defined by
+$$ \begin{aligned}
+    \psi(s)&=\mathbb{E}(s^\xi) \\
+        &=\sum_{k=0}^\infty p_ks^k\quad\quad for 0\leq s\leq 1
+\end{aligned} $$
+
+### Properties of generating function
+
+1. $\psi(0)=p_0,\quad\psi(1)=\sum_{k=0}^\infty p_k=1$
+2. Generating function determines the distribution 
+   $$ p_k=\frac{1}{k!}\frac{d^k\psi(s)}{ds^k}|_{s=0}$$
+   Reason:
+   $$ \psi(s)=p_0+p_1s^1+\cdots+p_{k-1}s^{k-1}+p_ks^k+p_{k+1}s^{k+1}+\cdots \\$$
+   $$\frac{d^k\psi(s)}{ds^k}=k!p_k +(\cdots)s +(\cdots)s^2+\cdots$$
+   $$ \frac{d^k\psi(s)}{ds^k}|_{s=0}=k!p_k $$
+   In particular, $p_1\geq 0\Rightarrow\psi(s)$ is increasing. $p_2\geq 0\Rightarrow \psi(s)$ is climax
+
+## 4.6 Generating function and branching processes
+
+### Properties of generating function
+
+1. $\psi(0)=p_0,\quad\psi(1)=\sum_{k=0}^\infty p_k=1$
+2. Generating function determines the distribution 
+   $$ p_k=\frac{1}{k!}\frac{d^k\psi(s)}{ds^k}|_{s=0}$$
+   Reason:
+   $$ \psi(s)=p_0+p_1s^1+\cdots+p_{k-1}s^{k-1}+p_ks^k+p_{k+1}s^{k+1}+\cdots \\$$
+   $$\frac{d^k\psi(s)}{ds^k}=k!p_k +(\cdots)s +(\cdots)s^2+\cdots$$
+   $$ \frac{d^k\psi(s)}{ds^k}|_{s=0}=k!p_k $$
+   In particular, $p_1\geq 0\Rightarrow\psi(s)$ is increasing. $p_2\geq 0\Rightarrow \psi(s)$ is climax
+3. Let $\xi_1,...,\xi_n$ be independent r.b. with generating function $\psi_1,...,\psi_n$,
+    $$ X=\xi_1+...+\xi_n \Rightarrow \psi_X(s)=\psi_1(s)\psi_2(s)...\psi_n(s)$$
+    __Proof__:
+    $$ \begin{aligned}
+        \psi_X(s)   &= \mathbb{s^X}   \\
+    (independent)  &= \mathbb{E}(s^{\xi_1}s^{\xi_2}...s^{\xi_n})   \\
+                    &= \mathbb{E}(s^{\xi_1})...\mathbb{E}(s^{\xi_n})\\
+                    &= \psi_1(s)...\psi_n(s)
+    \end{aligned} $$
+4. $$\frac{d^\psi(s)}{ds^k}\bigg|_{s=1} =
+   \frac{d^k\mathbb{E}(s^\xi)}{ds^k}\bigg|_{s=1} =
+   \mathbb{E}(\frac{d^ks^\xi}{ds^k}\bigg|_{s=1} =
+   \mathbb{E}(\xi(\xi-1)(\xi-2)...(\xi-k+1)s^{\xi-k})\bigg|_{s=1} =
+   \mathbb{E}(\xi(\xi-1)...(\xi-k+1))$$
+   In particular, $\mathbb{E}(\xi) = \psi'(1)$ and $Var(\xi)=\mathbb{E}(\xi^2)-(\mathbb{E}(\xi))^2=\mathbb{E}(\xi^2-\xi)+\mathbb{E}(\xi)-(\mathbb{E}(\xi))^2 = \psi''(1)+\psi(1)-(\psi'(1))^2$
+
+   Graph of a g.f.:
+    <p align="center">
+        <img src="drawio_assets/properties4.6.svg">
+    </p>
+
+### 4.6.1 Branching Process
+
+Each organism, at the end of its life, produces a random number $Y$ of offsprings.
+
+$$ \mathbb{P}(Y=k)=P_k, \quad k=0,1,2,..., \quad P_k\geq 0,\quad \sum_{k=0}^\infty P_k=1 $$
+
+The number of offsprings of different individuals are independent.
+
+Start from one ancestor $X_0=1$, $X_n:$ # of individuals(population in $n$-th generation)
+
+<p align="center">
+    <img src="drawio_assets/4.6.1.svg">
+</p>
+
+Then $X_n+1=Y_1^{(n)}+Y_2^{(n)}+...+Y_{X_n}^{(n)}$, where $Y_1^{(n)},...,Y_{X_n}^{(n)}$ are independent copies of $Y, Y_i^{(n)}$ is the number of offsprings of the $i$-th individual in the $n$-th generation
+
+#### 4.6.1.2 Mean and Variance
+
+Mean: $\mathbb{E}(X_n)$ and Variance: $Var(X_n)$
+
+Assume, $\mathbb{E}(Y)=\mu, Var(Y)=\sigma^2$.
+
+$$ \begin{aligned}
+\mathbb{E}(X_{n+1})
+    &= \mathbb{E}(Y_1^{(n)}+...+Y_{X_n}^{(n)})  \\
+    &= \mathbb{E}(\mathbb{E}(Y_1^{(n)}+...+Y_{X_n}^{(n)}|X_n))  \\
+    &= \mathbb{E}(X_n\mu)   \\
+\text{Wald's identity(tutorial 3)} \quad   &= \mu\mathbb{E}(X_n)\\
+\end{aligned} $$
+
+$$ 
+\begin{aligned}
+\Rightarrow \mathbb{X_n}
+    &=\mu\mathbb{E}(X_{n-1})   \\
+    &=\mu^2\mathbb{X_{n-2}}     \\
+    &\quad\quad\quad\vdots   \\
+    &=\mu^n\mathbb{E}(X_0) = \mu^n,\quad n=0,1,...
+\end{aligned}
+$$
+
+$$
+\begin{aligned}
+Var(X_{n+1})
+    &= \mathbb{E}(Var(X_{n+1}|X_n)+Var(\mathbb{E})X_{n+1}|X_n)  \\ \\
+\begin{aligned}
+
+\mathbb{E}(Var(X_{n+1}|X_n))
+    &=\mathbb{E}(Var(Y_1^{(n)+...+Y_{X_N}^{(N)}}|X_N))\\
+    &=\mathbb{E}(X_n\cdot\sigma^2)  \\
+    &= \sigma^2\mu^n
+\end{aligned}\quad\quad
+&\begin{aligned}
+Var(\mathbb{E}(X_{n+1}|X_n))
+    &= Var(\mu X_n) \\
+    &= \mu^2Var(X_u)\   \\
+    &\begin{aligned}
+        \Rightarrow 
+            &Var(X_{n+1}) = \sigma^2\mu^n+\mu^2Var(X_n))\\
+            &Var(X_1)=\sigma^2 \\
+            &Var(X_2)=\sigma^2\mu + \mu^2\sigma^2=\sigma^2(\mu^1+\mu^2) \\
+            &Var(X_3)=\sigma^2\mu^2+\mu^2(\sigma^2(\mu^1+\mu^2)) = \sigma^2(\mu^2 + \mu^3 + \mu^4)\\
+            &\quad\quad\quad\vdots\\
+            &\text{In general, (can be proved by induction)}\\
+            &\begin{aligned}
+                Var(X_n)&=\sigma(\mu^{n-1}+...+\mu^{2n-2})\\
+                &=\begin{cases}
+                \begin{aligned}
+                    &\sigma^2\mu^{n-1}\frac{1-\mu^n}{1-\mu} \quad&\mu\not=1\\
+                    &\sigma^2n &\mu=1
+                \end{aligned}
+                \end{cases}
+            \end{aligned}
+    \end{aligned}
+\end{aligned}
+\end{aligned}
+$$
+
+#### 4.6.1.2 Extinction Probability
+
+Q: What is the probability that the population size is eventually reduced to 0
+
+Note that for a branching process, $X_n=0\Rightarrow X_k=0$ for all $k\geq n$. Thus, state $0$ is absorbing. $(P_{00}=1)$. Let $N$ be the time that extinction happens.
+$$ N=min\{n:X_n=0\} $$
+Define
+$$U_n=\mathbb{P}(\underbrace{N\leq n}_{\text{extinction happens}\atop\text{before or at n}})=\mathbb{P}(X_n=0)$$
+Then $U_n$ is increasing in $n$, and
+$$
+\begin{aligned}
+u=\lim_{n\rightarrow\infty}U_n
+    &= \mathbb{P}(N<\infty) \\
+    &= P(\text{the extinction eventually happens})  \\
+    &= \text{extinction probability}
+\end{aligned}
+$$
+Out goal : find $u$
+
+We have the following relation between $U_n$ and $U_{n-1}$:
+$$ U_n=\sum_{k=0}^\infty P_k(U_{n-1})^k = \underbrace{\psi}_{\text{gf of Y}}(U_{n-1}) $$
+
+<p align="center">
+    <img src="drawio_assets/4.6.1.2.svg">
+</p>
+
+Each subpopulation has the same distribution as the whole population.
+
+Total population dies out in $n$ steps if and only if each subpopulation dies out int $n-1$ steps
+
+$$ \begin{aligned}
+U_n
+    &= \mathbb{P}(N\leq n)  \\
+    &= \sum_k \mathbb{P}(N\leq n|X_1 = k)\underbrace{\mathbb{P}(X_1=k)}_{=P_k}  \\
+    &=\sum_k \mathbb{P}(\underbrace{N_1\leq n-1}_{\text{\# of steps for subpopulation 1 to die out}},\cdots, N_k\leq n-1|X_1=k)\cdot P_k    \\
+    &= \sum_k P_k\cdot U_{n-1}^k    \\
+    &= \mathbb{E}(U_{n-1}^Y)  \\
+    &= \psi(U_{n-1})
+\end{aligned} $$
+
+Thus, the question is :
+
+$\quad$ With initial value $U_0=0$ (since $X_0=1$), relation $U_n=\psi(U_{n-1})$. What is $\lim_{n\rightarrow\infty}U_N=u$?
+
+Recall that we have
+
+1. $\psi(0)=P_0\geq 0$
+2. $\psi(1) = 1$
+3. $\psi(s)$ is increasing
+4. $\psi(s)$ is convex
+
+Draw $\psi(s)$ and function $f(s)=s$ between 0 and 1, we have two cases:
+
+<p align="center">
+    <img src="drawio_assets/4.6.1.2.1.svg">
+</p>
+
+The extinction probability $u$ will be the smallest intersection of $\psi(s)$ and $f(s)$. Equivalently, it is the smallest solution of the equation $\psi(s)=s$ between 0 and 1.
