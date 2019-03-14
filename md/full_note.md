@@ -6,107 +6,116 @@
 - [STAT 333 Course Note](#stat-333-course-note)
 - [Table of Contents](#table-of-contents)
 - [1. Fundamental of Probability](#1-fundamental-of-probability)
-  - [1.1 What's Probability](#11-whats-probability)
-    - [1.1.1 Examples](#111-examples)
+  - [1.1. What's Probability](#11-whats-probability)
+    - [1.1.1. Examples](#111-examples)
       - [Example 1](#example-1)
-  - [1.2 Probability Models](#12-probability-models)
-    - [1.2.1 Examples](#121-examples)
-      - [1.2.1.1 Example 2](#1211-example-2)
-    - [1.2.2 Remark: why do we need the notion of event?](#122-remark-why-do-we-need-the-notion-of-event)
-  - [1.3 Conditional Probability](#13-conditional-probability)
-  - [1.4 Independence](#14-independence)
-  - [1.5 Bayes' rule and law of total probability](#15-bayes-rule-and-law-of-total-probability)
-    - [1.5.1 Bayes' rule](#151-bayes-rule)
-- [2 Random variables and distributions](#2-random-variables-and-distributions)
-  - [2.1 Random variables](#21-random-variables)
-  - [2.2 Discrete random variables and distributions](#22-discrete-random-variables-and-distributions)
-    - [2.2.1 Examples of discrete distributions](#221-examples-of-discrete-distributions)
+  - [1.2. Probability Models](#12-probability-models)
+    - [1.2.1. Examples](#121-examples)
+      - [1.2.1.1. Example 2](#1211-example-2)
+    - [1.2.2. Remark: why do we need the notion of event?](#122-remark-why-do-we-need-the-notion-of-event)
+  - [1.3. Conditional Probability](#13-conditional-probability)
+  - [1.4. Independence](#14-independence)
+  - [1.5. Bayes' rule and law of total probability](#15-bayes-rule-and-law-of-total-probability)
+    - [1.5.1. Bayes' rule](#151-bayes-rule)
+- [2. Random variables and distributions](#2-random-variables-and-distributions)
+  - [2.1. Random variables](#21-random-variables)
+  - [2.2. Discrete random variables and distributions](#22-discrete-random-variables-and-distributions)
+    - [2.2.1. Examples of discrete distributions](#221-examples-of-discrete-distributions)
       - [1. Bemoulli distribution](#1-bemoulli-distribution)
       - [2.Binomial distribution](#2binomial-distribution)
       - [3.Geometric distribution](#3geometric-distribution)
       - [4. Poisson distribution](#4-poisson-distribution)
-  - [2.3 Continuous random variables and distributions](#23-continuous-random-variables-and-distributions)
-    - [2.3.1 Example of continuous distribution](#231-example-of-continuous-distribution)
-  - [2.4 Joint distribution of r.v's](#24-joint-distribution-of-rvs)
-  - [2.5 Expectation](#25-expectation)
-    - [2.5.1 Properties of expectation](#251-properties-of-expectation)
-    - [2.5.2 Definitions](#252-definitions)
-  - [2.6 Indicator](#26-indicator)
-    - [2.6.1 Example](#261-example)
-    - [2.6.1 Example 3](#261-example-3)
-  - [2.7 Moment generating function](#27-moment-generating-function)
-    - [2.7.1 Properties of mgf](#271-properties-of-mgf)
-    - [2.7.2 Joint mgf](#272-joint-mgf)
-      - [2.7.2.1 Properties of the joint mgf](#2721-properties-of-the-joint-mgf)
+  - [2.3. Continuous random variables and distributions](#23-continuous-random-variables-and-distributions)
+    - [2.3.1. Example of continuous distribution](#231-example-of-continuous-distribution)
+  - [2.4. Joint distribution of r.v's](#24-joint-distribution-of-rvs)
+  - [2.5. Expectation](#25-expectation)
+    - [2.5.1. Properties of expectation](#251-properties-of-expectation)
+    - [2.5.2. Definitions](#252-definitions)
+  - [2.6. Indicator](#26-indicator)
+    - [2.6.1. Example](#261-example)
+    - [2.6.1. Example 3](#261-example-3)
+  - [2.7. Moment generating function](#27-moment-generating-function)
+    - [2.7.1. Properties of mgf](#271-properties-of-mgf)
+    - [2.7.2. Joint mgf](#272-joint-mgf)
+      - [2.7.2.1. Properties of the joint mgf](#2721-properties-of-the-joint-mgf)
 - [3. Conditional distribution and conditional expectation](#3-conditional-distribution-and-conditional-expectation)
-  - [3.1 Conditional distribution](#31-conditional-distribution)
-    - [3.1.1 Discrete case](#311-discrete-case)
-      - [3.1.1.1 Example](#3111-example)
-    - [3.1.2 Continuous case](#312-continuous-case)
-      - [3.1.2.1 Example](#3121-example)
+  - [3.1. Conditional distribution](#31-conditional-distribution)
+    - [3.1.1. Discrete case](#311-discrete-case)
+      - [3.1.1.1. Example](#3111-example)
+    - [3.1.2. Continuous case](#312-continuous-case)
+      - [3.1.2.1. Example](#3121-example)
       - [3.1.2.1. Example 2](#3121-example-2)
-  - [3.2 Conditional expectation](#32-conditional-expectation)
-    - [3.2.1 What is $\mathbb{E}(X|Y)\;?$](#321-what-is-mathbbexy)
-    - [3.2.2 Properties of conditional expectation](#322-properties-of-conditional-expectation)
-  - [3.3 Decomposition of variance (EVVE's low)](#33-decomposition-of-variance-evves-low)
+  - [3.2. Conditional expectation](#32-conditional-expectation)
+    - [3.2.1. What is $\mathbb{E}(X|Y)\;?$](#321-what-is-mathbbexy)
+    - [3.2.2. Properties of conditional expectation](#322-properties-of-conditional-expectation)
+  - [3.3. Decomposition of variance (EVVE's low)](#33-decomposition-of-variance-evves-low)
 - [4. Stochastic Processes](#4-stochastic-processes)
-  - [4.1 Markov Chain](#41-markov-chain)
-    - [4.1.1 Simple Random Walk](#411-simple-random-walk)
-    - [4.1.2 Markov Chain](#412-markov-chain)
-      - [4.1.2.1 Discrete-time Markov Chain](#4121-discrete-time-markov-chain)
+  - [4.1. Markov Chain](#41-markov-chain)
+    - [4.1.1. Simple Random Walk](#411-simple-random-walk)
+    - [4.1.2. Markov Chain](#412-markov-chain)
+      - [4.1.2.1. Discrete-time Markov Chain](#4121-discrete-time-markov-chain)
         - [Definition and Examples](#definition-and-examples)
         - [Example: simple random walk](#example-simple-random-walk)
-    - [4.1.3 One-step transition probability matrix](#413-one-step-transition-probability-matrix)
-      - [Example 1 : simple random walk](#example-1--simple-random-walk)
-      - [Example 2: Ehrenfest's urn](#example-2-ehrenfests-urn)
-      - [Example 3: Gambler's ruin](#example-3-gamblers-ruin)
-      - [Example 4: Bonus-Malus system](#example-4-bonus-malus-system)
-  - [4.2 Chapman-Kolmogorov equations](#42-chapman-kolmogorov-equations)
-    - [4.2.1 Conditional Law of total probability](#421-conditional-law-of-total-probability)
-    - [4.2.2 Distribution of $X_n$](#422-distribution-of-x_n)
-  - [4.3 Stationary distribution (invariant distribution)](#43-stationary-distribution-invariant-distribution)
+    - [4.1.3. One-step transition probability matrix](#413-one-step-transition-probability-matrix)
+      - [Example 4.1.3.1. simple random walk](#example-4131-simple-random-walk)
+      - [Example 4.1.3.2. Ehrenfest's urn](#example-4132-ehrenfests-urn)
+      - [Example 4.1.3.3: Gambler's ruin](#example-4133-gamblers-ruin)
+      - [Example 4.1.3.4: Bonus-Malus system](#example-4134-bonus-malus-system)
+  - [4.2. Chapman-Kolmogorov equations](#42-chapman-kolmogorov-equations)
+    - [4.2.1. Conditional Law of total probability](#421-conditional-law-of-total-probability)
+    - [4.2.2. Distribution of $X_n$](#422-distribution-of-x_n)
+  - [4.3. Stationary distribution (invariant distribution)](#43-stationary-distribution-invariant-distribution)
     - [Example 4.3.1](#example-431)
   - [4.4. Classification of States](#44-classification-of-states)
-    - [4.4.1. Transience and recurrence](#441-transience-and-recurrence)
-      - [Definition 4.4.1](#definition-441)
+    - [4.4.1. Transience and Recurrence](#441-transience-and-recurrence)
+      - [Definition 4.4.1. Transience and Recurrence](#definition-441-transience-and-recurrence)
       - [Example 4.4.1](#example-441)
-    - [4.4.2 Periodicity](#442-periodicity)
-      - [Definition 4.4.2 : Period](#definition-442--period)
+    - [4.4.2. Periodicity](#442-periodicity)
+      - [Definition 4.4.2. Period](#definition-442-period)
       - [Remark 4.4.2](#remark-442)
-    - [4.4.3 Equivalent classes and irreducibility](#443-equivalent-classes-and-irreducibility)
-      - [Definition 4.4.3.1 : Assessable](#definition-4431--assessable)
-      - [Definition 4.4.3.2 : Communicate](#definition-4432--communicate)
+    - [4.4.3. Equivalent classes and irreducibility](#443-equivalent-classes-and-irreducibility)
+      - [Definition 4.4.3.1. Assessable](#definition-4431-assessable)
+      - [Definition 4.4.3.2. Communicate](#definition-4432-communicate)
       - [Fact 4.4.3.1](#fact-4431)
-      - [Definition 4.4.3.3 : Class](#definition-4433--class)
-      - [Definition 4.4.3.4 : Irreducible](#definition-4434--irreducible)
-      - [Example 4.4.3.1 : Find the classes](#example-4431--find-the-classes)
-      - [Example 4.4.3.2 : Find the classes](#example-4432--find-the-classes)
+      - [Definition 4.4.3.3. Class](#definition-4433-class)
+      - [Definition 4.4.3. Irreducible](#definition-443-irreducible)
+      - [Example 4.4.3.1. Find the classes](#example-4431-find-the-classes)
+      - [Example 4.4.3.2. Find the classes](#example-4432-find-the-classes)
       - [Fact 4.4.3.2](#fact-4432)
-      - [Definition 4.4.3.5 : Proposition](#definition-4435--proposition)
+      - [Definition 4.4.3.5. Proposition](#definition-4435-proposition)
       - [Remark 4.4.3.1](#remark-4431)
       - [Theorem 4.4.3.1](#theorem-4431)
-  - [4.5 Limiting Distribution](#45-limiting-distribution)
-    - [Theorem 4.5.1 : Basic Limit Theorem](#theorem-451--basic-limit-theorem)
+  - [4.5. Limiting Distribution](#45-limiting-distribution)
+    - [Theorem 4.5.1. Basic Limit Theorem](#theorem-451-basic-limit-theorem)
     - [Remark 4.5.1](#remark-451)
     - [Remark 4.5.2](#remark-452)
     - [Example 4.5.1](#example-451)
     - [Example 4.5.2](#example-452)
     - [Example 4.5.3](#example-453)
-    - [Example 4.5.4 : Electron](#example-454--electron)
-  - [4.6 Generating function and branching processes](#46-generating-function-and-branching-processes)
+    - [Example 4.5.4. Electron](#example-454-electron)
+  - [4.6. Generating function and branching processes](#46-generating-function-and-branching-processes)
     - [Definition 4.6.1](#definition-461)
     - [Properties of generating function](#properties-of-generating-function)
-  - [4.6 Generating function and branching processes](#46-generating-function-and-branching-processes-1)
+  - [4.6. Generating function and branching processes](#46-generating-function-and-branching-processes-1)
     - [Properties of generating function](#properties-of-generating-function-1)
-    - [4.6.1 Branching Process](#461-branching-process)
-      - [4.6.1.2 Mean and Variance](#4612-mean-and-variance)
-      - [4.6.1.2 Extinction Probability](#4612-extinction-probability)
+    - [4.6.1. Branching Process](#461-branching-process)
+      - [4.6.1.2. Mean and Variance](#4612-mean-and-variance)
+      - [4.6.1.2. Extinction Probability](#4612-extinction-probability)
+- [5. Poisson Processes](#5-poisson-processes)
+  - [5.1. Counting Process](#51-counting-process)
+    - [Definition 5.1.1. Counting Process $N(t)$](#definition-511-counting-process-nt)
+    - [Example 5.1.1](#example-511)
+    - [Properties of a counting process](#properties-of-a-counting-process)
+  - [5.2. Definition of Poisson Process](#52-definition-of-poisson-process)
+    - [Interarrival Times](#interarrival-times)
+    - [Definition 5.2.1. Renewal Process](#definition-521-renewal-process)
+    - [Definition 5.2.2. Poisson Process](#definition-522-poisson-process)
 
 # 1. Fundamental of Probability
 
-## 1.1 What's Probability
+## 1.1. What's Probability
 
-### 1.1.1 Examples
+### 1.1.1. Examples
 
 1. Coin toss
    - "H" - head
@@ -127,11 +136,11 @@ $$
 $$
 This number $1/2$ reflects how "likely" a "H" will appear in one toss (if the experiment is not repeated)
 
-## 1.2 Probability Models
+## 1.2. Probability Models
 
 The _Sample space_ $\Omega$ is the set consisting of al the possible outcomes of a random experiment.
 
-### 1.2.1 Examples
+### 1.2.1. Examples
 
 1. $\{H, T\}$
 2. $\{1,2,3,4,5,6\}$
@@ -172,7 +181,7 @@ $$
 P(E) = \lim_{n\rightarrow\infty} \frac{\text{\# of times the E happens in n trials}}{n}
 $$
 
-#### 1.2.1.1 Example 2
+#### 1.2.1.1. Example 2
 
 $$
 \begin{aligned}
@@ -190,7 +199,7 @@ Properties of probability:
 4. $P(E_1 \cup E_2) = P(E_1) + P(E_2) - P(E_1 \cap E_2)$
    -$P(E_1 \cap E_2)$: $E_1$ and $E_2$ happen
 
-### 1.2.2 Remark: why do we need the notion of event?
+### 1.2.2. Remark: why do we need the notion of event?
 
 If the sample space $\Omega$ is __discrete__, then everything can has at most countable elements be built from the "atoms"
 $$
@@ -215,7 +224,7 @@ To summarize: A __Probability Space__ consists of a triplet $(\Omega, \xi, P)$:
 - $\xi$: collection of events
 - $P$: probability
 
-## 1.3 Conditional Probability
+## 1.3. Conditional Probability
 
 If we know some information, the probability of an event can be updated
 
@@ -240,7 +249,7 @@ $$
 P(E\cap F) = P(E\mid F) \cdot P(F)
 $$
 
-## 1.4 Independence
+## 1.4. Independence
 
 __Def__: Two events $E$ and $F$ are said to be independent, if $P(E\cap F)=P(E)\cdot P(F)$; denoted as $E\perp\!\!\!\perp F$. __This is different rom disjoint.__
 
@@ -258,7 +267,7 @@ $$
 P(\bigcap_{i\in I}E_i)=\prod_{i\in I} P(E_i)
 $$
 
-## 1.5 Bayes' rule and law of total probability
+## 1.5. Bayes' rule and law of total probability
 
 __Theorem__: Let $F_1, F_2,\ldots$ be disjoint events, and $\bigcap_{i=1}^\infty F_i=\Omega$, we say $\{F_i\}_{i=1}^\infty$ forms a "partition" of the sample space $\Omega$
 
@@ -272,7 +281,7 @@ $$
 P(E\cap F_2) = P(E|F_2)\cdot P(F_2)
 $$
 
-### 1.5.1 Bayes' rule
+### 1.5.1. Bayes' rule
 
 $$
 P(F_i | E) = \frac{P(E|F_i)\cdot P(F_i)}{\sum_{j=1}^\infty P(E|F_j)\cdot P(F_j)}
@@ -287,9 +296,9 @@ P(F_i | E)  & = \frac{P(F_i\cap E)}{P(E)}                               & \hspac
             & = \frac{P(E|F_i)P(F_i)}{\sum_{j=1}^\infty P(E|F_j)P(F_j)} & \text{law of total probability}
 \end{aligned}$$
 
-# 2 Random variables and distributions
+# 2. Random variables and distributions
 
-## 2.1 Random variables
+## 2.1. Random variables
 
 $(\Omega,\xi, P)$: Probability space.
 
@@ -326,7 +335,7 @@ Properties of cdf:
    - $lim_{x\downarrow a}F(x) = F(a)$ : $x$ decreases to $a$(approaching from the right)
    - Hint: $\{x\leq a\}=\bigcap_{i=1}^\infty\{X\leq a_i\}$ for $a_i\downarrow a$
   
-## 2.2 Discrete random variables and distributions
+## 2.2. Discrete random variables and distributions
 
 A random variable $X$ is called __discrete__ if it only takes values in an __at most countable__ set $\{x_1, x_2, \ldots\}$ (finite or countable).
 
@@ -343,7 +352,7 @@ Properties of pmf:
 
 Q: what does the cdf of a discrete random variable look like?
 
-### 2.2.1 Examples of discrete distributions
+### 2.2.1. Examples of discrete distributions
 
 #### 1. Bemoulli distribution
 
@@ -413,7 +422,7 @@ Other discrete distributions:
 - negative binomial
 - discrete uniform
 
-## 2.3 Continuous random variables and distributions
+## 2.3. Continuous random variables and distributions
 
 __Definition__: A random variable $X$ is called __continuous__ if there exists a non-negative function $f$, such that for any interval $[a,b]$, $(a,b)$ or $[a,b)$:
 
@@ -441,7 +450,7 @@ Property of pdf:
 2. $\int_{-\infty}^\infty f(x)dx = 1$ 
 3. For $A\subseteq R, P(X\in A)=\int_A f(x)dx$
 
-### 2.3.1 Example of continuous distribution
+### 2.3.1. Example of continuous distribution
 
 __Exponential distribution__
 $$
@@ -478,7 +487,7 @@ Exercises:
    P(X>t+s|X>t)=P(X>s)
    $$
 
-## 2.4 Joint distribution of r.v's
+## 2.4. Joint distribution of r.v's
 
 Let $X$ and $Y$ be two r.v's. defined on the same probability space $(\Omega, \xi, P)$
 
@@ -541,7 +550,7 @@ P(X\in A, Y\in B)   &= \int_{y\in B}\int_{x\in A} f(x,y) dxdy \\
 \end{aligned}
 $$
 
-## 2.5 Expectation
+## 2.5. Expectation
 
 __Definition__: For a r.v $X$, the expectation of $g(x)$ is defined as
 $$
@@ -563,7 +572,7 @@ $$
                     \end{cases}
 $$
 
-### 2.5.1 Properties of expectation
+### 2.5.1. Properties of expectation
 
 1. Linearity:expectation of $X$: $\mathbb{E}(X)= \begin{cases}
                                             \sum x_i P(X=x_i) \\
@@ -583,7 +592,7 @@ $$
     $$
     - In particular, $\mathbb{E}(XY)=\mathbb{E}(X)\mathbb{E}(Y)$ if $X\perp \!\!\! \perp Y$
 
-### 2.5.2 Definitions
+### 2.5.2. Definitions
 
 __Definition__: The expectation $\mathbb{E}(X^n)$ is called the n-th moment of $X$:
 
@@ -698,7 +707,7 @@ the other two, $\mathbb{E}(XY) = \mathbb{E}(X)\mathbb{E}(Y)$ and $Var(X+Y)=Var(X
 
 It is more appropriate to consider them as __properties of independence__ rather than properties of expectation and variance
 
-## 2.6 Indicator
+## 2.6. Indicator
 
 A random variable $I$ is called an indicator, if
 $$
@@ -733,7 +742,7 @@ $$
 \Rightarrow \mathbb{E}(I_A)=1\cdot \mathbb{P}(A)+c\cdot (1-\mathbb{P}(A)) = \mathbb{P}(A)
 $$
 
-### 2.6.1 Example
+### 2.6.1. Example
 
 we see $I_A\sim Ber(\mathbb{P}(A))$
 
@@ -765,7 +774,7 @@ $$
 Var(I_1)=\mathbb{E}(I_1^2)-(\mathbb{E}(I_1))^2 = \mathbb{E}(I_1)-(\mathbb{E}(I_1))^2=p-p^2=p(1-p)
 $$
 
-### 2.6.1 Example 3
+### 2.6.1. Example 3
 
 Let $X$ be a r.v. taking values in non-negative integers, then
 $$
@@ -793,13 +802,13 @@ $$
 \end{aligned}
 $$
 
-## 2.7 Moment generating function
+## 2.7. Moment generating function
 
 __Definition__: Let $X$ be a r.v. Then the function $M(t)=\mathbb{E}(e^{tX})$ is called the _moment generating function(mgf)_ of $X$, if the expectation exists for all $t\in (-h, h)$ for some $h>0$.
 
 __Remark__: The mgf is not always well-defined. It is important to check the existence of the expectation.
 
-### 2.7.1 Properties of mgf
+### 2.7.1. Properties of mgf
 
 1. Moment Generating Function generates moments
    - __Theorem__: 
@@ -862,13 +871,13 @@ __Remark__: The mgf is not always well-defined. It is important to check the exi
 
         In general, if $X_1, X_2, \ldots, X_n$ independent, $X_i\sim Poi(\lambda_i)$, then $\sum X_i \sim Poi(\sum \lambda_i$
 
-### 2.7.2 Joint mgf
+### 2.7.2. Joint mgf
 
 __Definition__: Let $X,Y$ be r.v's. Then $M(t_1, t_2):=\mathbb{E}(e^{t_1X+t_2Y})$ is called the joint mgf of $X$ and $Y$, if the expectation exists for all $t_1\in(-h_1, h_1)$, $t_2\in(-h_2, h_2)$ for some $h_1, h_2 >0$.
 
 More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_iX_i))$ for r.v's $X_1, \cdots,X_n$, if the expectation exists for $\{(t_1,\cdots, t_n):t_i\in(-h_i,h_i), i=1,\cdots,n\}$ for some $\{h_i>0\}, i=1,\cdots, n$
 
-#### 2.7.2.1 Properties of the joint mgf
+#### 2.7.2.1. Properties of the joint mgf
 
 1. $$
    \begin{aligned}
@@ -900,9 +909,9 @@ More generally, we can define $M(t_1,\ldots, t_n)=\mathbb{E}(exp(\sum_{i=1}^n t_
 
 # 3. Conditional distribution and conditional expectation
 
-## 3.1 Conditional distribution
+## 3.1. Conditional distribution
 
-### 3.1.1 Discrete case
+### 3.1.1. Discrete case
 
 __Definition__ Let $X$ and $Y$ be discrete r.v's. The conditional distribution of $X$ given $Y$ is given by:
 
@@ -927,7 +936,7 @@ $$
 
 This is useful for solving problems where the denominator $P(Y=y)$ is hard to find.
 
-#### 3.1.1.1 Example
+#### 3.1.1.1. Example
 
 $X_1\sim Poi(\lambda_1), X_2\sim Poi(\lambda_2)$. $X_1\perp\!\!\!\perp X_2$, $Y=X_1 + X_2$
 
@@ -972,7 +981,7 @@ $\Rightarrow P(X_1=k|Y=n)$ follows a binomial distributions with parameters $n$ 
 
 Thus, given $Y=X_1+X_2=n$, the conditional distribution of $X_1$ is binomial with parameter $n$ and $\frac{\lambda_1}{\lambda_1+\lambda_2}$
 
-### 3.1.2 Continuous case
+### 3.1.2. Continuous case
 
 __Definition__: Let $X$ and $Y$ be continuous r.v's. The conditional distribution of $X$ given $Y$ is given by
 
@@ -988,7 +997,7 @@ f_{X|Y}(x|y) \geq 0\quad \quad\quad& x,y\in \R\\
 \end{aligned}
 $$
 
-#### 3.1.2.1 Example
+#### 3.1.2.1. Example
 
 Suppose $X\sim Exp(\lambda)$, $Y|X=x \sim Exp(x) = f_{Y|X}(y|x) = x e^{-xy}, y = e$ $\leftarrow$ conditional distribution of $Y$ given $X=x$
 
@@ -1059,7 +1068,7 @@ Notation $X,Y|\{ Z = k \}\stackrel{iid}{\sim}\cdots$ means that given $Z=k$, $X$
 
 (the conditional joint cdf/pmf/pdf equals the predict of the conditional cdf's/pmf's/pdf's)
 
-## 3.2 Conditional expectation
+## 3.2. Conditional expectation
 
 We have seen that conditional pmf/pdf are legitimate pmf/pdf. Correspondingly, a conditional distribution is nothing else but a probability distributions. It is simply a (potentially) different distribution, since it takes more information into consideration.
 
@@ -1079,7 +1088,7 @@ $$
 
 Fix $y$, the conditional expectation is nothing but the expectation taken under the conditional distribution.
 
-### 3.2.1 What is $\mathbb{E}(X|Y)\;?$
+### 3.2.1. What is $\mathbb{E}(X|Y)\;?$
 
 Different ways to understand *conditional expectation*
 
@@ -1092,7 +1101,7 @@ Different ways to understand *conditional expectation*
    When $Y=y$
    $$ \Omega \rightarrow \R \\ h(Y)_{(\omega)} = h(Y(\omega))$$
 
-### 3.2.2 Properties of conditional expectation
+### 3.2.2. Properties of conditional expectation
 
 1. Linearity (inherited from expectation)
    $$ \mathbb{E}(aX+b | Y = y) = a\mathbb{E}(X|Y=y) +b $$
@@ -1194,7 +1203,7 @@ Different ways to understand *conditional expectation*
    $$
    We verify that $\mathbb{E}(Y)=\frac{\lambda +1}{\lambda}-1=\frac{1}{\lambda}$
 
-## 3.3 Decomposition of variance (EVVE's low)
+## 3.3. Decomposition of variance (EVVE's low)
 
 __Definition__: The conditional variance of $Y$ given $X=x$ is defined as
 $$
@@ -1266,9 +1275,9 @@ Then $\{S_n\}_{n=0,1,...}$ is a stochastic process, with state space $S=\Z$ (int
 
 ![Stochastic Processes Example2](drawio_assets/stochastic_example2.svg)
 
-## 4.1 Markov Chain
+## 4.1. Markov Chain
 
-### 4.1.1 Simple Random Walk
+### 4.1.1. Simple Random Walk
 
 $\{S_n\}_{n=0,1,...}$ is called a __"simple random walk"__. ($S_n=S_{n-1}+X_n$)
 
@@ -1311,9 +1320,9 @@ As time passes, the expression becomes more and more complicated $\rightarrow$ i
 
 However, if we know that this conditional distribution is actually the same as the conditional distribution only given $X_n$, then the structure will remain simple for any time. This motivates the notion of _Markov chain_.
 
-### 4.1.2 Markov Chain
+### 4.1.2. Markov Chain
 
-#### 4.1.2.1 Discrete-time Markov Chain
+#### 4.1.2.1. Discrete-time Markov Chain
 
 ##### Definition and Examples
 
@@ -1345,6 +1354,8 @@ The simple random walk $\{S_n\}_{n=0,1,...}$ is a Markov chain
 __Proof__:
 
 Recall that $S_{n+1}=S_n+X_{n+1}$
+
+if $s_{n+1}\cancel{=} s_n \pm 1$
 $$
 \begin{aligned}
 &\quad P(S_{n+1}=s_{n+1}|S_n=s_n,...,S_0=s_0) \\
@@ -1353,7 +1364,6 @@ $$
 
 \end{aligned}
 $$
-if $s_{n+1}\not= s_n \pm$
 $$
 \begin{aligned}
 &\quad P(S_{n+1}=s_n+1|S_n=s_n,...,s_0=0)   \\
@@ -1384,7 +1394,7 @@ $$
 \end{aligned}
 $$
 
-### 4.1.3 One-step transition probability matrix
+### 4.1.3. One-step transition probability matrix
 
 For a time-homogeneous DTMC, define
 $$
@@ -1416,7 +1426,7 @@ $$
 \end{aligned}
 $$
 
-#### Example 1 : simple random walk
+#### Example 4.1.3.1. simple random walk
 
 There will be 3 cases:
 
@@ -1439,7 +1449,7 @@ $$
 \end{Bmatrix}
 $$
 
-#### Example 2: Ehrenfest's urn
+#### Example 4.1.3.2. Ehrenfest's urn
 
 Two urns $A, B$, total $M$ balls. Each time, pick one ball randomly(uniformly), and move it to the opposite urn.
 $$ X_n: \# \text{ of balls in } A \text{ after step }n $$
@@ -1453,7 +1463,7 @@ P_{ij}
         \begin{aligned}
         & i/M  \quad\quad\quad\quad\quad\quad&j=i-1\\
         & (M-i)/M   &j=i+1  \\
-        & 0         & j\not=i\pm 1
+        & 0         &j\cancel{=}i\pm 1
         \end{aligned}
     \end{cases}
 \end{aligned}
@@ -1471,7 +1481,7 @@ p=\begin{Bmatrix}
 \end{Bmatrix}
 $$
 
-#### Example 3: Gambler's ruin
+#### Example 4.1.3.3: Gambler's ruin
 
 A gambler, each time wins 1 with probability  $p$, losses 1 with probability $1-p=q$. Initial wealth $S_0=a$; wealth at time $n$: $S_n$. The gambler leaves if $S_n=0$ (loses all money) or $S_n=M>a$ (wins certain amount of money and gets satisfied)
 
@@ -1503,7 +1513,7 @@ p=\begin{Bmatrix}
 \end{Bmatrix}
 $$
 
-#### Example 4: Bonus-Malus system
+#### Example 4.1.3.4: Bonus-Malus system
 
 Insurance company has 4 premium levels: 1, 2, 3, 4
 
@@ -1526,7 +1536,7 @@ p=\begin{Bmatrix}
 \end{Bmatrix}
 $$
 
-## 4.2 Chapman-Kolmogorov equations
+## 4.2. Chapman-Kolmogorov equations
 
 __Q__: Given the (one-step) transition matrix, $P=\{P_{ij}\}_{i,j\in S}$, how can we decide the n-step transition probability
 
@@ -1548,7 +1558,7 @@ $$
 \end{aligned}
 $$  
 
-### 4.2.1 Conditional Law of total probability
+### 4.2.1. Conditional Law of total probability
 $$
 \begin{aligned}
     &\quad P(X_2=j|X_0=i)      \\
@@ -1572,7 +1582,7 @@ $$
 \end{aligned}
 $$
 
-Thus, $p^{(2)} = P\cdot P=p^2$
+Thus, $P^{(2)} = P\cdot P=P^2$
 
 Using the smae idea, for $n,m=0,1,2,3...$:
 
@@ -1583,25 +1593,25 @@ $$
         &= \sum_{k\in S}P(X_{n+m}=j|X_m=k) \cdot P(X_m=k|X_0=i)  \quad \text{Markov property}       \\
         &= \sum_{k\in S}P(X_{n}=j|X_0=k) \cdot P(X_m=k|X_0=i)  \\
         &=\sum_{k\in S} p_{ik}^{(m)}\cdot P_{kj}^{(n)}  \\
-        &=(p^{(m)}\cdot p^{(n)})_{ij}   \\
-        &\Rightarrow p^{(n+m)} = p^{(m)}\cdot p^{(n)}   \quad\quad (*)
+        &=(P^{(m)}\cdot P^{(n)})_{ij}   \\
+        &\Rightarrow P^{(n+m)} = P^{(m)}\cdot P^{(n)}   \quad\quad (*)
 
 \end{aligned}
 $$
 
-By definition, $p^{(1)}=p$ 
+By definition, $P^{(1)}=P$ 
 
-- $\Rightarrow$ $p^{(2)}=p^{(1)}\cdot p^{(1)}=p^2$
-- $\Rightarrow$ $p^{(3)}=p^{(2)}\cdot p^{(1)}=p^3$
+- $\Rightarrow$ $P^{(2)}=P^{(1)}\cdot P^{(1)}=P^2$
+- $\Rightarrow$ $P^{(3)}=P^{(2)}\cdot P^{(1)}=P^3$
 - $\cdots\cdots\cdots$
-- $\Rightarrow$ $p^{(n)}=p^n$
+- $\Rightarrow$ $P^{(n)}=P^n$
 
 Note:
 
-- $n$ from $p^{(n)}$: n-step transition probability matrix
-  - $p^{(n)}=\{p_{ij}^{(n)}\}_{i,j\in S}    \\ p_{ij}^{(n)}=P(X_n=j|X_0=i)$
-- $n$ from $p^n$: n-th power of the (one-step) transition matrix
-  - $p^n=p\cdot...\cdot p   \\  p=\{P_{ij}\}_{i,j\in S} \\ p_{ij}=P(X_1=j|X_0=i)$
+- $n$ from $P^{(n)}$: n-step transition probability matrix
+  - $P^{(n)}=\{P_{ij}^{(n)}\}_{i,j\in S}    \\ P_{ij}^{(n)}=P(X_n=j|X_0=i)$
+- $n$ from $P^n$: n-th power of the (one-step) transition matrix
+  - $P^n=p\cdot...\cdot P   \\  P=\{P_{ij}\}_{i,j\in S} \\ P_{ij}=P(X_1=j|X_0=i)$
 
 $(*)$ is called the __Chapman-Kolmogorov equations__ (c-k equation). Entry-wise:
 $$P_{ij}^{n+m}=\sum_{k\in S}P_{ik}^{(m)}P_{kj}^{(n)}$$
@@ -1612,13 +1622,13 @@ __Intuition__:
 
 "Condition at time $m$ (on $X_m$) and sum p all the possibilities"
 
-### 4.2.2 Distribution of $X_n$
+### 4.2.2. Distribution of $X_n$
 
-So far, we have seen transition probability $P_{ij}^{(m)}=P(X_n=j|X_0=i)$. This is not the probability $P(X_n=j)$. In order to get this distribution, we need the information about which state the Markov chain starts with.
+So far, we have seen transition probability $P_{ij}^{(n)}=P(X_n=j|X_0=i)$. This is not the probability $P(X_n=j)$. In order to get this distribution, we need the information about which state the Markov chain starts with.
 
-Let $\alpha_{0,i}=P(X_0=i)$. The row vector $\alpha_0=(\alpha_0,0,\alpha_0,1,...)$ is called the __initial distribution__ of the Markov chain. This is the distribution of the initial state $X_0$
+Let $\alpha_{0,i}=P(X_0=i)$. The row vector $\alpha_0=(\alpha_{0,0},\alpha_{0,1},...)$ is called the __initial distribution__ of the Markov chain. This is the distribution of the initial state $X_0$
 
-Similarly, we define distribution of $X_n$: $\alpha_n=(\alpha_n,0,\alpha_n,1,...)$ where $\alpha_{n,i}=P(X_n=i)$
+Similarly, we define distribution of $X_n$: $\alpha_n=(\alpha_{n,0},\alpha_{n,1},...)$ where $\alpha_{n,i}=P(X_n=i)$
 
 __Fact__: $\alpha_n=\alpha_0\cdot p^n$
 
@@ -1629,27 +1639,27 @@ $$
 \alpha_{n,j}    &=P(X_n=j)   \\
                 &= \sum_{i\in S} P(X_n=j|X_0=i)\cdot P(X_0=i)   \\
                 &= \sum_{i\in S} \alpha_{0,i}\cdot P_{ij}^{(n)} \\
-                &=(\alpha_0\cdot P^{(n)})_j = (\alpha_0\cdot p^n)_j \\
+                &=(\alpha_0\cdot P^{(n)})_j = (\alpha_0\cdot P^n)_j \\
 \end{aligned}
 $$
 
-$$ \Rightarrow \alpha_n =\alpha0\cdot p^n $$
+$$ \Rightarrow \alpha_n =\alpha_0\cdot P^n $$
 
 - $\alpha_n$: distribution of $X_n$
 - $\alpha_0$: initial distribution
-- $p^n$: transition matrix
+- $P^n$: transition matrix
 
 __Remark__: The distribution of a DTMC is completely determined by two things:
 
 - the initial distribution $\alpha_0$ (row vector), and
-- the transition matrix $p$ (square matrix)
+- the transition matrix $P$ (square matrix)
 
-## 4.3 Stationary distribution (invariant distribution)
+## 4.3. Stationary distribution (invariant distribution)
 
-__Definition__: A probability distribution $\pi = (\pi_0,\pi_1,...)$ os ca;;ed a __stationary distribution__(invariant distribution) of the DTMC $\{X_n\}_{n=0,1,...}$ with transition matrix $P$, if :
+__Definition__: A probability distribution $\pi = (\pi_0,\pi_1,...)$ is called a __stationary distribution__(invariant distribution) of the DTMC $\{X_n\}_{n=0,1,...}$ with transition matrix $P$, if :
 
 1. $\underline{\pi}=\pi\cdot P$
-2. $\sum_{i\in S}\pi_i = 1 (\Leftrightarrow \underleftarrow{\pi} \cdot 1\!\!\!\!\!\perp)$. ($1\!\!\!\!\perp$: a column of all 1's)
+2. $\sum_{i\in S}\pi_i = 1 (\Leftrightarrow \underline{\pi} \cdot 1\!\!\!\!\perp)$. ($1\!\!\!\!\perp$: a column of all 1's)
 
 Why such $\underline{\pi}$ is called stationary/invariant distribution?
 
@@ -1659,11 +1669,15 @@ $$
 $$
 Assume the MC starts from the initial distribution $\alpha_0=\underline{\pi}$. hen the distribution of $X_1$ is
 $$
-    \alpha_1=\alpha_0\cot P=\underline{\pi}\cdot P = \underline{\pi} = \alpha_0
+    \alpha_1
+    =\alpha_0 \cdot P
+    =\underline{\pi}\cdot P
+    = \underline{\pi}
+    = \alpha_0
 $$
 The distribution of $X_2$:
 $$
-    \alpha_2=\alpha_0\cdot P^2 =\underline{\pi}\cdot P\cdot P = \underline{\pi} \cdot P = \underline(\pi) = \alpha_0
+    \alpha_2=\alpha_0\cdot P^2 =\underline{\pi}\cdot P\cdot P = \underline{\pi} \cdot P = \underline{\pi} = \alpha_0
 $$
 $$ \cdots\cdots $$
 $$ \alpha_n=\alpha_0 $$
@@ -1679,7 +1693,7 @@ At each step, changes state with probability:
 - $\alpha$ if it is in state $0$.
 - $\beta$ if it is in state $1$.
 
-THen $\{X_n\}$ is a DTMC. ITs transitional matrix is:
+Then $\{X_n\}$ is a DTMC. Its transitional matrix is:
 
 $$
 P=\begin{Bmatrix}
@@ -1719,30 +1733,30 @@ The above procedure for solving for stationary distribution is typical:
 
 ## 4.4. Classification of States
 
-### 4.4.1. Transience and recurrence
+### 4.4.1. Transience and Recurrence
 
 Let $T$: be the waiting for a MC to visit/revisit state $i$ for the first time
 $$ T_i:=min\{n>0:X_n=i\}\quad\quad T_i \text{ is a r.v.}$$
 
 $T_i=\infty$ if the MC never (re)visits state $i$.
 
-#### Definition 4.4.1
+#### Definition 4.4.1. Transience and Recurrence
 
 A state $i$ is called:
 
-- transient, if $P(T_1<\infty|X_0=i) < 1$ (never goes back to $i$ positive probability)
-- recurrence, if $P(T_i<\infty|X_0=i) = 1$ (always goes back to state $i$)
-  - positive recurrent, if $E(T_i|X_0=i)<\infty$
-  - null recurrent, if $E(T_i|X_0=i)=\infty$
-  - (note: a r.v. is finite with probability $\not\Rightarrow$ its expectation is finite)
-    - Example: $T=2,4,...,2^n, p=\frac{1}{2},\frac{1}{4},...,2^{-n}\\$ $E(T_=2\cdot\frac{1}{2} + 4\cdot\frac{1}{4}+...+2^n\cdot 2^{-n}=\infty$
+- transient, if $\mathbb{P}(T_i<\infty|X_0=i) < 1$ (never goes back to $i$ positive probability)
+- recurrent, if $\mathbb{P}(T_i<\infty|X_0=i) = 1$ (always goes back to state $i$)
+  - positive recurrent, if $\mathbb{E}(T_i|X_0=i)<\infty$
+  - null recurrent, if $\mathbb{E}(T_i|X_0=i)=\infty$
+  - (note: a r.v. is finite with probability $\cancel{\Rightarrow}$ its expectation is finite)
+    - Example: $T=2,4,...,2^n, p=\frac{1}{2},\frac{1}{4},...,2^{-n}\\$ $\mathbb{E}(T)=2\cdot\frac{1}{2} + 4\cdot\frac{1}{4}+...+2^n\cdot 2^{-n}=\infty$
 
 #### Example 4.4.1
 
 $$
 P=\begin{pmatrix}
-    \frac{1}{2} & \frac{1}{2}   \\
-    & \frac{1}{2} & \frac{1}{2} \\
+    \frac{1}{2} & \frac{1}{2}   \\ \\
+    & \frac{1}{2} & \frac{1}{2} \\ \\
     & & 1
 \end{pmatrix}
 $$
@@ -1815,7 +1829,7 @@ define:\quad
 $$
 
 
-### 4.4.2 Periodicity
+### 4.4.2. Periodicity
 
 Example:
 $$P=
@@ -1832,7 +1846,7 @@ $$P=
 
 Note that if we starts from 0, we can only get back to 0 in $2, 4, 6,\cdots$, i.t., even number of steps $P_{00}^{(2n+1)}=0 \forall n$
 
-#### Definition 4.4.2 : Period
+#### Definition 4.4.2. Period
 
 The *__period__* of state $i$ is defined as
 $$ d_i=\underbrace{gcd}_{\text{greates}\atop\text{common divisor}}(\{n:\underbrace{P_{ii}^{(n)}>0}_{\text{$i$ can go back} \atop\text{to $i$ in $n$ steps} }\}) $$
@@ -1855,15 +1869,15 @@ $$ P_{00}^{(2)} >0, P_{00}^{(3)} > 0 \Rightarrow d_0 =1 \text{ but } P_{00}=0$$
 
 In general, $d_i=d \not\Rightarrow P_{ii}^{(d)}>0$
 
-### 4.4.3 Equivalent classes and irreducibility
+### 4.4.3. Equivalent classes and irreducibility
 
-#### Definition 4.4.3.1 : Assessable
+#### Definition 4.4.3.1. Assessable
 
 Let $\{X_n\}_n=0,1,\cdots$ be a DTMC with state space $S$. State $j$ is said to be $\text{\underline{assessable}}$ from state $i$, denoted by $i\rightarrow j$, if $P_{ij}^{(n)}>0$ for some $n\geq 0$.
 
 Intuitively, $i$ can go to state $j$ in finite steps.
 
-#### Definition 4.4.3.2 : Communicate
+#### Definition 4.4.3.2. Communicate
 
 If $i\rightarrow j$ and $j\rightarrow i$, we say $i$ and $j$ __communicate__, denoted by $i\leftrightarrow j$.
 
@@ -1875,7 +1889,7 @@ If $i\rightarrow j$ and $j\rightarrow i$, we say $i$ and $j$ __communicate__, de
 2. $i\leftrightarrow j$ then $j\leftrightarrow i$ (symmetry)
 3. $i\leftrightarrow j, j\leftrightarrow k$, then $i\leftrightarrow k$ (transitivity)
 
-#### Definition 4.4.3.3 : Class
+#### Definition 4.4.3.3. Class
 
 As a result, we can use "$\leftrightarrow$" to divide the state space into different *__classes__*, each containing only the states which communicate with each other.
 
@@ -1887,7 +1901,7 @@ $$ \begin{cases}
 - For state $i$ and $j$ in the same class $C_k$, $i\leftrightarrow j$. 
 - For $i$ $j$ in different classes, $i\not\leftrightarrow j$ ($i\not\rightarrow j$ or $j\not\rightarrow i$)
 
-#### Definition 4.4.3.4 : Irreducible
+#### Definition 4.4.3. Irreducible
 
 A MC is called __irreducible__, if it has only one class. In other words, $i\leftrightarrow j$ for any $i, j\in S$
 
@@ -1897,7 +1911,7 @@ A MC is called __irreducible__, if it has only one class. In other words, $i\lef
 
 -A: "Draw a graph and find the loops"
 
-#### Example 4.4.3.1 : Find the classes
+#### Example 4.4.3.1. Find the classes
 
 $$ P=\begin{pmatrix}
     \frac{1}{2} & \frac{1}{2} & & \\
@@ -1918,7 +1932,7 @@ Draw an arrow from $i$ to $j$ if $P_{ij} > 0$
 
 $\Rightarrow$ 3 classes: $\{0,1\}, \{2\}, \{3\}$
 
-#### Example 4.4.3.2 : Find the classes
+#### Example 4.4.3.2. Find the classes
 
 $$ P=\begin{pmatrix}
     \frac{1}{2} & \frac{1}{2} & & \\
@@ -1967,7 +1981,7 @@ Thus,
 - $i$ transient $\Leftrightarrow$ $j$ transient
 
 For irreducible MC, since recurrence and transience are class properties, we also say the Markov Chain is recurrent/transient
-#### Definition 4.4.3.5 : Proposition
+#### Definition 4.4.3.5. Proposition
 
 If an irreducible MC has a finite state space, then it is recurrent
 
@@ -1985,13 +1999,13 @@ Periodicity is a class property: $i\leftrightarrow j\Rightarrow d_i=d_j$.
 
 For an irreducible MC, its period is defined as the period of any state.
 
-## 4.5 Limiting Distribution
+## 4.5. Limiting Distribution
 
 In this part, we are interested in $lim_{n\rightarrow\infty} P_{ij}^{(n)}$ and $lim_{n\rightarrow\infty}P(X_u=i)$
 
 To make things simple, we focus on the irreducible case.
 
-### Theorem 4.5.1 : Basic Limit Theorem
+### Theorem 4.5.1. Basic Limit Theorem
 
 Let $\{X_n\}_{n=0,1,\ldots}$ be an __irreducible, aperiodic, positive recurrent__ DTMC. Then a unique stationary distribution:
 $$ \underline{\pi}=(\pi_0,\pi_1,\ldots) \text{ exits} $$
@@ -2191,7 +2205,7 @@ This is not a distribution. Thus, a stationary distribution does not exist.
 
 positive recurrence is related to the existence of the stationary distribution
 
-### Example 4.5.4 : Electron
+### Example 4.5.4. Electron
 
 $$
 P=\begin{pmatrix}
@@ -2278,7 +2292,7 @@ $$ \begin{aligned}
 
 Hence we verify that $\mathbb{E}(T_0|X_0=0)=\frac{1}{\pi_0}$
 
-## 4.6 Generating function and branching processes
+## 4.6. Generating function and branching processes
 
 ### Definition 4.6.1
 
@@ -2299,7 +2313,7 @@ $$ \begin{aligned}
    $$ \frac{d^k\psi(s)}{ds^k}|_{s=0}=k!p_k $$
    In particular, $p_1\geq 0\Rightarrow\psi(s)$ is increasing. $p_2\geq 0\Rightarrow \psi(s)$ is climax
 
-## 4.6 Generating function and branching processes
+## 4.6. Generating function and branching processes
 
 ### Properties of generating function
 
@@ -2332,7 +2346,7 @@ $$ \begin{aligned}
         <img src="drawio_assets/properties4.6.svg">
     </p>
 
-### 4.6.1 Branching Process
+### 4.6.1. Branching Process
 
 Each organism, at the end of its life, produces a random number $Y$ of offsprings.
 
@@ -2348,7 +2362,7 @@ Start from one ancestor $X_0=1$, $X_n:$ # of individuals(population in $n$-th ge
 
 Then $X_n+1=Y_1^{(n)}+Y_2^{(n)}+...+Y_{X_n}^{(n)}$, where $Y_1^{(n)},...,Y_{X_n}^{(n)}$ are independent copies of $Y, Y_i^{(n)}$ is the number of offsprings of the $i$-th individual in the $n$-th generation
 
-#### 4.6.1.2 Mean and Variance
+#### 4.6.1.2. Mean and Variance
 
 Mean: $\mathbb{E}(X_n)$ and Variance: $Var(X_n)$
 
@@ -2409,7 +2423,7 @@ Var(\mathbb{E}(X_{n+1}|X_n))
 \end{aligned}
 $$
 
-#### 4.6.1.2 Extinction Probability
+#### 4.6.1.2. Extinction Probability
 
 Q: What is the probability that the population size is eventually reduced to 0
 
@@ -2467,3 +2481,112 @@ Draw $\psi(s)$ and function $f(s)=s$ between 0 and 1, we have two cases:
 </p>
 
 The extinction probability $u$ will be the smallest intersection of $\psi(s)$ and $f(s)$. Equivalently, it is the smallest solution of the equation $\psi(s)=s$ between 0 and 1.
+Draw $\psi(s)$ and function $f(s)=s$ between 0 and 1, we have two cases:
+
+__Reason__: See the dynamics on a graph
+
+<p align="center">
+    <img src="drawio_assets/4.6.1.2.1.reason.svg">
+</p>
+
+<p align="center">
+    <img src="drawio_assets/4.6.1.2.1.svg">
+</p>
+
+$\Rightarrow$ $\begin{aligned}
+    &\text{Case } 1: &u < 1   \\
+    &\text{Case } 2: &u=1 & \text{ (extinction happens for sure.)}
+\end{aligned}$.
+
+Q: How to tell if we are in case 1 or in case ?
+
+A: check $\psi'(1)=\mathbb{E}(Y)$
+
+$$
+\begin{aligned}
+& \psi'1(1) > 1 &\rightarrow &\text{ Case }1\\
+& \psi'1(1) \leq 1 &\rightarrow &\text{ Case }2
+\end{aligned}
+ $$
+
+Thus, we conclude:
+
+- $\mathbb{E}(Y) > 1$ : an average more than 1 offspring
+  - $\Rightarrow$ extinction with certain probability smaller than 1. $u$ is the smallest/unique solution between 0 and 1 of $\psi(s) = s$
+- $\mathbb{E}(Y) \leq 1$ : an average less than or equal to 1 offspring
+  - $\Rightarrow$ extinction happens for sure (with probability 1)
+
+# 5. Poisson Processes
+
+## 5.1. Counting Process
+
+DTMC is a discrete-time process. That is, the index set $T=\{0,1,2,...\}$ and $\{X_n\}_{n=01,2,3,\cdots}$. 
+
+We also want to consider the cases where time can be continuous,
+
+$$ \text{Continuous-time processes: } T=[0,\infty\}$$
+$$ \{X_t\}_{t\geq 0} \text{ or } \{X_{(t)}\}_{t\geq 0} $$
+
+The simplest type of continuous-time process is counting process, which counts the number of occurrence of certain event before time $t$.
+
+### Definition 5.1.1. Counting Process $N(t)$
+
+Let $0\leq S_1\leq S_2\leq\cdots$ be the time of occurrence of some events. Then, the process
+$$ \begin{aligned}
+N(t) &:= \#\{n:S_n\leq t\}   \\
+        &=\sum_{n=1}^\infty 1\!\!\!\perp_{\{S_n\leq t\}}
+\end{aligned}$$
+is called the counting process (of the events $\{S_n\}_{n=1,2,...}$)
+
+Equivalently, $N(t) = n \iff S_n\leq t< S_{n+1}$
+
+### Example 5.1.1
+
+Calls arrive at a call center.
+
+- $S_n$ : arrival time of the $n$-th call
+- $N(t)$ : the number of calls received before time $t$
+
+Other examples: cars passing a speed reader, atoms having radioactive decay, ...
+
+### Properties of a counting process
+
+1. $N(t)\geq 0, t\geq 0$
+2. $N(t)$ takes integer values
+3. $N(t)$ is increasing.
+   - $N(t_1)\leq N(t_2)$ if $t_1\leq t_2$
+4. $N(t)$ is right-continuous
+   - $N(t) = \lim_{s\downarrow t}N(s)$
+
+We also assume:
+
+- $N(0) = 0$ (No event happens at time 0)
+- $N(t)$ only has jumps at size 1.
+  - (No two events happen at exactly the same time)
+
+## 5.2. Definition of Poisson Process
+
+### Interarrival Times
+
+<p align="center">
+    <img src="drawio_assets/5.2.interarrivaltimes.svg">
+</p>
+
+- $W_1, W_2, \ldots$
+- $W_1=S_1$
+- $W_n=S_n-S_{n-1}$ : interarrival time between $n-1$-th and the $n$-th event
+
+### Definition 5.2.1. Renewal Process
+
+A renewal process is a counting process for which the interarrival times $W_1, W_2, ...$ are independent and identical
+
+ALl the three processes examples of counting processes can be reasonably modeled as renewal processes.
+
+### Definition 5.2.2. Poisson Process
+
+Poisson Process $\{X_{(t)}\}_{t\geq0}$ is a renewal process for which the interarrival times are exponentially distributed:
+
+$$ W_n \stackrel{i.i.d}{\sim} Exp(\lambda)$$
+
+A Poisson process $\{N(t)\}_{t\geq 0}$ can be denoted as
+$$ \{N(t)\}\sim Poi(\underbrace{\lambda}_{intensity} t) $$
