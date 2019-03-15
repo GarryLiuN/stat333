@@ -96,8 +96,6 @@
   - [4.6. Generating function and branching processes](#46-generating-function-and-branching-processes)
     - [Definition 4.6.1](#definition-461)
     - [Properties of generating function](#properties-of-generating-function)
-  - [4.6. Generating function and branching processes](#46-generating-function-and-branching-processes-1)
-    - [Properties of generating function](#properties-of-generating-function-1)
     - [4.6.1. Branching Process](#461-branching-process)
       - [4.6.1.2. Mean and Variance](#4612-mean-and-variance)
       - [4.6.1.2. Extinction Probability](#4612-extinction-probability)
@@ -688,7 +686,7 @@ $$
 &   \text{Thus, } Cov(X,Y)=0 \Rightarrow Var(X+Y)=Var(X)+Var(Y)+2Cov(X,Y)   \\
 &   \text{So we see independence} \Rightarrow \text{Covariance is 0: "uncorrelated"}    \\
 &   \text{the converse is not true.}    \\
-&   Cov(X,Y)=0 \not\Rightarrow \text{independence}
+&   Cov(X,Y)=0 \cancel{\rightarrow} \text{independence}
 \end{aligned}
 $$
 
@@ -714,7 +712,7 @@ $$
 I(w)=   \begin{cases}
         \begin{aligned}
         & 1 & \omega\in A    \\
-        & 0 & \omega\not\in A
+        & 0 & \omega\cancel{\in} A
         \end{aligned}
         \end{cases}
 $$
@@ -1106,7 +1104,7 @@ Different ways to understand *conditional expectation*
 1. Linearity (inherited from expectation)
    $$ \mathbb{E}(aX+b | Y = y) = a\mathbb{E}(X|Y=y) +b $$
    $$ \mathbb{E}(X+Z|Y=y) = \mathbb{E}(X|Y=y)+\mathbb{E}(Z|Y=y) $$
-2. $\mathbb{E}(g(X,Y)|Y=y) = \mathbb{E}(g(X,y)|Y=y) \not = \mathbb{E}(g(X,y)) \text{ when X and Y are not independent}$
+   1. $\mathbb{E}(g(X,Y)|Y=y) = \mathbb{E}(g(X,y)|Y=y) \cancel{=} \mathbb{E}(g(X,y)) \text{ when X and Y are not independent}$
 
    __Proof__ (Discrete):
     $$
@@ -1115,7 +1113,7 @@ Different ways to understand *conditional expectation*
     P(X=x_i,Y=y_j|Y=y) =
     \begin{cases}
         \begin{aligned}
-            &0                                  & \text{ if  } y_j\not =y    \\  \\
+            &0                                  & \text{ if  } y_j\cancel{=}y    \\  \\
             &P(X=x_1,Y=y_j)/P(Y+y)=P(X=x_i|Y=y) \quad\quad&\text{ if } y_j=y
         \end{aligned}
     \end{cases}\\
@@ -1133,7 +1131,7 @@ Different ways to understand *conditional expectation*
     $$
         \mathbb{E}(g(X)\cdot h(Y)|Y) = h(Y)\mathbb{E}(g(X)|Y)
     $$
-3. If $X\perp Y$, then $\mathbb{E}(g(X)|Y=y) = \mathbb{E}(g(X))$
+2. If $X\perp Y$, then $\mathbb{E}(g(X)|Y=y) = \mathbb{E}(g(X))$
 
     __Fact__: If $X\perp Y$, then conditional distribution of $X$ given $Y=y$ is the same as the unconditional distribution of $X$
 
@@ -1147,7 +1145,7 @@ Different ways to understand *conditional expectation*
         &\quad=P(X=x_i)
     \end{aligned}
     $$
-4. Law of iterated expectation (or double expectation): Expectation of conditionally expectation is its unconditional expectation
+3. Law of iterated expectation (or double expectation): Expectation of conditionally expectation is its unconditional expectation
    $$ 
    \mathbb{E}(\mathbb{E}(X|Y)))=\mathbb{E}(X)
    $$
@@ -1434,7 +1432,7 @@ $$
 \begin{aligned}
 & P_{i,i+1} = P(S_1=i+1|S_0=i) = P(X_1=1)= p    \\
 & P_{i,i-1} = P(S_1=i-1|S_0=i) = P(X_1=-1) = 1 - p =:q \\
-& P_{i,j}=0 \quad\quad\quad\quad\text{ for } j\not=i\pm 1  \\
+& P_{i,j}=0 \quad\quad\quad\quad\text{ for } j\cancel{=}i\pm 1  \\
 \end{aligned}
 $$
 $$
@@ -1844,7 +1842,7 @@ $$P=
     <img src="drawio_assets/4.4.2.periodicity.svg">
 </p>
 
-Note that if we starts from 0, we can only get back to 0 in $2, 4, 6,\cdots$, i.t., even number of steps $P_{00}^{(2n+1)}=0 \forall n$
+Note that if we starts from 0, we can only get back to 0 in $2, 4, 6,\cdots$, i.t., even number of steps $P_{00}^{(2n+1)}=0,\quad \forall n$
 
 #### Definition 4.4.2. Period
 
@@ -1855,7 +1853,7 @@ In this example above, $d_0=gcd(\{\text{even numbers}\}) = 2$
 
 If $d_i=1$, state $i$ is called *__"aperiodic"__*
 
-If $\not\exists n > 0$ such that $P_{ii}^{(n)}>0$, then $d_i=\infty$
+If $\cancel{\exists} n > 0$ such that $P_{ii}^{(n)}>0$, then $d_i=\infty$
 
 #### Remark 4.4.2
 
@@ -1867,7 +1865,7 @@ Note that $P_{ii} > 0 \Rightarrow d_i = 1$. The converse is __not true__.
 
 $$ P_{00}^{(2)} >0, P_{00}^{(3)} > 0 \Rightarrow d_0 =1 \text{ but } P_{00}=0$$
 
-In general, $d_i=d \not\Rightarrow P_{ii}^{(d)}>0$
+In general, $d_i=d \cancel{\Rightarrow} P_{ii}^{(d)}>0$
 
 ### 4.4.3. Equivalent classes and irreducibility
 
@@ -1895,11 +1893,11 @@ As a result, we can use "$\leftrightarrow$" to divide the state space into diffe
 
 $$ \begin{cases}
     S=\bigcup_kC_k \quad\quad\quad\quad \text{($\{C_n\}$ is a partition of $S$)}\\ 
-    C_k\bigcap C_k' = \emptyset, k\not=k'
+    C_k\bigcap C_k' = \emptyset, k\cancel{=}k'
 \end{cases} $$
 
 - For state $i$ and $j$ in the same class $C_k$, $i\leftrightarrow j$. 
-- For $i$ $j$ in different classes, $i\not\leftrightarrow j$ ($i\not\rightarrow j$ or $j\not\rightarrow i$)
+- For $i$ $j$ in different classes, $i\cancel{\leftrightarrow} j$ ($i\cancel{\rightarrow} j$ or $j\cancel{\rightarrow} i$)
 
 #### Definition 4.4.3. Irreducible
 
@@ -1914,9 +1912,9 @@ A MC is called __irreducible__, if it has only one class. In other words, $i\lef
 #### Example 4.4.3.1. Find the classes
 
 $$ P=\begin{pmatrix}
-    \frac{1}{2} & \frac{1}{2} & & \\
-    \frac{1}{2}&\frac{1}{2}&&\\
-    \frac{1}{4}&\frac{1}{4}&\frac{1}{4}&\\
+    \frac{1}{2} & \frac{1}{2} & & \\ \\
+    \frac{1}{2}&\frac{1}{2}&&\\ \\
+    \frac{1}{4}&\frac{1}{4}&\frac{1}{4}&\\ \\
     &&&1
 \end{pmatrix} $$
 
@@ -1927,17 +1925,17 @@ Draw an arrow from $i$ to $j$ if $P_{ij} > 0$
 </p>
 
 - $P_{01}>0, P{10}>0 \Rightarrow 0\leftrightarrow1$
-- State 2 does not communicate with any other state, since $P_{i2}=0, i\not=2$
-- State 3 does not communicate with any other state, since $P_{i3}=0, i\not=3$
+- State 2 does not communicate with any other state, since $P_{i2}=0, i\cancel{=}2$
+- State 3 does not communicate with any other state, since $P_{i3}=0, i\cancel{=}3$
 
 $\Rightarrow$ 3 classes: $\{0,1\}, \{2\}, \{3\}$
 
 #### Example 4.4.3.2. Find the classes
 
 $$ P=\begin{pmatrix}
-    \frac{1}{2} & \frac{1}{2} & & \\
-    \frac{1}{2}&&\frac{1}{2}&\\
-    \frac{1}{2}&&&\frac{1}{2}\\
+    \frac{1}{2} & \frac{1}{2} & & \\ \\
+    \frac{1}{2}&&\frac{1}{2}&\\ \\
+    \frac{1}{2}&&&\frac{1}{2}\\ \\
     &&\frac{1}{2}&\frac{1}{2}
 \end{pmatrix} $$
 
@@ -2001,7 +1999,7 @@ For an irreducible MC, its period is defined as the period of any state.
 
 ## 4.5. Limiting Distribution
 
-In this part, we are interested in $lim_{n\rightarrow\infty} P_{ij}^{(n)}$ and $lim_{n\rightarrow\infty}P(X_u=i)$
+In this part, we are interested in $lim_{n\rightarrow\infty} P_{ij}^{(n)}$ and $lim_{n\rightarrow\infty}P(X_n=i)$
 
 To make things simple, we focus on the irreducible case.
 
@@ -2012,10 +2010,10 @@ $$ \underline{\pi}=(\pi_0,\pi_1,\ldots) \text{ exits} $$
 Moreover:
 $$ 
 
-(*)\underbrace{lim_{n-\rightarrow\infty} P_{ij}^{(n)}}_{\text{limiting distribution}\atop\text{(does not depend on the initial state i)} }
+(*)\underbrace{lim_{n\rightarrow\infty} P_{ij}^{(n)}}_{\text{limiting distribution}\atop\text{(does not depend on the initial state i)} }
 
 =lim_{n\rightarrow\infty}
-\underbrace{\frac{\sum_{k=1}^n1\!\!\!\!\perp_{\{X_k=j\}}}{n}}_{\text{long-run fraction of time spent in j}}
+\underbrace{\frac{\sum_{k=1}^n\mathbb{I}_{\{X_k=j\}}}{n}}_{\text{long-run fraction of time spent in j}}
 
 =\underbrace{\frac{1}{\mathbb{E}(T_j|X_0=j)}}_{\text{$T_j=min\{n>0:X_n=j\}$}\atop\text{expected revisit time}}
 
@@ -2040,7 +2038,7 @@ $$
 
 \frac{\lim_{n\rightarrow\infty} P_{jj}^{(nd)}}{d}
 
-= \lim_{n\rightarrow\infty}\frac{\sum_{k=1}^n1\!\!\!\!\perp_{\{X_k=j\}}}{n}
+= \lim_{n\rightarrow\infty}\frac{\sum_{k=1}^n\mathbb{I}\mathbb{I}\mathbb{I}\mathbb{I}_{\{X_k=j\}}}{n}
 
 = \quad\frac{1}{\mathbb{E}(T_j|X_0=j)}=\pi_j
 
@@ -2118,25 +2116,27 @@ but $\lim_{n\rightarrow\infty}P_{20}^{(n)}=0$
 ### Example 4.5.2
 
 Consider a MC with
-$$ p = \begin{pmatrix}
+$$ P = \begin{pmatrix}
 0 & 1\\
 1 & 0
 \end{pmatrix} $$
+
 <p align="center">
     <img src="drawio_assets/example.4.5.2.svg">
 </p>
-Irreducible, positive recurrent, but not aperiodic: $d=2$
 
-Note that $p^2=\begin{pmatrix}1&\\&1\end{pmatrix}=I\Rightarrow p^{2n}=\begin{pmatrix}1&\\&1\end{pmatrix}, p^{2n+1}=p=\begin{pmatrix}&1\\1\end{pmatrix}$
+Irreducible, positive recurrent, but not aperiodic:$d=2$
 
-$p_{00}^{(n)}=1$ for $n$ even, $0$ for $n$ odd $\Rightarrow$ $\lim_{n\rightarrow\infty}P_{00}^{(n)}$ does not exist.
+Note that $P^2=\begin{pmatrix}1&\\&1\end{pmatrix}=I\Rightarrow P^{2n}=\begin{pmatrix}1&\\&1\end{pmatrix}, P^{2n+1}=P=\begin{pmatrix}&1\\1\end{pmatrix}$
+
+$P_{00}^{(n)}=1$ for $n$ even, $0$ for $n$ odd $\Rightarrow$ $\lim_{n\rightarrow\infty}P_{00}^{(n)}$ does not exist.
 
 Aperiodicity is related to the existence of the limit $\lim_{n\rightarrow\infty}P_{ij}^{(n)}$
 
 
 ### Example 4.5.3
 
-$$ P_{o,j} = p_j, j=0,1,\cdots, p_0>0   \\
+$$ P_{0,j} = p_j, j=0,1,\cdots, p_0>0   \\
 P_{i,i-1}=1, i\geq 1 $$
 
 <p align="center">
@@ -2239,8 +2239,8 @@ $$
 Then
 $$ \begin{aligned}
 P^n
-    &= (Q\Lambda \cancel{Q}^{-1})(\cancel{Q}\Lambda \cancel{Q}^{-1})\cdot(\cancel{Q}\Lambda Q^{-1}) \\
-    &= Q\Lambda^nQ^{n-1}    \\
+    &= (Q\Lambda \cancel{Q}^{-1})(\cancel{Q}\Lambda \cancel{Q}^{-1})\cdots(\cancel{Q}\Lambda Q^{-1}) \\
+    &= Q\Lambda^nQ^{-1}    \\
     &= \begin{pmatrix}
             1   & \alpha    \\
             1   & -\beta
@@ -2312,19 +2312,6 @@ $$ \begin{aligned}
    $$\frac{d^k\psi(s)}{ds^k}=k!p_k +(\cdots)s +(\cdots)s^2+\cdots$$
    $$ \frac{d^k\psi(s)}{ds^k}|_{s=0}=k!p_k $$
    In particular, $p_1\geq 0\Rightarrow\psi(s)$ is increasing. $p_2\geq 0\Rightarrow \psi(s)$ is climax
-
-## 4.6. Generating function and branching processes
-
-### Properties of generating function
-
-1. $\psi(0)=p_0,\quad\psi(1)=\sum_{k=0}^\infty p_k=1$
-2. Generating function determines the distribution 
-   $$ p_k=\frac{1}{k!}\frac{d^k\psi(s)}{ds^k}|_{s=0}$$
-   Reason:
-   $$ \psi(s)=p_0+p_1s^1+\cdots+p_{k-1}s^{k-1}+p_ks^k+p_{k+1}s^{k+1}+\cdots \\$$
-   $$\frac{d^k\psi(s)}{ds^k}=k!p_k +(\cdots)s +(\cdots)s^2+\cdots$$
-   $$ \frac{d^k\psi(s)}{ds^k}|_{s=0}=k!p_k $$
-   In particular, $p_1\geq 0\Rightarrow\psi(s)$ is increasing. $p_2\geq 0\Rightarrow \psi(s)$ is climax
 3. Let $\xi_1,...,\xi_n$ be independent r.b. with generating function $\psi_1,...,\psi_n$,
     $$ X=\xi_1+...+\xi_n \Rightarrow \psi_X(s)=\psi_1(s)\psi_2(s)...\psi_n(s)$$
     __Proof__:
@@ -2378,9 +2365,9 @@ $$ \begin{aligned}
 
 $$ 
 \begin{aligned}
-\Rightarrow \mathbb{X_n}
+\Rightarrow \mathbb{E}(X_n)
     &=\mu\mathbb{E}(X_{n-1})   \\
-    &=\mu^2\mathbb{X_{n-2}}     \\
+    &=\mu^2\mathbb{E}(X_{n-2})     \\
     &\quad\quad\quad\vdots   \\
     &=\mu^n\mathbb{E}(X_0) = \mu^n,\quad n=0,1,...
 \end{aligned}
@@ -2413,7 +2400,7 @@ Var(\mathbb{E}(X_{n+1}|X_n))
                 Var(X_n)&=\sigma(\mu^{n-1}+...+\mu^{2n-2})\\
                 &=\begin{cases}
                 \begin{aligned}
-                    &\sigma^2\mu^{n-1}\frac{1-\mu^n}{1-\mu} \quad&\mu\not=1\\
+                    &\sigma^2\mu^{n-1}\frac{1-\mu^n}{1-\mu} \quad&\mu\cancel{=}1\\
                     &\sigma^2n &\mu=1
                 \end{aligned}
                 \end{cases}
