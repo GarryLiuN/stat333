@@ -6,7 +6,7 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
 
 ## Table of Contents
 
-* __[Full Note](./pdf/full_note.pdf)__
+* __[Full Note](./pdf/full_note.pdf)__ or use the web version at http://garryliun.github.io/assets/full_note.html
   * for [full_note.md](./md/full_note.md), use Visual Studio Code with [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) and [Markdown+Math](https://marketplace.visualstudio.com/items?itemName=goessner.mdmath) extensions to render markdown files, or
   * use [StackEdit](https://stackedit.io) to view it online
 
@@ -122,5 +122,17 @@ If you find any typo or mistake in the note, feel free to fix them and create a 
         * 5.3.1.1. Independent Increments
         * 5.3.1.2. Poisson Increments
         * 5.3.1.3. Combining and Thining of Poisson Process
-
-
+* [Lecture 18](./md/18_Mar_19.md)([pdf](./pdf/18_Mar_19.pdf)) - March 19
+  * __5. Poisson Processes (cont'd)__
+    * 5.3. Properties of Poisson Processes (cont'd)
+      * 5.3.1. Continuous-time Markov Property (cont'd)
+        * 5.3.1.3. Combining and Thinning of Poisson Process (cont'd)
+        * 5.3.1.4 Order Statistics Property
+  * __6. Continuous-Time Markov Chain__
+    * __6.1. Definitions and Structures__
+      * Definition 6.1.1. Continuous-time Stochastic Process
+* [Lecture 19](./md/19_Mar_21.md)([pdf](./pdf/19_Mar_21.pdf)) - March 21
+  * __6. Continuous-Time Markov Chain__
+    * __6.1. Definitions and Structures__
+      * Definition 6.1.1. Continuous-time Stochastic Process
+      * Example 6.1.1.1.

@@ -94,10 +94,10 @@
     - [Example 4.5.3](#example-453)
     - [Example 4.5.4. Electron](#example-454-electron)
   - [4.6. Generating function and branching processes](#46-generating-function-and-branching-processes)
-    - [Definition .4.6.1](#definition-461)
+    - [Definition 4.6.1](#definition-461)
     - [Properties of generating function](#properties-of-generating-function)
     - [4.6.1. Branching Process](#461-branching-process)
-      - [4.6.1.2. Mean and Variance](#4612-mean-and-variance)
+      - [4.6.1.1. Mean and Variance](#4611-mean-and-variance)
       - [4.6.1.2. Extinction Probability](#4612-extinction-probability)
 - [5. Poisson Processes](#5-poisson-processes)
   - [5.1. Counting Process](#51-counting-process)
@@ -116,6 +116,12 @@
       - [5.3.1.2. Poisson Increments](#5312-poisson-increments)
       - [Fact 5.3.1.2](#fact-5312)
       - [5.3.1.3. Combining and Thining of Poisson Process](#5313-combining-and-thining-of-poisson-process)
+      - [5.3.1.4 Order Statistics Property](#5314-order-statistics-property)
+- [6. Continuous-Time Markov Chain](#6-continuous-time-markov-chain)
+  - [6.1. Definitions and Structures](#61-definitions-and-structures)
+    - [Definition 6.1.1. Continuous-time Stochastic Process](#definition-611-continuous-time-stochastic-process)
+      - [Example 6.1.1.1.](#example-6111)
+  - [6.2. Generator Matrix](#62-generator-matrix)
 
 # 1. Fundamental of Probability
 
@@ -2717,3 +2723,202 @@ $\{N_1(t)\}$ and $\{N_2(t)\}$ are independent
 
 Let $N(t)=N_1(t)+N_2(t)$, then $\{N(t)\}\sim Poi((\lambda_1+\lambda_2)t)$
 
+
+The combined Poisson Process is still a Poisson Process, with intensity being the sum of intensities.
+
+__Reason__: Memoryless property, and
+$$ min(W_1, W_2)    \\
+W1\sim Exp(\lambda_1)\\
+W2\sim Exp(\lambda_2)\\
+W_1\perp\!\!\!\perp W_2
+$$
+$\Rightarrow$ the combined process is the counting process of events with interarrival time following $Exp(\lambda_1+\lambda_2$
+
+__Thinning__
+
+Let $\{N(t)\}\sim Poi(\lambda t)$. Each arrival (customer) is labeled as type 1 or type 2, with probability $p$ and $1-p$, independently from others.
+
+Let $N_1(t)$ and $N_2(t)$ be the number of customers of type 1and type 2 respectively, who arrived before time $t$. Then
+$$
+\begin{aligned}
+\{N_1(t)&\sim Poi(p\lambda t)\\
+\{N_2(t)&\sim Poi((1-p)\lambda t)\\
+\text{and } \{N_1(t)\}& \perp\!\!\!\perp \{N_2(t)\}
+\end{aligned}
+$$
+
+__Reason__: This is the inverse procedure of combining two independent Poisson processes into one Poisson process
+
+#### 5.3.1.4 Order Statistics Property
+
+Let $X_1,\ldots,X_n$ be i.i.d. r.v's. The order statistics of $X_1, \ldots, X_n$ are random variables defined as follows.
+
+$$ \begin{aligned}
+    &X_{(1)} = min\{X_1,\ldots,X_n\}    \\
+    &X_{(2)} = \text{2nd smallest among} X_1,\ldots,X_n    \\
+    &\quad\quad\quad\quad\quad\vdots    \\
+    &X_{(n)} = max\{X_1,\ldots,X_n\}
+\end{aligned} $$
+
+In orher words, $X_{(1)},\ldots,X_{(n)}$ are such that $\{X_{(1)},\ldots,X_{(n)}\}=\{X_1,\ldots,X_n\}$ and $X_{(n)}\leq X_{(2)}\leq\cdots\leq X_{(n)}$
+
+Thus, let $\{N(t(\}\sim Poi(\lambda t)$. Condition on $N(t)=n$, the points/arrivals of $N$ in $[0,t]$ are distributed as the order statistics of $n$ i.i.d. uniform r.v's on $[0,t]$
+
+That is
+$$ (S_1,\ldots, S_n | N(t)=n)\stackrel{d}{=} (U_{(1)},\ldots, U_{(n)})$$
+where, $U_{(1)},\ldots,U_{(n)}$ are the order statistics of $U_1, \ldots, U_n\stackrel{iid}{\sim}Unif[0,t]$
+
+__Reason__:
+$$ \begin{aligned}
+f_{S_1|\{N(t)=1\}}(s)
+    &=\frac{f_{S_1}(s)\mathbb{P}(W_2>t-s)}{\mathbb{P}(N(t)=1)}  \\
+    &\propto f_{S_1}(s)\mathbb{P}(\underbrace{W_2}_{Exp(\lambda)}>t-s)      \\
+    &= \lambda e^{-\lambda s} e^{-\lambda(t-s)} \\
+    &= \underbrace{\lambda e^{-\lambda t}}_{\text{const w.r.t. s}}
+\end{aligned}
+$$
+$$ \Rightarrow S_1|\{N(t)=1\}\sim Unif[0,t] $$
+
+As a result of the order statistics property, we have preposition
+$$ N(s)|\{N(t)=n\}\sim Bin(n,\frac{s}{t})\quad\quad\text{for } s\leq t $$
+
+__Reason__: Given $N(t)=n$, then
+$$
+\begin{aligned}
+N(s)
+    &= \#\{S_i : S_i\leq s, i=1,2,\ldots,n\} \\
+\text{Since $\{U_{(i)}\}$ is a}     &= \#\{U_{(i)} : U_{(i)}\leq s, i=1,2,\ldots,n\} \\
+\text{ permutation of $\{U_i\}$}    &= \#\{U_i : U_i\leq s, i=1,2,\ldots,n\} \\
+\end{aligned}
+$$
+$$ U_i\stackrel{iid}{\sim}Unif[0,t] $$
+$$ \mathbb{P}(U_i\leq s) = \frac{s}{t}\quad\quad i=1,\ldots,n $$
+$$ \Rightarrow N(s)|\{N(t)=n\}\sim Bin(n,\frac{s}{t}) $$
+
+# 6. Continuous-Time Markov Chain
+
+## 6.1. Definitions and Structures
+
+### Definition 6.1.1. Continuous-time Stochastic Process
+
+A continuous-time stochastic process $\{X(t)\}_{t\geq 0}$ is called a continuous-time Markov Chain (CTMC), if its state space is at most countable, and it satisfies the continuous-time Markov property:
+
+$$
+\begin{aligned}
+&\mathbb{P}(X(t_m)=j|X(t_{m-1}=i, X(t_{m-2})=i_{m-2},\ldots, X(t_1)=i_1 \\
+=& \mathbb{P}(X(t_m)=j|X(t_{m-1}=i))\\
+
+&\quad\quad \text{for any }m, t_1<t_2<\cdots<t_m, i_1,\ldots, i_{m-2}, i, j\in S
+\end{aligned}
+$$
+
+As DTMC, typically $S=\{0,\ldots,m\}$ or $\{1,\ldots,m\}$ or $\{0,\pm1,\pm2,ldots\}$
+
+Time is continuous, but the state space is discrete $\Rightarrow$ Process will "jump" between states
+<p align="center">
+    <img src="drawio_assets/6.1.1.svg">
+</p>
+It can be regarded as a random step function.
+
+Therefore, we need to specify two things:
+
+1. When the jumps happen? $\Leftrightarrow$ How long the process stays in a state?
+   - Given the process is in state $i$, it will stay in this state for an exponential random time, with parameter denoted as $\lambda_i$
+   - __Reason__:
+     - Markov property $\Rightarrow$ when the process will jump in the future only depends on its current state, not on how long it has been in the current state $\Rightarrow$ memoryless property $\Rightarrow$ exponential.
+   - Markov Property $\Rightarrow$ the parameter of the exponential can only depend on the current state $i$.
+2. When it jumps, where it jumps to.
+   - The continuous-time Markov Chain will jump according to a transition probability $q_{ij}$, which only depends on $i$ and $j$
+   - __Reason__:
+     - Markov property $\Rightarrow$ given $i, \underbrace{q_{ij}}_{future}$ can not depend on anything else.
+     - $q_{ij}=\mathbb{P}(X(t) \text{ jumps to } j|X(t) \text{ jumps from } j) \Rightarrow \begin{cases}
+         q_{ij}=0\quad\quad\quad\quad\quad\quad\quad q_{ij}\geq 0, j\cancel{=}i   \\
+         \sum_{j\in S}q_{ij}=\sum_{j\in S, j\cancel{=}i}\quad q_{ij}=1
+     \end{cases}$
+     - Define $Q=\{q_{ij}\}_{i,j\in S}\\Q=\begin{bmatrix}
+         0&q_{01}&q_{02}&\cdots \\
+         q_{10}&0&q_{12}&\cdots \\
+         \vdots&\vdots&\vdots&\vdots
+     \end{bmatrix}$
+     - the row sums of $Q$ are 1
+
+A CTMC is fully characterized by $\{\lambda_i\}_{i\in S}$ and $Q=\{q_{ij}\}_{i,j\in S}$
+
+To conclude, a CTMC stays in a state $i$ for an exponential random time $T_i$; then jumps to another state $j$ with probability $q_{ij}$, then stays in $j$ for an exponential random time $T_j$, $\cdots$ , all the jumps and times spent in different states are independent.
+
+
+
+
+#### Example 6.1.1.1.
+
+We have seen that the Poisson process satisfy the continuous-time Markov property $\Rightarrow$ it is a CTMC
+
+$$ \lambda_i=\lambda \quad\quad i\in S=\{0,1,2,\cdots\} $$
+
+\(interarrival times do not depend on current state. $\Rightarrow$ time spent in different states are i.i.d.)
+
+$$ q_{i,i+i} = 1\quad\quad q_{ij} = 0 \text{ otherwise}(j\cancel{=}i+1) $$
+
+## 6.2. Generator Matrix
+
+Similar to the discrete-time case, we have the transition probability at time $t$.
+
+$$ \begin{aligned}
+    P_{ij}(t)
+        &= \mathbb{P}(X(t)=j|X(0)=i)  \\
+        &= \mathbb{P}(X(t+s)=j|X(s)=i)  \quad\quad\text{assume the MC is time-homogeneous}
+\end{aligned} $$
+
+and matrix
+
+$$ P(t)=\{P_{ij}(t)\}_{i,j\in S}$$
+
+$$ P(t)=\begin{pmatrix}
+    p_{00}(t) & p_{01}(t) & \cdots  \\
+    p_{10}(t) & p_{11}(t) & \cdots  \\
+    \vdots & \vdots &
+\end{pmatrix} $$
+
+The C-K equation still holds
+$$ p(t+s) = P(t)\cdot P(s)$$
+
+__Proof__: $\forall i,j\in S$
+
+$$ \begin{aligned}
+P_{ij}(t+s)
+    &= \mathbb{P}(X(t+s)=j|X(0)=i) \\
+    &= \sum_{k\in S}\mathbb{P}(X(t+s)=j|X(t)=k,\cancel{X(0)=i})\cdot \mathbb{P}(X(t)=k|X(0)=i)  \\
+    &= \sum_{k\in S}\mathbb{P}(X(s)+j|X(o)=k)\cdot\mathbb{P}(X(t)=k|X(0)=i) \\
+    &= \sum_{k\in S}P_{kj}(s)\cdot P_{ik}(t)\\
+    &=(P(t)\cdot P(s))_{ij}\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\quad\blacksquare
+\end{aligned}$$
+
+Note that we have 
+$$ P(0) = I $$
+$$ (P_{ii}(0)=\mathbb{P}(X(0)=i|X(0)=i) = 1, P_{ij}(0)=0\text{ for } j\cancel{=}i)$$
+and
+$$ \lim_{t\rightarrow0^+} P(t)=I $$
+
+Actually, we have the following stronger result:
+$$ R:= \lim_{h\rightarrow 0^+}\frac{P(h)-P(0)}{h}=\lim_{h\rightarrow0^+}\frac{P(h)-I}{h} $$
+exists, and is called the __(infinitesimal) _generator_ matrix of $\{X(t)\}_{t\geq 0}$__
+
+Entry-wise:
+$$ R_{ij}=\lim_{h\rightarrow0^+}\frac{P_{ij}(h)-P_{ij}(0)}{h} = \begin{cases}
+    \lim_{h\rightarrow0^+}\frac{P_{ii}(n)-1}{h}\leq 0\quad  j = i\\
+    \lim_{h\rightarrow0^+}\frac{P_{ii}(n)}{h}\geq 0\quad\quad j \cancel{=}i
+\end{cases} $$
+
+Relation between $R$ and $\{\lambda_i\}_{i\in S}$ and $Q=\{q_{ij}\}_{i,j\in S}$
+$$ R_{ii}=-\lambda_i\quad,\quad R_{ij}=\lambda_iq_{ij}\quad\quad j\cancel{=}i$$
+
+__Reason__:
+
+$$ \begin{aligned}
+R_{ii}=\lim_{h\rightarrow0^+}\frac{P_{ii}(h)-1}{h} = \lim_{h\rightarrow0^+}\frac{\mathbb{P}(T_i>h) - 1}{h}
+\end{aligned} $$
+
+Where $T_i$ is the random time the process stays in $i$. The equality holds because when $h$ is very small, the probability of having two or more jumps in time $h$ is negligible.
+
+$$ \mathbb{P}(X(h)=i|X(0)=i) = \mathbb{P}(T_i>h) +o(h)\leftarrow\text{having at least 2 jumps and back to $i$} $$
+$$ * a(h)=o(h) \text{ if } \lim_{h\rightarrow 0}\frac{a(h)}{h}=0 $$
