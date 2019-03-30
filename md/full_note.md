@@ -122,6 +122,18 @@
     - [Definition 6.1.1. Continuous-time Stochastic Process](#definition-611-continuous-time-stochastic-process)
       - [Example 6.1.1.1.](#example-6111)
   - [6.2. Generator Matrix](#62-generator-matrix)
+    - [Example 6.2.1. Poisson Process](#example-621-poisson-process)
+    - [Example 6.2.2. 3-tables in a restaurant](#example-622-3-tables-in-a-restaurant)
+  - [6.3. Classification of States](#63-classification-of-states)
+    - [6.3.1. Positive / Null Recurrence](#631-positive--null-recurrence)
+  - [6.4. Stationary Distribution](#64-stationary-distribution)
+    - [Definition 6.4.1. Stationary Distribution](#definition-641-stationary-distribution)
+    - [Fact 6.4.1. Stationary Distribution](#fact-641-stationary-distribution)
+    - [Remark 6.4.1. Kolmogorov's Backward Equation](#remark-641-kolmogorovs-backward-equation)
+    - [6.4.1. Basic Limit Theorem for CTMC](#641-basic-limit-theorem-for-ctmc)
+      - [Remark 6.4.1.1](#remark-6411)
+  - [6.5. Birth and Death Processes](#65-birth-and-death-processes)
+    - [Definition 6.5.1. Birth and Death Process](#definition-651-birth-and-death-process)
 
 # 1. Fundamental of Probability
 
@@ -2905,8 +2917,8 @@ exists, and is called the __(infinitesimal) _generator_ matrix of $\{X(t)\}_{t\g
 
 Entry-wise:
 $$ R_{ij}=\lim_{h\rightarrow0^+}\frac{P_{ij}(h)-P_{ij}(0)}{h} = \begin{cases}
-    \lim_{h\rightarrow0^+}\frac{P_{ii}(n)-1}{h}\leq 0\quad  j = i\\
-    \lim_{h\rightarrow0^+}\frac{P_{ii}(n)}{h}\geq 0\quad\quad j \cancel{=}i
+    \lim_{h\rightarrow0^+}\frac{P_{ii}(h)-1}{h}\leq 0\quad  j = i\\
+    \lim_{h\rightarrow0^+}\frac{P_{ii}(h)}{h}\geq 0\quad\quad j \cancel{=}i
 \end{cases} $$
 
 Relation between $R$ and $\{\lambda_i\}_{i\in S}$ and $Q=\{q_{ij}\}_{i,j\in S}$
@@ -2922,3 +2934,289 @@ Where $T_i$ is the random time the process stays in $i$. The equality holds beca
 
 $$ \mathbb{P}(X(h)=i|X(0)=i) = \mathbb{P}(T_i>h) +o(h)\leftarrow\text{having at least 2 jumps and back to $i$} $$
 $$ * a(h)=o(h) \text{ if } \lim_{h\rightarrow 0}\frac{a(h)}{h}=0 $$
+
+
+$$ 
+\begin{aligned}
+R_{ii}
+    &=\lim_{h\rightarrow 0^+}\frac{\mathbb{P}(\overbrace{T_i}^{Exp(\lambda_i)}>h)}{h}\\
+    &=\lim_{h\rightarrow 0^+}\frac{e^{-\lambda_i h}-1}{j}\\
+    &=\lim_{h\rightarrow 0^+}\frac{e^{-\lambda_i h}-e^{-\lambda_i \cdot 0}}{j}\\
+    &= \frac{de^{-\lambda_i}}{dh}\Big|_{h=0}\\
+    &= -\lambda_i e^{-\lambda_ih}|_{h=0}=-\lambda_i \\
+\end{aligned}\\
+
+\begin{aligned}
+R_{ij}=\lim_{h\rightarrow 0^+}\frac{P_{ij}(h)}{h}
+    &=\lim_{h\rightarrow0^+}\frac{\mathbb{P}(X(h)=j|X(0)=i)}{h}\\
+\text{Only one jump happens two }
+    &=\lim_{h\rightarrow0^+}(\frac{\mathbb{P}(T_i<h,X(T_i)=j)}{h}  \\
+\text{jumps happen$\rightarrow$ uegligeable}
+    &=q_{ij}\lim_{h\rightarrow0^+}\frac{\mathbb{P}(T_i<h)}{h}   \\
+    &=q_{ij}\lim_{h\rightarrow0^+}\frac{1-e^{-\lambda_ih}}{h}   \\
+    &=q_{ij}\lim_{h\rightarrow0^+}\frac{e^{-\lambda_i0}-e^{-\lambda_ih}}{h}   \\
+    &= q_{ij}(\frac{-de^{-\lambda_ih}}{dh}\Big|_{h=0})  \\
+    &= q_{ij}\lambda_i
+\end{aligned}   \\
+$$
+Thus, we conclude that
+$$ R_{ii}=-\lambda_i,\quad R_{ij}=\lambda_iq_{ij]} $$
+Note that $R_{ii}\leq 0$, $R_{ij}\geq 0,$ $j\cancel{=}i$
+$$
+\begin{aligned}
+\sum_{i\in S}R_{ij}
+    &= R_{ii}+\sum_{i\in S, j\cancel{=}i}R_{ij}      \\
+    &= -\lambda_i+\sum_{i\in S, j\cancel{=}i}\lambda_iq_{ij} \quad \leftarrow \sum_{j\in S, j\cancel{=}i}q_{ij}=1      \\
+    &= -\lambda_i+\lambda_i \\
+    &= 0
+\end{aligned}
+$$
+The row sums of $R$ are 0
+$$
+R=\begin{pmatrix}
+    -\lambda_0 & \lambda_0q_{01} & \lambda_0q_{02} & \cdots \\
+    -\lambda_1q_{10} & -\lambda_1 & \lambda_1q_{12} & \cdots \\
+    -\lambda_2q_{20} & \lambda_2q_{21} & -\lambda_2 & \cdots \\
+    \vdots &\vdots&\vdots&\ddots
+
+\end{pmatrix}
+$$-\lambda_0
+$-\lambda_i$ : probability flow / rate going out of state $i$
+
+$\lambda_iq_{ij}$ : probability flow / rate going from $i$ to $j$
+
+From $R$ to $\{\lambda_i\}$ and $Q$:
+
+$\quad$ If we know $R$, then
+$$ \lambda_i=-R_{ii} $$
+$$ q_{ij} = \frac{-R_{ij}}{R_{ii}}\quad j\cancel{=}i $$
+
+Thus, there is a $1-1$ relation between $\{\lambda_i\}_{i\in S} + \{q_{ij}\}_{i,j\in S}$ and $R=\{R_{ij}\}_{i,j\in S}$
+
+$\Rightarrow$ the generator $R$ itself also __fully characterizes__ the transitional behaviour of the CDMC.
+
+__Conclusion__: $\{\lambda_i\}+\{q_{ij}\}_{i,j\in S}$ and $\{R_{ij}\}_{i,j\in S}$ are two sets of parameters that can be used to specify a CDMC.
+
+### Example 6.2.1. Poisson Process
+
+$$
+\lambda_i=\lambda\\
+
+Q=\begin{pmatrix}
+    0 & 1 \\
+    & 0 & 1 \\
+    & & 0 & 1 \\ \\
+    & &  & \ddots &\ddots \\
+\end{pmatrix}
+$$
+
+$$
+\begin{aligned}
+\Rightarrow 
+    &R_{ii}=-\lambda_i=-\lambda \quad\quad i=0,1,\ldots\\
+    &R_{ij}=\lambda_iq_{ij}=\begin{cases}
+        \lambda \quad j=i+1 \\
+        0   \quad j\cancel{=}i, i+1
+    \end{cases}
+\end{aligned}\\
+
+R=\begin{pmatrix}
+    -\lambda & \lambda \\
+    &-\lambda & \lambda \\ \\
+    &  & \ddots &\ddots \\
+\end{pmatrix}
+$$
+
+### Example 6.2.2. 3-tables in a restaurant
+
+Parties of customers arrive according to a Poisson Process with intensity $\lambda$.
+
+If there are free tables $\rightarrow$ the party is served, and spend an exponential amount of time with average $\frac{1}{\mu}$ (parameter $\mu$)
+
+If there is no free table $\rightarrow$ the party leaves immediately
+
+Let $X(t)$ be the number of occupied tables at time $t$ $\Rightarrow$ $S=\{0,1,2,3\}$
+
+Since all the interarrival times and service times are exponential and independent, the process $\{X(t)\}$ is a CTMC.
+
+Find $\lambda_i$ and $q_{ij}$:
+
+For $i=0$:
+
+- $q_{01}=1\quad\quad\quad$ no customer $\rightarrow$ one table occupied
+- $\lambda_0=\lambda\quad\quad\quad$ leave state 0 $\Leftrightarrow$ one party arrives
+  - $q_{02}=q_{03}=0$
+
+For $i=1$:
+
+- Potential change of states $\begin{cases}1\rightarrow 2\quad\quad\text{if one party arrives first} \quad\quad\sim Exp(\lambda)\sim T\\1\rightarrow 0\quad\quad\text{if a service is completed first}\sim Exp(\mu)\sim S \end{cases}$
+- Which one actually happens depends on which time is smaller.
+
+Recall a property of exponential
+$$ min(\underbrace{T}_{Exp(\lambda)}, \underbrace{S}_{Exp(\mu)})\sim Exp(\lambda +\mu) \leftarrow \text{the distribution of the time spent in the current state}$$
+
+$$ \begin{aligned}
+    \mathbb{P}(T<S ) &= \frac{\lambda}{\lambda+\mu} \\
+    q_{12}=\mathbb{P}(T<S)) &= \frac{\lambda}{\lambda+\mu}  \\
+    q_{10}=1-q_{12}&=\frac{\mu}{\lambda+\mu} \\
+    q_{13} &= 0
+\end{aligned} $$
+
+Thus,
+
+- $\lambda_1=\lambda+\mu$
+- $q_{12}=\mathbb{P}(T<S)=\frac{\lambda}{\lambda+\mu}$
+- $q_{10}=1-q_{12}=\frac{\mu}{\lambda+\mu}$
+- $q_{13}=0$
+
+Similarly, when 2 tables are occupied.
+
+- $T$: time until next arrival $\sim Exp(\lambda)$
+- $S_1$: service time for table 1 $\sim Exp(\mu)$
+- $S_2$: service time for table 2 $\sim Exp(\mu)$
+
+$\Rightarrow$ $min(T, S_1, S_2)\sim Exp(\lambda +2 \mu)$
+
+$$ \mathbb{P}(\underbrace{T<S_1,S_2}_{2\rightarrow 3}) = \frac{\lambda}{\lambda+2\mu} $$
+
+Thus,
+
+- $\lambda_2 = \lambda + 2\mu$
+- $q_{23} = \frac{\lambda}{\lambda +\mu}, \quad q_{21}=1-q_{23}=\frac{2\mu}{\lambda+2\mu}$
+- $q_{20} = 0$
+
+Finally,
+
+- $\lambda_3=3\mu$ $\rightarrow$ one service is completed.
+- $q_{32}=1$
+- $q_{31}=q_{30}=0$
+
+$$
+Q=\begin{pmatrix}
+    0 & 1 & 0 & 0   \\
+    \frac{\mu}{\lambda+\mu} & 0 & \frac{\lambda}{\lambda+\mu} & 0   \\
+    0 & \frac{2\mu}{\lambda+2\mu} & 0 & \frac{\lambda}{\lambda+2\mu}   \\
+    0 & 0 & 1 & 0   \\
+\end{pmatrix}\\
+$$
+
+- $\lambda_0=\lambda$
+- $\lambda_1=\lambda + \mu$
+- $\lambda_2=\lambda + 2\mu$
+- $\lambda_3=3\mu$
+
+$$
+R_{ii}=-\lambda_1, \quad R_{ij}=\lambda_i q_{ij} \\
+$$  
+$$
+R=\begin{pmatrix}
+    -\lambda & \lambda & 0 & 0\\
+    \mu & -(\lambda +\mu) & \lambda & 0 \\
+    0 & 2\mu & -(\lambda +2\mu) & \mu \\
+    0 & 0 & 3\mu & -3\mu
+\end{pmatrix}
+$$
+
+  We see that $R$ was simpler form than $Q$. Actually $R_{ij}\quad i\cancel{=}j$ directly corresponds to the "rate" by which the process moves from state $i$ to $j$. Thus, in practice, we often directly model $R$ rather than getting $\{\lambda_i\}_{i\in S}$ and $Q=\{q_{ij}\}_{i,j\in S}$
+
+
+  
+## 6.3. Classification of States
+
+The matrix $Q$ is a transition matrix of a DTMC ($q_{ij}\geq 0,\quad \sum_{j\in S}q_{ij}=1$), It contains all the information about the state changes, but "forget" the time.
+
+Since *__accessibility, communication, irreducibility, recurrence/transience__* are only related to the change of states, not the time, these properties will be the same for the CTMC and its discrete skeleton.
+
+For a CTMC $\{X(t)\}_{t\geq 0}$, we call "state $j$ is accessible from state $i$", "$i$ and $j$ communicate", "the process is irreducible", "$i$ is recurrent/transient" if and only if this is the case for its discrete skeleton.
+
+### 6.3.1. Positive / Null Recurrence
+
+Note that since __positive/null recurrence__ do involve the (expected) amount of time, we can indeed have different results for a CTMC and its discrete skeleton.
+
+Let $R_i$ be the amount of (continuous, random) time the MC (re)visits state $i$.
+
+<p align="center">
+    <img src="drawio_assets/6.3.1.svg">
+</p>
+
+A state $i$ is called positive recurrent, if it is recurrent, and $\mathbb{E}(R_i|X(0)=i)<\infty$. It is called null recurrent, if it is recurrent and $\mathbb{E}(R_i|X(0)=i)=\infty$
+
+As in the discrete-time case, the positive recurrence, null recurrence and transience are class property
+
+## 6.4. Stationary Distribution
+
+### Definition 6.4.1. Stationary Distribution
+
+A distribution $\underline{\pi}=(\pi_0,\pi_1,\cdots)$ is called a stationary distribution of a CTMC $\{X(t)\}_{t\geq 0}$ with generator $R$ is it satisfies:
+
+1. $\underline{\pi}\cdot R=0 \rightarrow (0,0,\cdots)$
+2. $\sum_{i\in S}\pi_i=1\quad$ ($\underline{\pi}\cdot 1\!\!\!\!\perp = 1$)
+
+Q: Why such a $\underline{\pi}$ is called stationary?
+
+A: Assume the process starts from the initial distribution $\underline{\alpha^{(0)}}=\underline{\pi}$:
+$$ \mathbb{P}(X(0)=i)=\pi_i $$
+Then the distribution at time $t$ is given by
+$$ \underline{\alpha}^{(t)}=\underline{\alpha}^{(0)}\cdot P(t)=\underline{\pi}\cdot P(t) $$
+Reason:
+$$ \begin{aligned}
+    \alpha_j^{(t)}
+        &= \mathbb{P}(X(t)=j)\\
+        &= \sum_{i\in S}\mathbb{P}(X(t)=j|X(0)=i)\mathbb{P}(X(0)=i)\\
+        &= \sum_{i\in S}P_{ij}(t)\cdot \alpha_i^{(0)}\\
+        &=(\underline{\alpha}^{(i)}\cdot P(t))_j\\
+\end{aligned} $$
+$$
+\begin{aligned}
+    \Rightarrow \frac{d}{dt}(\underline(\alpha)^{(t)} )
+        &= \frac{d}{dt}(\underline{\pi}\cdot P(t))   \\
+        &= \underline{\pi}(\frac{d}{dt} P(t))    \\
+    \text{c-k equation}    &= \underline{\pi}\lim_{n\rightarrow 0^+}\frac{P(t+n)-p(t)}{t}  \\
+        &= \underline{\pi}\lim_{n\rightarrow 0^+}\frac{P(n)P(t)-P(t)}{n}    \\
+        &= \underline{\pi}(\lim_{n\rightarrow 0^+}\frac{P(n) - I}{n})P(t)    \\
+     \underline{0}   &=  \underline{\pi}\cdot R\cdot P(t)   \\
+        &= \underline(0)
+\end{aligned}
+$$
+$\Rightarrow \underline{\alpha}(t)$ is a constant (vector)
+
+In other words, the distribution of $X(t)$ will not change over time, if the MC start from the stationary distribution.
+
+### Fact 6.4.1. Stationary Distribution
+
+If a CTMC starts from a stationary distribution, then its distribution will never change.
+
+### Remark 6.4.1. Kolmogorov's Backward Equation
+
+In the above derivation, we also see that
+$$ \frac{d}{dt}(P(t)) = P'(t)=R\cdot P(t) $$
+This is called the __Kolmogorov's Backward Equation__
+
+### 6.4.1. Basic Limit Theorem for CTMC
+
+Let $\{X(t)\}_{t\geq 0}$ be an irreducible, recurrent CTMC. Then
+
+$$ \lim_{t\rightarrow\infty}P_{ij}(t)=:\pi_j'=\frac{\mathbb{E}(T_j)}{\mathbb{E}(R_j|X(0)=j)} = \frac{1/\lambda_i}{\mathbb{E}(R_j|X(0)=j)}$$
+
+In addition, the MC is positive recurrent if and only if an unique stationary distribution exists. In this case, the stationary distribution is $\underline{\pi}'=(\pi_0',\pi_1',\cdots)$
+
+#### Remark 6.4.1.1
+
+<p align="center">
+    <img src="drawio_assets/6.4.1.svg">
+</p>
+
+$$ \frac{\mathbb{E}(T_j)}{\mathbb{E}(R_j|X(0)=j)} = \text{long-run fraction of time spent in state $j$} $$
+
+Thus, $\pi_j'$ is also the long-run fraction of time that the process spends in stat $j$.
+
+## 6.5. Birth and Death Processes
+
+### Definition 6.5.1. Birth and Death Process
+
+A __Birth and Death Process__ is a CTMC such that $S=\{0,1,\cdots, M\}$, or $S=\{0,1,\cdots\}$, and $\underline{q_{ij}=0}$ if $\underline{|j-i|>1}$.
+
+The process can only change to neighbouring states:
+
+$$ q_{i,i-1}+q_{i,i+1} = 1,\quad i\geq 1 $$
+$$ q_{01} = 1 $$
