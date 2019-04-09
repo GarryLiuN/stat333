@@ -134,6 +134,12 @@
       - [Remark 6.4.1.1](#remark-6411)
   - [6.5. Birth and Death Processes](#65-birth-and-death-processes)
     - [Definition 6.5.1. Birth and Death Process](#definition-651-birth-and-death-process)
+    - [Example 6.5.1. Previous Example of Restaurant](#example-651-previous-example-of-restaurant)
+    - [Example 6.5.2. A Population Model](#example-652-a-population-model)
+    - [6.5.1. Stationary Distribution of a Birth and Death Process](#651-stationary-distribution-of-a-birth-and-death-process)
+      - [Example 6.5.1.1. M/M/S Queue (cont'd)](#example-6511-mms-queue-contd)
+      - [Example 6.5.1.2. Population Model (with immigration)](#example-6512-population-model-with-immigration)
+        - [Conclusion](#conclusion)
 
 # 1. Fundamental of Probability
 
@@ -3220,3 +3226,268 @@ The process can only change to neighbouring states:
 
 $$ q_{i,i-1}+q_{i,i+1} = 1,\quad i\geq 1 $$
 $$ q_{01} = 1 $$
+
+For a birth and death process, we use a new set of parameters:
+
+Denote
+
+$$
+\begin{aligned}
+&\lambda_i = R_{i,i+1}\quad\quad i=0,1,\cdots\\
+&\mu_i = R_{i,i-1}\quad\quad i=1,2,\cdots
+\end{aligned}\\
+
+R=\begin{pmatrix}
+    -\lambda_0 & \lambda_0   \\
+    \mu_1&-(\lambda_1+\mu_1)&\lambda_1 \\
+    & \mu_2&-(\lambda_2+\mu_2)&\lambda_2 \\
+    &&\mu_3&-(\lambda_3+\mu_3)&\lambda_3 \\\\
+    &&\quad\quad\quad\ddots&\quad\quad\quad\ddots&\quad\quad\quad\ddots
+\end{pmatrix}\\
+\Rightarrow
+\begin{aligned}
+    &R_{ii} =-(\lambda_i+\mu_i) \quad i\geq 1    \\
+    &R_{00} =\lambda_0
+\end{aligned}
+$$
+
+$\lambda_i$'s are called the "birth rates" ($population + 1$)
+
+$\mu_i$'s are called "death rates" ($population - 1$)
+
+### Example 6.5.1. Previous Example of Restaurant
+
+$$
+R=\begin{pmatrix}
+    -\lambda &\lambda \\
+    \mu & -(\mu+\lambda) & \lambda\\
+    & 2\mu & -(2\mu+\lambda) & \lambda\\
+    &&3\mu & -3\mu\\
+\end{pmatrix}
+$$
+
+This is a birth and death process.
+
+- Birth rates: $\lambda_i = \lambda \quad\quad\quad i=0,1,2,3$
+- Death rates: $\mu_i = i\cdot \mu \quad\quad i=1,2,3$
+
+In general, consider a M/M/S queueing system.
+
+- M: exponential interarrival time
+- M: service time is exponential $Exp(\mu)$ (each server)
+- S: number of servers
+
+$X(t) =$ # of customers in the system at time $t$
+
+- Birth rate:
+  - birth $\Leftrightarrow$ arrival
+  - $\Rightarrow \lambda_1 = \lambda$
+- Death rate:
+  - death $\Leftrightarrow$ service done
+  - When there are $i$ customers:
+    - Case 1 : $i \leq s$
+      - $i$ servers are busy. Each $\sim Exp(\mu)$
+      - $\Rightarrow$ total death rate $\mu_i=i\cdot \mu$
+    - Case 2 : $i > s$
+      - $s$ servers are busy, $\mu_i=s\cdot \mu$
+
+Thus, for M/M/S queue,
+$$
+\lambda_i=\lambda\\
+\mu_i=\begin{cases}
+    i\cdot \mu\quad\quad i\leq s\\
+    s\cdot \mu\quad\quad i > s
+\end{cases}
+$$
+
+### Example 6.5.2. A Population Model
+
+Each individual gives birth to an offspring with exponential rate $\lambda$. (i.e. the waiting time until it gets the next offspring $\sim Exp(\lambda)$ ). Each individual dies with exponential rate $\mu$. Let $X(t)$ be the population size at time $t$.
+
+The time until the next (potential) birth is the smallest amount the $i$ i.i.d. birth time. $\sim Exp(i\cdot \lambda)$
+
+Thus the birth rate $\lambda_i=i\cdot \lambda\quad i=0,1,2,\cdots$
+
+Similarly, the death rate $\mu_i=i\mu\quad i=1,2,\cdots$
+
+$$
+R=\begin{pmatrix}
+    0 & 0   \\
+    \mu & -(\lambda+\mu ) & \lambda \\
+    & 2\mu & -2(\lambda+\mu) & 2\lambda \\
+    && \quad\quad\ddots&\quad\quad\ddots&
+\end{pmatrix}\\
+*: \text{0 is absorbing}
+$$
+If we do need to know $\{\lambda_i\}$ and $Q$
+$$
+\lambda_i = -R_{ii}=i(\lambda+\mu)\quad i\geq 0 \\
+q_{i,i+1} = \frac{i\lambda}{i(\lambda+\mu)} = \frac{\lambda}{\lambda+\mu}   \quad i\geq1 \quad (*) \\
+q_{i,i-1}=\frac{i\mu}{i(\lambda+\mu)}=\frac{\mu}{\lambda+\mu} \quad 1\geq 1\\ 
+$$
+$$
+(*)q_{0,1}=1. \text{ arbitrary since } \lambda_0=0
+$$
+$$
+Q=\begin{pmatrix}
+    0 & 1\\\\
+    \frac{\mu}{\lambda+\mu} & 0 & \frac{\lambda}{\lambda+\mu}\\\\
+    &\frac{\mu}{\lambda+\mu} & 0 & \frac{\lambda}{\lambda+\mu}\\\\
+    && \quad\quad \ddots& \quad\quad \ddots
+\end{pmatrix}
+$$
+
+We can further add immigration to the system. Individuals are added to the population according to a Poisson process with intensity $\alpha$.
+
+This will not change the "rate" from $i$ to $i-1$
+
+The time until the next increase in population is now the minimum of two r.v's following $Exp(i\lambda)$ (births) and $Exp(\alpha)$ (immigration).
+
+$\Rightarrow$ rate from $i$ to $i+1$ becomes $i\lambda+\alpha$
+
+$$
+R=\begin{pmatrix}
+    -\alpha & \alpha    \\
+    \mu & -(\lambda+\mu+\alpha) & \lambda + \alpha \\
+    &2\mu & -(\lambda+2\mu+\alpha) & \lambda + \alpha \\\\
+    && \quad\quad\ddots& \quad\quad\ddots
+\end{pmatrix}
+$$
+$$ \begin{aligned}
+    (*) \quad&\lambda_i = R_{i,i+1} = i\lambda +\alpha\quad\quad i=0,1,\cdots\\
+    &\mu_i = R_{i,i-1} = i\mu \quad\quad\quad\quad i = 1,2,\cdots\\
+\end{aligned}\\
+(*) \text{ not the "biological" birth rate, but the total rate by which the process goes from $i$ to $i+1$}
+$$
+
+$\{\lambda_i\}$ and $Q$ will change accordingly.
+
+Note that state 0 is no longer absorbing due to the immigration.
+
+
+As we see, there are two main types of birth and death processes: __queueing system__ and __population model__. THe key difference between them is that the birth rate in the queueing system is typically a constant (does not depend on the current state $i$), while the birth rate in population model increases as $i$ increases.
+
+### 6.5.1. Stationary Distribution of a Birth and Death Process
+
+$$ \begin{cases}
+    \underline{\pi}\cdot R = \underline{0}\quad (1)\\
+    \underline{\pi}\cdot 1\!\!\!\!\perp = \underline1 \quad (2)\\
+\end{cases} $$
+
+$$
+(\pi_0,\pi_1,\cdots) \cdot \begin{pmatrix}
+    -\lambda_0 & \lambda_0 \\
+    \mu_1 & -(\lambda_1+\mu_1)&\lambda_1\\
+    &\mu_2 & -(\lambda_2+\mu_2)&\lambda_2\\\\
+    && \quad\quad\ddots& \quad\quad\ddots& \quad\quad\ddots
+\end{pmatrix}
+$$
+
+$$ (1) \Rightarrow
+\begin{aligned}
+&-\lambda_0\pi_0+\mu_1\pi_1 = 0 \Rightarrow\pi_1=\frac{\lambda_0}{\mu_1}\pi_0\\
+&\lambda_0\pi_0-(\lambda_1+\mu_1)\mu_1+\mu_2\pi_2 = 0
+    
+\end{aligned}
+$$
+Add this to the first equation, we have
+$$ -\lambda_1\pi_1+\mu_2\pi_2 = 0 \Rightarrow\pi_2=\frac{\lambda_1}{\mu_2}\pi_1 $$
+
+In general, adding the first $i$ equations, we have
+$$ -\lambda_0\pi_0+\mu_1\pi_1= 0 $$
+$$ \lambda_0\pi_0-(\lambda_1+\mu_1)\pi_1+\mu_2\pi_2=0 $$
+$$ \vdots $$
+$$ \lambda_{i-2}\pi_{i-2}-(\lambda_{i-1}+\mu_{i-1}+\mu_i\pi_i)=0 $$
+$$ -\lambda_{i-1}\pi_{i-1}+\mu_i\pi_i=0 $$
+$$ \begin{aligned}
+    \Rightarrow \pi_i &= \frac{\lambda_{i-1}}{\mu_i}\pi_{i-1}\\
+    &=\cdots\\
+    &=\frac{\lambda_0\lambda_1\cdots\lambda_{i-1}}{\mu_1\mu_2\cdots\mu_i}\pi_0
+\end{aligned} $$
+
+Use $(2)$ to normalize
+$$ 1=\sum_{n=0}^\infty \pi_n = (1+\sum_{n=1}^{\infty}\Pi_{j=1}^n\frac{\lambda_{j-1}}{\mu_j} $$
+$$ 
+\begin{aligned}
+\Rightarrow
+&\pi_0=\frac{1}{1+\sum_{n=1}^\infty\Pi_{j=1}^n\frac{\lambda_{j-1}}{\mu_j}}\\
+&\pi_i=\frac{\Pi_{j=1}^i\frac{\lambda_{j-1}}{\mu_j}}{1+\sum_{n=1}^\infty\Pi_{j=1}^n\frac{\lambda_{j-1}}{\mu_j}}
+\end{aligned}
+$$
+
+Thus, a stationary distribution exists(the MC is positive recurrent, assuming irreducible) if and only if
+$$ \sum_{n=1}^\infty\Pi_{j=1}^n\frac{\lambda_{j-1}}{\mu_j } < \infty $$
+
+#### Example 6.5.1.1. M/M/S Queue (cont'd)
+
+$$ \lambda_i = \lambda\quad\quad\mu_i=\begin{cases}
+    i\mu\quad i\leq s \\
+    s\mu\quad i>s
+\end{cases} $$
+
+$$
+\begin{aligned}
+&\sum_{n=1}^\infty \Pi_{j=1}^n\frac{\lambda_{j-1}}{\mu_j}\\
+&= \underbrace{\frac{\lambda}{\mu}+\frac{\lambda}{\mu}\cdot\frac{\lambda}{2\mu}+\cdots+\frac{\lambda}{\mu}\frac{\lambda}{2\mu}\cdots\frac{\lambda}{s\mu} + \frac{\lambda}{\mu}\frac{\lambda}{2\mu}\cdots(\frac{\lambda}{s\mu})^2+\frac{\lambda}{\mu}\frac{\lambda}{2\mu}\cdots(\frac{\lambda}{s\mu})^3+\cdots}_{\text{geometric series with ration $\frac{\lambda}{s\mu}$}}
+\end{aligned}
+$$
+
+$\Rightarrow$ The sum is finite if and only if $\lambda<s\mu$
+
+$\Rightarrow$ the process $\{X(t)\}_{t\geq 0}$ is positive recurrent if and only if $\underbrace{\lambda}_{\text{arrival rate}} < \underbrace{s\mu}_{\text{maximal (total) service rate}}$
+
+#### Example 6.5.1.2. Population Model (with immigration)
+
+$$ \lambda_i=i\lambda+\alpha\quad\quad\mu_i=i\mu $$
+
+$$
+\sum_{n=1}^\infty \Pi_{j=1}^n\frac{\lambda_{j-1}}{\mu_j} = \sum_{n=1}^\infty\Pi_{j=1}^n\frac{(j-1)\lambda+\alpha}{j\mu}
+$$
+$$
+\lim_{j\rightarrow\infty}\frac{(j-1)\lambda+\alpha}{j\mu}=\frac{\lambda}{\mu}
+$$
+If $\lambda<\mu$, then $\quad\sum_{n=1}^\infty\Pi_{j=1}^n\frac{(j-1)\lambda+\alpha}{j\mu}<\infty$ by ratio test.
+
+If $\lambda>\mu$, then $\quad\sum_{n=1}^\infty\Pi_{j=1}^n\frac{(j-1)\lambda+\alpha}{j\mu}=\infty$.
+
+If $\lambda=\mu$, then $\quad\alpha \geq \lambda =\mu$, the ratio $\frac{(j-1)\lambda+\alpha}{j\mu}\geq 1$ for all $j$
+
+$\Rightarrow$ the terms in the summation is non-decreasing
+
+$\Rightarrow$ the $sum = \infty$
+
+If $\lambda=\mu,\quad \alpha <\lambda = \mu$：
+
+__Raabe-Duhamel's test__: (not required content)
+$$ L:=\lim_{n\rightarrow\infty} n(\frac{a_n}{a_{n+1}}-1)\begin{cases}
+    >1\quad\text{converge}\\
+    <1\quad\text{diverge}\\
+    =1\quad\text{inconclusive}\\
+\end{cases} $$
+
+Here:
+$$
+\begin{aligned}
+L&=\lim_{n\rightarrow\infty}n(\frac{n\mu}{(n-1)\lambda+\alpha})\\
+&=\lim_{n\rightarrow\infty}n(\frac{n\lambda-(n-1)\lambda-\alpha}{(n-1)\lambda+\alpha})\\
+&=\lim_{n\rightarrow\infty}n(\frac{\lambda-\alpha}{(n-1)\lambda+\alpha})\\
+&=\frac{\lambda-\alpha}{\lambda} <1
+\end{aligned}
+$$
+$\Rightarrow$ the sum $=\infty$
+
+##### Conclusion
+
+To sum up, the CTMC is positive recurrent if and only if $\lambda<\mu$
+
+__Q__: What happens if $\lambda_0=0$? (0 is absorbing)
+
+__A__:
+
+The chain is not irreducible; typically two classes:
+
+- $\{0\}\quad\quad\quad\quad\quad$ positive recurrent
+- $\{1,2,\cdots\}\quad \text{ }\text{ }\quad$transient
+
+But the chain does not necessarily end up with being in state $0$, because it can also have $X(t)\rightarrow\infty$. Whether this is a possibility depends on the relation between $\{\lambda_i\}$ and $\{\mu_i\}$.
+
